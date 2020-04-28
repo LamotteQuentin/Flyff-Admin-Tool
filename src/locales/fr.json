@@ -1,0 +1,126 @@
+{
+	"common": {
+		"no": "Non",
+		"yes": "Oui"
+	},
+	"components": {
+		"footer": {
+			"copyright": "Sous licence CreativeCommons",
+			"githubLink": "Suivre FAT sur GitHub",
+			"signature": "Développé par Quentin Lamotte"
+		},
+		"menu": {
+			"links": {
+				"odbc": "ODBC",
+				"system": "Système",
+				"workflow": "Workflow"
+			}
+		}
+	},
+	"message": "",
+	"views": {
+		"main": {
+			"description": "D'autres fonctionnalités seront ajoutées prochainement !",
+			"subtitle": "Outil d'administration pour serveurs Flyff"
+		},
+		"odbc": {
+			"notifications": {
+				"testFailed": {
+					"message": "La connexion au DSN \"{0}\" a échoué. Si vous utilisez l'authentification intégrée à Windows, l'utilisateur utilisé pour lancer FAT n'est peut-être pas autorisé à s'y connecter. Il se peut également que le DSN ne soit pas capable d'accepter les connexions effectués par ce test. Seuls les DSN pour serveurs SQL sont supportés par FAT.",
+					"title": "Connexion échouée"
+				},
+				"testSucceeded": {
+					"message": "La connexion au DSN \"{0}\" a réussi. Si votre serveur a été configuré avec ses paramètres, il devrait également y avoir accès.",
+					"title": "Connexion réussie"
+				}
+			},
+			"sections": {
+				"dataSourceNames": {
+					"copyButton": "Copier la chaîne de connexion",
+					"documentationButton": "En savoir plus sur les chaînes de connexion",
+					"empty": "Aucun DSN répondant à vos critères de recherche n'a été trouvé sur votre système.",
+					"subtitle": "Vérifiez que vos DSN (Data Source Name, ou noms de sources de données) sont bien configurés, en accord avec les besoins de votre serveur Flyff. Vous pouvez les tester individuellement pour valider qu'ils fonctionnent. Le test consiste en l'ouverture d'une connexion vers la chaîne de connexion (connection string) associée au DSN. Notez cependant que les tests seront effectués avec le même utilisateur que celui utilisé pour lancer FAT. Les DSN utilisant l'authentification Windows intégrée afficheront une erreur lors du test s'ils sont configurés pour utiliser un autre utilisateur.",
+					"testButton": "Tester la connexion",
+					"title": "3. Validez vos DSN"
+				},
+				"drivers": {
+					"downloadButton": "Page de téléchargement des pilotes ODBC de Microsoft",
+					"empty": "Aucun pilote ODBC répondant à vos critères de recherche n'a été trouvé sur votre système.",
+					"subtitle": "Vérifiez que les pilotes ODBC dont votre serveur Flyff a besoin sont installés sur votre système. Dans le cas contraire, vous pouvez les installer grâce à des version incluses dans les installateurs Microsoft SQL Server ou bien indépendamment, en les téléchargeant directement depuis Micrososft.",
+					"title": "2. Validez les pilotes ODBC"
+				},
+				"filter": {
+					"subtitle": "Commencez par fournir des mots-clés afin de filtrer les noms de pilotes ou de sources de données ODBC à traiter.",
+					"title": "1. Rechercher"
+				}
+			},
+			"title": "Assistant de configuration ODBC"
+		},
+		"system": {
+			"sections": {
+				"cpu": {
+					"cores": "{0} cœurs (dont {1} physiques)",
+					"speed": "{0} GHz max. / {1} GHz min. / {2} GHz moy.",
+					"title": "CPU"
+				},
+				"processes": {
+					"experimentalWarning": "Cette section est expérimentale ! Vous y trouverez des informations techniques très détaillées. Vous pourrez vous en passer pour gérer votre serveur mais elles pourraient être utiles dans des cas très spécifiques.",
+					"graph": {
+						"linkLabel": "Lancé par {0} le {1}",
+						"title": "Vue graphique des processus"
+					},
+					"title": "Processus en cours d'exécution",
+					"tree": {
+						"title": "Vue arborescente des processus"
+					}
+				},
+				"ram": {
+					"title": "RAM"
+				},
+				"storage": {
+					"title": "Stockage"
+				}
+			},
+			"title": "Informations système"
+		},
+		"workflow": {
+			"sections": {
+				"processes": {
+					"cpuUsage": "CPU : {0} ({1} moy.)",
+					"encodingLabel": "Encodage des sorties standards (stdout et stderr)",
+					"metricsIntervalLabel": "Interval des mesures (ms)",
+					"metricsPointsLabel": "Nombre de mesures à afficher",
+					"metricsSpan": "Les métriques afficheront une période de : {0}",
+					"noMetric": "Aucune métrique n'est disponible pour cet exécutable.",
+					"ramUsage": "RAM : {0} ({1} moy.)",
+					"restartButton": "Redémarrer",
+					"sendButton": "Envoyer à l'entrée standard (stdin)",
+					"sequentialStartButton": "Démarrer jusqu'ici",
+					"sequentialStopButton": "Arrêter jusqu'ici",
+					"startButton": "Démarrer",
+					"stdinLabel": "Instruction à envoyer au processus",
+					"stopButton": "Arrêter",
+					"title": "Surveillance des processus"
+				},
+				"settings": {
+					"editWorkflowButton": "Modifier le workflow",
+					"isAnExecutableRunning": "Le workflow ne sera pas modifiable tant que tous les exécutables ne seront pas à l'arrêt.",
+					"isStarting": "Plusieurs exécutables sont en cours de démarrage. Les contrôles seront bloqués le temps que le workflow finisse sa séquence de lancement.",
+					"startAllButton": "Tout démarrer",
+					"stopAllButton": "Tout arrêter",
+					"title": "Paramètres d'exécution"
+				},
+				"workflowSidebar": {
+					"addButton": "Ajouter un exécutable",
+					"argsLabel": "Arguments",
+					"argsPlaceholder": "Saisissez un argument puis faites \"Entrer\" pour l'ajouter",
+					"commandLabel": "Fichier ou commande à exécuter",
+					"delayLabel": "Délai (ms)",
+					"hideWindowLabel": "Cacher la fenêtre du sous-processus (si supporté)",
+					"removeButton": "Supprimer"
+				}
+			},
+			"title": "Gestionnaire de workflow"
+		}
+	}
+}

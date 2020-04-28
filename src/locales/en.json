@@ -1,0 +1,126 @@
+{
+	"common": {
+		"no": "No",
+		"yes": "Yes"
+	},
+	"components": {
+		"footer": {
+			"copyright": "Under CreativeCommons license",
+			"githubLink": "Follow FAT on GitHub",
+			"signature": "Developed by Quentin Lamotte"
+		},
+		"menu": {
+			"links": {
+				"odbc": "ODBC",
+				"system": "System",
+				"workflow": "Workflow"
+			}
+		}
+	},
+	"message": "hello i18n !!",
+	"views": {
+		"main": {
+			"description": "Other features will be added soon!",
+			"subtitle": "Administration tool for Flyff servers"
+		},
+		"odbc": {
+			"notifications": {
+				"testFailed": {
+					"message": "Connection to DSN \"{0}\" failed. If you are using Integrated Windows authentication, the user used to launch FAT may not be allowed to log in. The DSN may also not be able to accept connections made by this test. Only DSNs for SQL servers are supported by FAT.",
+					"title": "Connection failed"
+				},
+				"testSucceeded": {
+					"message": "Connection to DSN \"{0}\" was successful. If your server has been configured with its settings, it should also have access to it.",
+					"title": "Connection succeeded"
+				}
+			},
+			"sections": {
+				"dataSourceNames": {
+					"copyButton": "Copy the connection string",
+					"documentationButton": "Learn more about connection strings.",
+					"empty": "No DSN meeting your search criteria was found on your system.",
+					"subtitle": "Check that your DSN (Data Source Name) are correctly configured, according to the needs of your Flyff server. You can test them individually to validate that they work. The test consists of opening a connection to the connection string associated with the DSN. Note however that the tests will be performed with the same user as the one used to launch FAT. DSNs using Integrated Windows Authentication will display an error during the test if they are configured to use another user.",
+					"testButton": "Test Connection",
+					"title": "3. Validate your DSNs"
+				},
+				"drivers": {
+					"downloadButton": "Microsoft ODBC drivers download page",
+					"empty": "No ODBC driver meeting your search criteria was found on your system.",
+					"subtitle": "Verify that the ODBC drivers that your Flyff server needs are installed on your system. Otherwise, you can install them using versions included in Microsoft SQL Server installers or independently, by downloading them directly from Micrososft.",
+					"title": "2. Validate the ODBC drivers"
+				},
+				"filter": {
+					"subtitle": "Start by providing keywords to filter the names of ODBC drivers or data sources to process.",
+					"title": "1. Search"
+				}
+			},
+			"title": "ODBC configuration wizard"
+		},
+		"system": {
+			"sections": {
+				"cpu": {
+					"cores": "{0} cores (including {1} physical)",
+					"speed": "{0} GHz max. / {1} GHz min. / {2} GHz avg.",
+					"title": "CPU"
+				},
+				"processes": {
+					"experimentalWarning": "This section is experimental! You will find very detailed technical information there. You can do without them to manage your server but they could be useful in very specific cases.",
+					"graph": {
+						"linkLabel": "Started by {0} on {1}",
+						"title": "Processes graph view"
+					},
+					"title": "Running processes",
+					"tree": {
+						"title": "Processes tree view"
+					}
+				},
+				"ram": {
+					"title": "RAM"
+				},
+				"storage": {
+					"title": "Storage"
+				}
+			},
+			"title": "System Information"
+		},
+		"workflow": {
+			"sections": {
+				"processes": {
+					"cpuUsage": "CPU: {0} ({1} avg.)",
+					"encodingLabel": "Encoding of standard outputs (stdout and stderr)",
+					"metricsIntervalLabel": "Metrics interval (ms)",
+					"metricsPointsLabel": "Number of measurements to display",
+					"metricsSpan": "The metrics will display a time span of: {0}",
+					"noMetric": "No metric is available for this executable.",
+					"ramUsage": "RAM: {0} ({1} avg.)",
+					"restartButton": "Restart",
+					"sendButton": "Send to standard input (stdin)",
+					"sequentialStartButton": "Start up to there",
+					"sequentialStopButton": "Stop up to there",
+					"startButton": "Start",
+					"stdinLabel": "Instruction to send to the process",
+					"stopButton": "Stop",
+					"title": "Processes monitoring"
+				},
+				"settings": {
+					"editWorkflowButton": "Edit workflow",
+					"isAnExecutableRunning": "The workflow will not be editable until all the executables are stopped.",
+					"isStarting": "Several executables are being started. The controls will be blocked until the workflow finishes its launching sequence.",
+					"startAllButton": "Start all",
+					"stopAllButton": "Stop all",
+					"title": "Execution settings"
+				},
+				"workflowSidebar": {
+					"addButton": "Add an executable",
+					"argsLabel": "Arguments",
+					"argsPlaceholder": "Type in an argument then press \"Enter\" to add it",
+					"commandLabel": "File or command to execute",
+					"delayLabel": "Delay (ms)",
+					"hideWindowLabel": "Hide the sub-process window (if supported)",
+					"removeButton": "Delete"
+				}
+			},
+			"title": "Workflow manager"
+		}
+	}
+}
