@@ -1,5 +1,7 @@
 {
   "name": "flyff-admin-tool",
+  "description": "Flyff Admin Tool",
+  "author": "Quentin Lamotte",
   "version": "0.1.0",
   "private": true,
   "scripts": {
