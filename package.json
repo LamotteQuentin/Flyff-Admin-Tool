@@ -15,8 +15,13 @@
   },
   "main": "background.js",
   "dependencies": {
+    "bootstrap": "^4.4.1",
+    "bootstrap-vue": "^2.13.0",
     "core-js": "^3.6.4",
+    "node-powershell": "^4.0.0",
+    "odbc": "^2.2.2",
     "vue": "^2.6.11",
+    "vue-clipboard2": "^0.3.1",
     "vue-router": "^3.1.6"
   },
   "devDependencies": {
