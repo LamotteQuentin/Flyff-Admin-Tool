@@ -1,121 +1,125 @@
-<template>
-  <b-container>
-    <h1 class="display-1">{{ $t('views.odbc.title') }}</h1>
+<template
+  ><div>
+    <b-container>
+      <h1>{{ $t('views.odbc.title') }}</h1>
 
-    <b-row>
-      <b-col>
-        <h1 class="display-3">{{ $t('views.odbc.sections.1.title') }}</h1>
-        <p class="lead">{{ $t('views.odbc.sections.1.subtitle') }}</p>
+      <b-row>
+        <b-col>
+          <h3>{{ $t('views.odbc.sections.1.title') }}</h3>
+          <p class="lead">{{ $t('views.odbc.sections.1.subtitle') }}</p>
 
-        <hr />
+          <hr />
 
-        <b-form-input
-          v-model="filter"
-          placeholder="Filter out driver or datasource names"
-        />
-      </b-col>
-    </b-row>
+          <b-form-input
+            v-model="filter"
+            placeholder="Filter out driver or datasource names"
+          />
+        </b-col>
+      </b-row>
 
-    <b-row>
-      <b-col>
-        <h1 class="display-3">{{ $t('views.odbc.sections.2.title') }}</h1>
-        <p class="lead">{{ $t('views.odbc.sections.2.subtitle') }}</p>
-        <b-button
-          @click="
-            openExternal(
-              'https://docs.microsoft.com/en-us/sql/connect/odbc/windows/release-notes-odbc-sql-server-windows'
-            )
-          "
-          variant="primary"
-          block
-        >
-          <b-icon icon="download" />
-          {{ $t('views.odbc.sections.2.downloadButton') }}
-        </b-button>
-
-        <hr />
-
-        <b-list-group v-if="filteredDrivers.length">
-          <b-list-group-item
-            v-for="(driver, id) in filteredDrivers"
-            v-bind:key="id"
-            :variant="isDriverUsed(driver) ? '' : 'secondary'"
-            class="flex-column align-items-start"
+      <b-row>
+        <b-col>
+          <h3>{{ $t('views.odbc.sections.2.title') }}</h3>
+          <p class="lead">{{ $t('views.odbc.sections.2.subtitle') }}</p>
+          <b-button
+            @click="
+              openExternal(
+                'https://docs.microsoft.com/en-us/sql/connect/odbc/windows/release-notes-odbc-sql-server-windows'
+              )
+            "
+            variant="primary"
+            block
           >
-            <div class="d-flex w-100 justify-content-between">
-              <h5 class="mb-1">{{ driver.Name }}</h5>
-              <small>{{ driver.Platform }}</small>
-            </div>
+            <b-icon icon="download" />
+            {{ $t('views.odbc.sections.2.downloadButton') }}
+          </b-button>
 
-            <small>{{ driver.Attribute.Setup }}</small>
-          </b-list-group-item>
-        </b-list-group>
-        <p v-else>
-          <b-icon icon="exclamation-triangle" variant="danger" />
-          {{ $t('views.odbc.sections.2.empty') }}
-        </p>
-      </b-col>
-    </b-row>
+          <hr />
 
-    <b-row>
-      <b-col>
-        <h1 class="display-3">{{ $t('views.odbc.sections.3.title') }}</h1>
-        <p class="lead">{{ $t('views.odbc.sections.3.subtitle') }}</p>
-        <b-button
-          @click="openExternal('https://www.connectionstrings.com/sql-server/')"
-          variant="primary"
-          block
-        >
-          <b-icon icon="book" />
-          {{ $t('views.odbc.sections.3.documentationButton') }}
-        </b-button>
+          <b-list-group v-if="filteredDrivers.length">
+            <b-list-group-item
+              v-for="(driver, id) in filteredDrivers"
+              v-bind:key="id"
+              :variant="isDriverUsed(driver) ? '' : 'secondary'"
+              class="flex-column align-items-start"
+            >
+              <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">{{ driver.Name }}</h5>
+                <small>{{ driver.Platform }}</small>
+              </div>
 
-        <hr />
+              <small>{{ driver.Attribute.Setup }}</small>
+            </b-list-group-item>
+          </b-list-group>
+          <p v-else>
+            <b-icon icon="exclamation-triangle" variant="danger" />
+            {{ $t('views.odbc.sections.2.empty') }}
+          </p>
+        </b-col>
+      </b-row>
 
-        <b-list-group v-if="filteredDatasources.length">
-          <b-list-group-item
-            v-for="(datasource, id) in filteredDatasources"
-            v-bind:key="id"
-            class="flex-column align-items-start"
+      <b-row>
+        <b-col>
+          <h3>{{ $t('views.odbc.sections.3.title') }}</h3>
+          <p class="lead">{{ $t('views.odbc.sections.3.subtitle') }}</p>
+          <b-button
+            @click="
+              openExternal('https://www.connectionstrings.com/sql-server/')
+            "
+            variant="primary"
+            block
           >
-            <div class="d-flex w-100 justify-content-between">
-              <h5 class="mb-1">{{ datasource.Name }}</h5>
-              <small>{{ datasource.Platform }}</small>
-            </div>
+            <b-icon icon="book" />
+            {{ $t('views.odbc.sections.3.documentationButton') }}
+          </b-button>
 
-            <p class="mb-1">
-              <code>{{ getConnectionString(datasource) }}</code>
-            </p>
+          <hr />
 
-            <small>{{ datasource.DriverName }}</small>
+          <b-list-group v-if="filteredDatasources.length">
+            <b-list-group-item
+              v-for="(datasource, id) in filteredDatasources"
+              v-bind:key="id"
+              class="flex-column align-items-start"
+            >
+              <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">{{ datasource.Name }}</h5>
+                <small>{{ datasource.Platform }}</small>
+              </div>
 
-            <hr />
+              <p class="mb-1">
+                <code>{{ getConnectionString(datasource) }}</code>
+              </p>
 
-            <b-button-group size="sm" class="w-100">
-              <b-button
-                @click="testConnection(datasource)"
-                variant="outline-primary"
-              >
-                <b-icon icon="plug" />
-                {{ $t('views.odbc.sections.3.testButton') }}
-              </b-button>
-              <b-button
-                @click="copyConnectionString(datasource)"
-                variant="outline-secondary"
-              >
-                <b-icon icon="link" />
-                {{ $t('views.odbc.sections.3.copyButton') }}
-              </b-button>
-            </b-button-group>
-          </b-list-group-item>
-        </b-list-group>
-        <p v-else>
-          <b-icon icon="exclamation-triangle" variant="danger" />
-          {{ $t('views.odbc.sections.3.empty') }}
-        </p>
-      </b-col>
-    </b-row>
-  </b-container>
+              <small>{{ datasource.DriverName }}</small>
+
+              <hr />
+
+              <b-button-group size="sm" class="w-100">
+                <b-button
+                  @click="testConnection(datasource)"
+                  variant="outline-primary"
+                >
+                  <b-icon icon="plug" />
+                  {{ $t('views.odbc.sections.3.testButton') }}
+                </b-button>
+                <b-button
+                  @click="copyConnectionString(datasource)"
+                  variant="outline-secondary"
+                >
+                  <b-icon icon="link" />
+                  {{ $t('views.odbc.sections.3.copyButton') }}
+                </b-button>
+              </b-button-group>
+            </b-list-group-item>
+          </b-list-group>
+          <p v-else>
+            <b-icon icon="exclamation-triangle" variant="danger" />
+            {{ $t('views.odbc.sections.3.empty') }}
+          </p>
+        </b-col>
+      </b-row>
+    </b-container>
+  </div>
 </template>
 
 <script>

@@ -1,10 +1,10 @@
 <template>
   <div id="app">
-    <MenuComponent />
+    <MenuComponent id="app-menu" />
     <transition name="fade" mode="out-in">
-      <router-view id="router-view" />
+      <router-view id="app-content" class="py-4" />
     </transition>
-    <FooterComponent />
+    <FooterComponent id="app-footer" />
   </div>
 </template>
 
@@ -30,12 +30,19 @@ $primary: teal;
   display: flex;
   min-height: 100vh;
   flex-direction: column;
+  justify-content: space-between;
 }
 
-#router-view {
-  display: flex;
-  flex-direction: column;
-  flex: 1 0 auto;
+#app-menu,
+#app-footer {
+  flex-shrink: 0;
+}
+
+#app-content {
+  flex: 1 1 0;
+  flex-grow: 1;
+  flex-shrink: 1;
+  overflow: auto;
 }
 
 .fade-enter-active,

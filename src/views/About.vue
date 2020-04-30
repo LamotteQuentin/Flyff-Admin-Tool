@@ -1,6 +1,6 @@
 <template>
   <b-container>
-    <h1 class="display-1">{{ $t('views.about.title') }}</h1>
+    <h1>{{ $t('views.about.title') }}</h1>
 
     <hr />
 
