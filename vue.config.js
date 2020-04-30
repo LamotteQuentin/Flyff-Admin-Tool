@@ -23,20 +23,23 @@ module.exports = {
         return options;
       });
   },
-
   pages: {
     index: {
       entry: 'src/main.js',
       title: 'Flyff Admin Tool'
     }
   },
-
   pluginOptions: {
     i18n: {
       locale: 'fr',
       fallbackLocale: 'fr',
       localeDir: 'locales',
       enableInSFC: false
+    },
+    electronBuilder: {
+      builderOptions: {
+        productName: 'Flyff Admin Tool'
+      }
     }
   }
 };
