@@ -2,11 +2,13 @@
   <b-container>
     <b-jumbotron
       header="Flyff Admin Tool"
-      lead="Flyff server administration utility for desktops"
+      :lead="$t('views.main.subtitle')"
       class="text-center"
     >
-      <p>More fatures will be available soon!</p>
-      <b-button variant="primary" block to="/odbc">ODBC</b-button>
+      <p>{{ $t('views.main.description') }}</p>
+      <b-button variant="primary" block to="/odbc">
+        {{ $t('views.odbc.title') }}
+      </b-button>
     </b-jumbotron>
   </b-container>
 </template>

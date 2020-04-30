@@ -1,0 +1,57 @@
+{
+	"message": "hello i18n !!",
+	"views": {
+		"about": {
+			"properties": {
+				"appMode": "Application execution mode",
+				"appVersion": "Application version",
+				"chromiumVersion": "Chromium version",
+				"cpuArchitecture": "CPU architecture",
+				"endianness": "Endianness",
+				"nodeVersion": "NodeJS version",
+				"openSslVersion": "OpenSSL version",
+				"platform": "System platform",
+				"v8Version": "V8 engine version",
+				"vueVersion": "VueJS version"
+			},
+			"title": "About FAT"
+		},
+		"main": {
+			"description": "Other features will be added soon!",
+			"subtitle": "Administration tool for Flyff servers"
+		},
+		"odbc": {
+			"notifications": {
+				"testFailed": {
+					"message": "Connection to DSN \"{0}\" failed. If you are using Integrated Windows authentication, the user used to launch FAT may not be allowed to log in. The DSN may also not be able to accept connections made by this test. Only DSNs for SQL servers are supported by FAT.",
+					"title": "Connection failed"
+				},
+				"testSucceeded": {
+					"message": "Connection to DSN \"{0}\" was successful. If your server has been configured with its settings, it should also have access to it.",
+					"title": "Connection succeeded"
+				}
+			},
+			"sections": {
+				"1": {
+					"subtitle": "Start by providing keywords to filter the names of ODBC drivers or data sources to process.",
+					"title": "1. Search"
+				},
+				"2": {
+					"downloadButton": "Microsoft ODBC drivers download page",
+					"empty": "No ODBC driver meeting your search criteria was found on your system.",
+					"subtitle": "Verify that the ODBC drivers that your Flyff server needs are installed on your system. Otherwise, you can install them using versions included in Microsoft SQL Server installers or independently, by downloading them directly from Micrososft.",
+					"title": "2. Validate the ODBC drivers"
+				},
+				"3": {
+					"copyButton": "Copy the connection string",
+					"documentationButton": "Learn more about connection strings.",
+					"empty": "No DSN meeting your search criteria was found on your system.",
+					"subtitle": "Check that your DSN (Data Source Name) are correctly configured, according to the needs of your Flyff server. You can test them individually to validate that they work. The test consists of opening a connection to the connection string associated with the DSN. Note however that the tests will be performed with the same user as the one used to launch FAT. DSNs using Integrated Windows Authentication will display an error during the test if they are configured to use another user.",
+					"testButton": "Test Connection",
+					"title": "3. Validate your DSNs"
+				}
+			},
+			"title": "ODBC configuration wizard"
+		}
+	}
+}

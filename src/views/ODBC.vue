@@ -1,14 +1,11 @@
 <template>
   <b-container>
-    <h1 class="display-1">ODBC Helper</h1>
+    <h1 class="display-1">{{ $t('views.odbc.title') }}</h1>
 
     <b-row>
       <b-col>
-        <h1 class="display-3">1. Search</h1>
-        <p class="lead">
-          Start by providing keywords to filter out the ODBC driver or
-          datasource names you're looking for.
-        </p>
+        <h1 class="display-3">{{ $t('views.odbc.sections.1.title') }}</h1>
+        <p class="lead">{{ $t('views.odbc.sections.1.subtitle') }}</p>
 
         <hr />
 
@@ -21,12 +18,8 @@
 
     <b-row>
       <b-col>
-        <h1 class="display-3">2. Verify your drivers</h1>
-        <p class="lead">
-          Make sure that the driver needed by your server's ODBC requirements is
-          installed on your system. If not, you can install it via a Microsoft
-          SQL Server bundle or as a standalone, directly from Micrososft.
-        </p>
+        <h1 class="display-3">{{ $t('views.odbc.sections.2.title') }}</h1>
+        <p class="lead">{{ $t('views.odbc.sections.2.subtitle') }}</p>
         <b-button
           @click="
             openExternal(
@@ -36,12 +29,13 @@
           variant="primary"
           block
         >
-          <b-icon icon="download" /> Microsoft's ODBC drivers download page
+          <b-icon icon="download" />
+          {{ $t('views.odbc.sections.2.downloadButton') }}
         </b-button>
 
         <hr />
 
-        <b-list-group v-if="filteredDrivers">
+        <b-list-group v-if="filteredDrivers.length">
           <b-list-group-item
             v-for="(driver, id) in filteredDrivers"
             v-bind:key="id"
@@ -56,31 +50,29 @@
             <small>{{ driver.Attribute.Setup }}</small>
           </b-list-group-item>
         </b-list-group>
-        <p v-else>No ODBC driver was found on your system.</p>
+        <p v-else>
+          <b-icon icon="exclamation-triangle" variant="danger" />
+          {{ $t('views.odbc.sections.2.empty') }}
+        </p>
       </b-col>
     </b-row>
 
     <b-row>
       <b-col>
-        <h1 class="display-3">3. Verify your DSNs</h1>
-        <p class="lead">
-          Make sure that the DSNs required by your server's ODBC connections are
-          listed here. You can test them individually to check that they work.
-          Note that the tests are ran using the same user that launched the FAT
-          app so Windows-based authentication won't work if you're not aiming
-          the same user!
-        </p>
+        <h1 class="display-3">{{ $t('views.odbc.sections.3.title') }}</h1>
+        <p class="lead">{{ $t('views.odbc.sections.3.subtitle') }}</p>
         <b-button
           @click="openExternal('https://www.connectionstrings.com/sql-server/')"
           variant="primary"
           block
         >
-          <b-icon icon="book" /> Learn more about connection strings
+          <b-icon icon="book" />
+          {{ $t('views.odbc.sections.3.documentationButton') }}
         </b-button>
 
         <hr />
 
-        <b-list-group v-if="filteredDatasources">
+        <b-list-group v-if="filteredDatasources.length">
           <b-list-group-item
             v-for="(datasource, id) in filteredDatasources"
             v-bind:key="id"
@@ -104,18 +96,23 @@
                 @click="testConnection(datasource)"
                 variant="outline-primary"
               >
-                <b-icon icon="plug" /> Test connection
+                <b-icon icon="plug" />
+                {{ $t('views.odbc.sections.3.testButton') }}
               </b-button>
               <b-button
                 @click="copyConnectionString(datasource)"
                 variant="outline-secondary"
               >
-                <b-icon icon="link" /> Copy connection string
+                <b-icon icon="link" />
+                {{ $t('views.odbc.sections.3.copyButton') }}
               </b-button>
             </b-button-group>
           </b-list-group-item>
         </b-list-group>
-        <p v-else>No DSN was found on your system.</p>
+        <p v-else>
+          <b-icon icon="exclamation-triangle" variant="danger" />
+          {{ $t('views.odbc.sections.3.empty') }}
+        </p>
       </b-col>
     </b-row>
   </b-container>
@@ -203,14 +200,24 @@ export default {
         await ps.invoke();
 
         this.$bvModal.msgBoxOk(
-          `Connection to "${datasource.Name}" was successful.`
+          this.$t('views.odbc.notifications.testSucceeded.message', [
+            datasource.Name
+          ]),
+          {
+            title: this.$t('views.odbc.notifications.testSucceeded.title')
+          }
         );
       } catch (error) {
         ps.addCommand('$connection.Close()');
         await ps.invoke();
 
         this.$bvModal.msgBoxOk(
-          `Connection to "${datasource.Name}" has failed.`
+          this.$t('views.odbc.notifications.testFailed.message', [
+            datasource.Name
+          ]),
+          {
+            title: this.$t('views.odbc.notifications.testFailed.title')
+          }
         );
       }
     }

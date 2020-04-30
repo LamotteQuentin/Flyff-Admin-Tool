@@ -1,6 +1,6 @@
 <template>
   <b-container>
-    <h1 class="display-1">About the app</h1>
+    <h1 class="display-1">{{ $t('views.about.title') }}</h1>
 
     <hr />
 
@@ -36,52 +36,52 @@ export default {
       return [
         {
           icon: '/images/icons/icons8-falcon.svg',
-          name: 'App version',
+          name: this.$t('views.about.properties.appVersion'),
           value: remote.app.getVersion()
         },
         {
           icon: '/images/icons/icons8-code.svg',
-          name: 'App execution mode',
+          name: this.$t('views.about.properties.appMode'),
           value: process.env.NODE_ENV
         },
         {
           icon: '/images/icons/icons8-vue-js.svg',
-          name: 'VueJS version',
+          name: this.$t('views.about.properties.vueVersion'),
           value: Vue.version
         },
         {
           icon: '/images/icons/icons8-nodejs.svg',
-          name: 'NodeJS version',
+          name: this.$t('views.about.properties.nodeVersion'),
           value: process.versions.node
         },
         {
           icon: '/images/icons/icons8-chromium.svg',
-          name: 'Chromium version',
+          name: this.$t('views.about.properties.chromiumVersion'),
           value: process.versions.chrome
         },
         {
           icon: '/images/icons/V8_JavaScript_engine_logo_2.svg',
-          name: 'V8 engine version',
+          name: this.$t('views.about.properties.v8Version'),
           value: process.versions.v8
         },
         {
           icon: '/images/icons/icons8-security-ssl.svg',
-          name: 'OpenSSL version',
+          name: this.$t('views.about.properties.openSslVersion'),
           value: process.versions.openssl
         },
         {
           icon: '/images/icons/icons8-processor.svg',
-          name: 'CPU architecture',
+          name: this.$t('views.about.properties.cpuArchitecture'),
           value: os.arch()
         },
         {
           icon: '/images/icons/icons8-computer.svg',
-          name: 'Platform',
+          name: this.$t('views.about.properties.platform'),
           value: os.platform()
         },
         {
           icon: '/images/icons/icons8-informatics.svg',
-          name: 'Endianess',
+          name: this.$t('views.about.properties.endianness'),
           value: os.endianness()
         }
       ];

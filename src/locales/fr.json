@@ -1,0 +1,57 @@
+{
+	"message": "",
+	"views": {
+		"about": {
+			"properties": {
+				"appMode": "Mode d'exécution de l'application",
+				"appVersion": "Version de l'application",
+				"chromiumVersion": "Version de Chromium",
+				"cpuArchitecture": "Architecture du CPU",
+				"endianness": "Boutisme",
+				"nodeVersion": "Version de NodeJS",
+				"openSslVersion": "Version d'OpenSSL",
+				"platform": "Plateforme du système",
+				"v8Version": "Version du moteur V8",
+				"vueVersion": "Version de VueJS"
+			},
+			"title": "A propos de FAT"
+		},
+		"main": {
+			"description": "D'autres fonctionnalités seront ajoutées prochainement !",
+			"subtitle": "Outil d'administration pour serveurs Flyff"
+		},
+		"odbc": {
+			"notifications": {
+				"testFailed": {
+					"message": "La connexion au DSN \"{0}\" a échoué. Si vous utilisez l'authentification intégrée à Windows, l'utilisateur utilisé pour lancer FAT n'est peut-être pas autorisé à s'y connecter. Il se peut également que le DSN ne soit pas capable d'accepter les connexions effectués par ce test. Seuls les DSN pour serveurs SQL sont supportés par FAT.",
+					"title": "Connexion échouée"
+				},
+				"testSucceeded": {
+					"message": "La connexion au DSN \"{0}\" a réussi. Si votre serveur a été configuré avec ses paramètres, il devrait également y avoir accès.",
+					"title": "Connexion réussie"
+				}
+			},
+			"sections": {
+				"1": {
+					"subtitle": "Commencez par fournir des mots-clés afin de filtrer les noms de pilotes ou de sources de données ODBC à traiter.",
+					"title": "1. Rechercher"
+				},
+				"2": {
+					"downloadButton": "Page de téléchargement des pilotes ODBC de Microsoft",
+					"empty": "Aucun pilote ODBC répondant à vos critères de recherche n'a été trouvé sur votre système.",
+					"subtitle": "Vérifiez que les pilotes ODBC dont votre serveur Flyff a besoin sont installés sur votre système. Dans le cas contraire, vous pouvez les installer grâce à des version incluses dans les installateurs Microsoft SQL Server ou bien indépendamment, en les téléchargeant directement depuis Micrososft.",
+					"title": "2. Validez les pilotes ODBC"
+				},
+				"3": {
+					"copyButton": "Copier la chaîne de connexion",
+					"documentationButton": "En savoir plus sur les chaînes de connexion",
+					"empty": "Aucun DSN répondant à vos critères de recherche n'a été trouvé sur votre système.",
+					"subtitle": "Vérifiez que vos DSN (Data Source Name, ou noms de sources de données) sont bien configurés, en accord avec les besoins de votre serveur Flyff. Vous pouvez les tester individuellement pour valider qu'ils fonctionnent. Le test consiste en l'ouverture d'une connexion vers la chaîne de connexion (connection string) associée au DSN. Notez cependant que les tests seront effectués avec le même utilisateur que celui utilisé pour lancer FAT. Les DSN utilisant l'authentification Windows intégrée afficheront une erreur lors du test s'ils sont configurés pour utiliser un autre utilisateur.",
+					"testButton": "Tester la connexion",
+					"title": "3. Validez vos DSN"
+				}
+			},
+			"title": "Assistant de configuration ODBC"
+		}
+	}
+}
