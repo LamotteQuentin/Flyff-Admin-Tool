@@ -21,8 +21,7 @@ export default {
 </script>
 
 <style lang="scss">
-$primary: teal;
-
+@import '@/assets/variables';
 @import '~bootstrap';
 @import '~bootstrap-vue';
 

@@ -58,13 +58,37 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@import '@/assets/variables';
+
+@-webkit-keyframes color-waves {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes color-waves {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
 #app-content {
-  background-image: url('/images/bg.jpg');
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-attachment: fixed;
-  background-position: center;
+  background: linear-gradient(270deg, $primary, $secondary);
+  background-size: 400% 400%;
+  animation: color-waves 10s ease infinite;
   display: flex;
   justify-content: center;
   align-items: center;
