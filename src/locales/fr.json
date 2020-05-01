@@ -60,6 +60,23 @@
 				}
 			},
 			"title": "Assistant de configuration ODBC"
+		},
+		"system": {
+			"sections": {
+				"1": {
+					"title": "CPU"
+				},
+				"2": {
+					"title": "RAM"
+				},
+				"3": {
+					"title": "Stockage"
+				},
+				"4": {
+					"title": "Processus"
+				}
+			},
+			"title": "Informations système"
 		}
 	}
 }

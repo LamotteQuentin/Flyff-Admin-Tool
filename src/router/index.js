@@ -15,6 +15,11 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '@/views/About')
   },
   {
+    path: '/system',
+    name: 'System',
+    component: () => import(/* webpackChunkName: "system" */ '@/views/System')
+  },
+  {
     path: '/odbc',
     name: 'ODBC',
     component: () => import(/* webpackChunkName: "odbc" */ '@/views/ODBC')

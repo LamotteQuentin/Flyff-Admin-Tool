@@ -60,6 +60,23 @@
 				}
 			},
 			"title": "ODBC configuration wizard"
+		},
+		"system": {
+			"sections": {
+				"1": {
+					"title": "CPU"
+				},
+				"2": {
+					"title": "RAM"
+				},
+				"3": {
+					"title": "Storage"
+				},
+				"4": {
+					"title": "Processes"
+				}
+			},
+			"title": "System Information"
 		}
 	}
 }
