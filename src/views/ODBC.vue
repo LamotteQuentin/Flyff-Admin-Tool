@@ -1,9 +1,9 @@
-<template
-  ><div>
+<template>
+  <div>
     <b-container>
       <h1>{{ $t('views.odbc.title') }}</h1>
 
-      <b-row>
+      <b-row class="my-2">
         <b-col>
           <h3>{{ $t('views.odbc.sections.1.title') }}</h3>
           <p class="lead">{{ $t('views.odbc.sections.1.subtitle') }}</p>
@@ -17,7 +17,7 @@
         </b-col>
       </b-row>
 
-      <b-row>
+      <b-row class="my-2">
         <b-col>
           <h3>{{ $t('views.odbc.sections.2.title') }}</h3>
           <p class="lead">{{ $t('views.odbc.sections.2.subtitle') }}</p>
@@ -58,7 +58,7 @@
         </b-col>
       </b-row>
 
-      <b-row>
+      <b-row class="my-2">
         <b-col>
           <h3>{{ $t('views.odbc.sections.3.title') }}</h3>
           <p class="lead">{{ $t('views.odbc.sections.3.subtitle') }}</p>
