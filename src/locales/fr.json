@@ -1,4 +1,12 @@
 {
+	"components": {
+		"menu": {
+			"links": {
+				"odbc": "ODBC",
+				"system": "Système"
+			}
+		}
+	},
 	"message": "",
 	"views": {
 		"about": {

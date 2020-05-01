@@ -1,4 +1,12 @@
 {
+	"components": {
+		"menu": {
+			"links": {
+				"odbc": "ODBC",
+				"system": "System"
+			}
+		}
+	},
 	"message": "hello i18n !!",
 	"views": {
 		"about": {
