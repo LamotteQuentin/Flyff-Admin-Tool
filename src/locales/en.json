@@ -81,6 +81,9 @@
 				},
 				"logs": {
 					"title": "Process logs"
+				},
+				"performance": {
+					"title": "Process performance"
 				}
 			},
 			"title": "Server manager"

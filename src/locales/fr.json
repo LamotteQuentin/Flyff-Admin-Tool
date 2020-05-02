@@ -81,6 +81,9 @@
 				},
 				"logs": {
 					"title": "Journaux du processus"
+				},
+				"performance": {
+					"title": "Performance du processus"
 				}
 			},
 			"title": "Gestionnaire de serveur"

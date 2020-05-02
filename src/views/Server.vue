@@ -51,9 +51,14 @@
 
           <hr />
 
-          <b-card title="Logs" class="my-2">
-            <json-viewer :value="logs" :expand-depth="3" />
-          </b-card>
+          <json-viewer :value="logs" :expand-depth="3" />
+        </b-col>
+        <b-col>
+          <h3>{{ $t('views.server.sections.performance.title') }}</h3>
+
+          <hr />
+
+          <json-viewer v-if="performance" :value="performance" />
         </b-col>
       </b-row>
     </b-container>
@@ -63,15 +68,15 @@
 <script>
 import { spawn } from 'child_process';
 import path from 'path';
+import SystemInformation from 'systeminformation';
 
 export default {
   name: 'Server',
   data() {
     return {
       file: undefined,
-      child: undefined,
+      proc: undefined,
       stdin: undefined,
-      logs: [],
       encoding: 'utf8',
       encodings: [
         'utf8',
@@ -83,30 +88,32 @@ export default {
         'binary',
         'ucs2',
         'win-1252'
-      ]
+      ],
+      logs: [],
+      performance: undefined
     };
   },
   methods: {
     start() {
-      this.child = spawn(this.file.path, {
+      this.proc = spawn(this.file.path, {
         cwd: path.dirname(this.file.path)
       });
 
-      this.child.stdout.on('data', data => {
+      this.proc.stdout.on('data', data => {
         this.logs.push({
           type: 'stdout',
           data: Buffer.from(data).toString(this.encoding)
         });
       });
 
-      this.child.stderr.on('data', data => {
+      this.proc.stderr.on('data', data => {
         this.logs.push({
           type: 'stderr',
           data: Buffer.from(data).toString(this.encoding)
         });
       });
 
-      this.child.on('exit', exitCode => {
+      this.proc.on('exit', exitCode => {
         this.logs.push({
           type: 'exit',
           exitCode
@@ -114,12 +121,26 @@ export default {
       });
     },
     send() {
-      this.child.stdin.write(this.stdin);
+      this.proc.stdin.write(this.stdin);
       this.logs.push({
         type: 'stdin',
         data: this.stdin
       });
+    },
+    async monitor() {
+      if (this.proc) {
+        const processes = await SystemInformation.processes();
+        this.performance = processes.list.find(
+          proc => proc.pid == this.proc.pid
+        );
+      } else {
+        this.performance = undefined;
+      }
+      setTimeout(this.monitor, 2000);
     }
+  },
+  mounted() {
+    this.monitor();
   }
 };
 </script>
