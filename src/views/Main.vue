@@ -13,8 +13,19 @@
             </template>
           </b-carousel-slide>
         </b-carousel>
+
         <p>{{ $t('views.main.description') }}</p>
+
+        <b-button variant="primary" block to="/server">
+          <b-icon icon="lightning" />
+          {{ $t('views.server.title') }}
+        </b-button>
+        <b-button variant="primary" block to="/system">
+          <b-icon icon="window" />
+          {{ $t('views.system.title') }}
+        </b-button>
         <b-button variant="primary" block to="/odbc">
+          <b-icon icon="layers" />
           {{ $t('views.odbc.title') }}
         </b-button>
       </b-jumbotron>

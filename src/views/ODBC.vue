@@ -1,12 +1,12 @@
 <template>
   <div>
-    <b-container>
+    <b-container fluid>
       <h1>{{ $t('views.odbc.title') }}</h1>
 
       <b-row class="my-2">
         <b-col>
-          <h3>{{ $t('views.odbc.sections.1.title') }}</h3>
-          <p class="lead">{{ $t('views.odbc.sections.1.subtitle') }}</p>
+          <h3>{{ $t('views.odbc.sections.filter.title') }}</h3>
+          <p class="lead">{{ $t('views.odbc.sections.filter.subtitle') }}</p>
 
           <hr />
 
@@ -19,8 +19,8 @@
 
       <b-row class="my-2">
         <b-col>
-          <h3>{{ $t('views.odbc.sections.2.title') }}</h3>
-          <p class="lead">{{ $t('views.odbc.sections.2.subtitle') }}</p>
+          <h3>{{ $t('views.odbc.sections.drivers.title') }}</h3>
+          <p class="lead">{{ $t('views.odbc.sections.drivers.subtitle') }}</p>
           <b-button
             @click="
               openExternal(
@@ -31,7 +31,7 @@
             block
           >
             <b-icon icon="download" />
-            {{ $t('views.odbc.sections.2.downloadButton') }}
+            {{ $t('views.odbc.sections.drivers.downloadButton') }}
           </b-button>
 
           <hr />
@@ -53,15 +53,17 @@
           </b-list-group>
           <p v-else>
             <b-icon icon="exclamation-triangle" variant="danger" />
-            {{ $t('views.odbc.sections.2.empty') }}
+            {{ $t('views.odbc.sections.drivers.empty') }}
           </p>
         </b-col>
       </b-row>
 
       <b-row class="my-2">
         <b-col>
-          <h3>{{ $t('views.odbc.sections.3.title') }}</h3>
-          <p class="lead">{{ $t('views.odbc.sections.3.subtitle') }}</p>
+          <h3>{{ $t('views.odbc.sections.dataSourceNames.title') }}</h3>
+          <p class="lead">
+            {{ $t('views.odbc.sections.dataSourceNames.subtitle') }}
+          </p>
           <b-button
             @click="
               openExternal('https://www.connectionstrings.com/sql-server/')
@@ -70,7 +72,7 @@
             block
           >
             <b-icon icon="book" />
-            {{ $t('views.odbc.sections.3.documentationButton') }}
+            {{ $t('views.odbc.sections.dataSourceNames.documentationButton') }}
           </b-button>
 
           <hr />
@@ -100,21 +102,21 @@
                   variant="outline-primary"
                 >
                   <b-icon icon="plug" />
-                  {{ $t('views.odbc.sections.3.testButton') }}
+                  {{ $t('views.odbc.sections.dataSourceNames.testButton') }}
                 </b-button>
                 <b-button
                   @click="copyConnectionString(datasource)"
                   variant="outline-secondary"
                 >
                   <b-icon icon="link" />
-                  {{ $t('views.odbc.sections.3.copyButton') }}
+                  {{ $t('views.odbc.sections.dataSourceNames.copyButton') }}
                 </b-button>
               </b-button-group>
             </b-list-group-item>
           </b-list-group>
           <p v-else>
             <b-icon icon="exclamation-triangle" variant="danger" />
-            {{ $t('views.odbc.sections.3.empty') }}
+            {{ $t('views.odbc.sections.dataSourceNames.empty') }}
           </p>
         </b-col>
       </b-row>

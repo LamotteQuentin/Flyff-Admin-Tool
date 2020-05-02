@@ -3,6 +3,7 @@
 		"menu": {
 			"links": {
 				"odbc": "ODBC",
+				"serverManager": "Serveur",
 				"system": "Système"
 			}
 		}
@@ -10,19 +11,26 @@
 	"message": "",
 	"views": {
 		"about": {
-			"properties": {
-				"appMode": "Mode d'exécution de l'application",
-				"appVersion": "Version de l'application",
-				"chromiumVersion": "Version de Chromium",
-				"cpuArchitecture": "Architecture du CPU",
-				"endianness": "Boutisme",
-				"nodeVersion": "Version de NodeJS",
-				"openSslVersion": "Version d'OpenSSL",
-				"platform": "Plateforme du système",
-				"v8Version": "Version du moteur V8",
-				"vueVersion": "Version de VueJS"
+			"sections": {
+				"versions": {
+					"title": "Versions des composants de FAT"
+				}
 			},
-			"title": "A propos de FAT"
+			"title": "A propos de FAT",
+			"versions": {
+				"properties": {
+					"appMode": "Mode d'exécution de l'application",
+					"appVersion": "Version de l'application",
+					"chromiumVersion": "Version de Chromium",
+					"cpuArchitecture": "Architecture du CPU",
+					"endianness": "Boutisme",
+					"nodeVersion": "Version de NodeJS",
+					"openSslVersion": "Version d'OpenSSL",
+					"platform": "Plateforme du système",
+					"v8Version": "Version du moteur V8",
+					"vueVersion": "Version de VueJS"
+				}
+			}
 		},
 		"main": {
 			"description": "D'autres fonctionnalités seront ajoutées prochainement !",
@@ -40,40 +48,63 @@
 				}
 			},
 			"sections": {
-				"1": {
-					"subtitle": "Commencez par fournir des mots-clés afin de filtrer les noms de pilotes ou de sources de données ODBC à traiter.",
-					"title": "1. Rechercher"
-				},
-				"2": {
-					"downloadButton": "Page de téléchargement des pilotes ODBC de Microsoft",
-					"empty": "Aucun pilote ODBC répondant à vos critères de recherche n'a été trouvé sur votre système.",
-					"subtitle": "Vérifiez que les pilotes ODBC dont votre serveur Flyff a besoin sont installés sur votre système. Dans le cas contraire, vous pouvez les installer grâce à des version incluses dans les installateurs Microsoft SQL Server ou bien indépendamment, en les téléchargeant directement depuis Micrososft.",
-					"title": "2. Validez les pilotes ODBC"
-				},
-				"3": {
+				"dataSourceNames": {
 					"copyButton": "Copier la chaîne de connexion",
 					"documentationButton": "En savoir plus sur les chaînes de connexion",
 					"empty": "Aucun DSN répondant à vos critères de recherche n'a été trouvé sur votre système.",
 					"subtitle": "Vérifiez que vos DSN (Data Source Name, ou noms de sources de données) sont bien configurés, en accord avec les besoins de votre serveur Flyff. Vous pouvez les tester individuellement pour valider qu'ils fonctionnent. Le test consiste en l'ouverture d'une connexion vers la chaîne de connexion (connection string) associée au DSN. Notez cependant que les tests seront effectués avec le même utilisateur que celui utilisé pour lancer FAT. Les DSN utilisant l'authentification Windows intégrée afficheront une erreur lors du test s'ils sont configurés pour utiliser un autre utilisateur.",
 					"testButton": "Tester la connexion",
 					"title": "3. Validez vos DSN"
+				},
+				"drivers": {
+					"downloadButton": "Page de téléchargement des pilotes ODBC de Microsoft",
+					"empty": "Aucun pilote ODBC répondant à vos critères de recherche n'a été trouvé sur votre système.",
+					"subtitle": "Vérifiez que les pilotes ODBC dont votre serveur Flyff a besoin sont installés sur votre système. Dans le cas contraire, vous pouvez les installer grâce à des version incluses dans les installateurs Microsoft SQL Server ou bien indépendamment, en les téléchargeant directement depuis Micrososft.",
+					"title": "2. Validez les pilotes ODBC"
+				},
+				"filter": {
+					"subtitle": "Commencez par fournir des mots-clés afin de filtrer les noms de pilotes ou de sources de données ODBC à traiter.",
+					"title": "1. Rechercher"
 				}
 			},
 			"title": "Assistant de configuration ODBC"
 		},
+		"server": {
+			"sections": {
+				"executable": {
+					"encodingLabel": "Encodage des sorties standards (stdout et stderr)",
+					"fileLabel": "Fichier à exécuter",
+					"inputLabel": "Instruction à envoyer au processus",
+					"sendButton": "Envoyer à l'entrée standard (stdin)",
+					"startButton": "Lancer le fichier",
+					"title": "Exécutable à lancer et monitorer"
+				},
+				"logs": {
+					"title": "Journaux du processus"
+				}
+			},
+			"title": "Gestionnaire de serveur"
+		},
 		"system": {
 			"sections": {
-				"1": {
+				"cpu": {
 					"title": "CPU"
 				},
-				"2": {
+				"processes": {
+					"graph": {
+						"linkLabel": "Lancé par {0} le {1}",
+						"title": "Vue graphique des processus"
+					},
+					"title": "Processus en cours d'exécution",
+					"tree": {
+						"title": "Vue arborescente des processus"
+					}
+				},
+				"ram": {
 					"title": "RAM"
 				},
-				"3": {
+				"storage": {
 					"title": "Stockage"
-				},
-				"4": {
-					"title": "Processus"
 				}
 			},
 			"title": "Informations système"

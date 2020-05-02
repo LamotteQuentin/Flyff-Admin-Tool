@@ -9,6 +9,9 @@
 
     <b-collapse id="nav-collapse" is-nav>
       <b-navbar-nav>
+        <b-nav-item to="/server">
+          {{ $t('components.menu.links.serverManager') }}
+        </b-nav-item>
         <b-nav-item to="/system">
           {{ $t('components.menu.links.system') }}
         </b-nav-item>

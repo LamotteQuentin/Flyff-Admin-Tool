@@ -7,6 +7,8 @@ import '@/plugins/clipboard2';
 import '@/plugins/filters';
 import '@/plugins/treeview';
 import '@/plugins/json-viewer';
+import '@/plugins/mermaid';
+import '@/plugins/dragscroll';
 
 Vue.config.productionTip = false;
 
