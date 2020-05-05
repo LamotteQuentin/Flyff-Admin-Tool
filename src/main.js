@@ -9,6 +9,7 @@ import '@/plugins/treeview';
 import '@/plugins/json-viewer';
 import '@/plugins/mermaid';
 import '@/plugins/dragscroll';
+import '@/plugins/draggable';
 
 Vue.config.productionTip = false;
 

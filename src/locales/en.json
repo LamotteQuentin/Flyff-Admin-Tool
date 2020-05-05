@@ -70,20 +70,34 @@
 			"title": "ODBC configuration wizard"
 		},
 		"server": {
+			"notifications": {
+				"executablesSaved": {
+					"message": "The list of executables has been saved.",
+					"title": "Configuration saved"
+				}
+			},
 			"sections": {
-				"executable": {
+				"processes": {
 					"encodingLabel": "Encoding of standard outputs (stdout and stderr)",
-					"fileLabel": "File to execute",
-					"inputLabel": "Instruction to send to the process",
+					"noMetric": "No metric is available for this executable.",
 					"sendButton": "Send to standard input (stdin)",
-					"startButton": "Launch the file",
-					"title": "Executable to launch and monitor"
+					"startButton": "Start",
+					"stdinLabel": "Instruction to send to the process",
+					"stopButton": "Stop",
+					"title": "Processes monitoring"
 				},
-				"logs": {
-					"title": "Process logs"
-				},
-				"performance": {
-					"title": "Process performance"
+				"workflow": {
+					"addButton": "Add an executable",
+					"argsLabel": "Arguments",
+					"argsPlaceholder": "Type in an argument then press \"Enter\" to add it",
+					"commandLabel": "File or command to execute",
+					"delayLabel": "Delay (ms)",
+					"editButton": "Edit workflow",
+					"executablesLocked": "The executables will not be editable until they are all stopped.",
+					"removeButton": "Delete",
+					"saveButton": "Save the workflow",
+					"startAllButton": "Start all workflow executables",
+					"title": "Server executables workflow"
 				}
 			},
 			"title": "Server manager"

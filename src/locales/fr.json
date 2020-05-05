@@ -70,20 +70,34 @@
 			"title": "Assistant de configuration ODBC"
 		},
 		"server": {
+			"notifications": {
+				"executablesSaved": {
+					"message": "La liste des exécutables a bien été enregistrée.",
+					"title": "Configuration sauvegardée"
+				}
+			},
 			"sections": {
-				"executable": {
+				"processes": {
 					"encodingLabel": "Encodage des sorties standards (stdout et stderr)",
-					"fileLabel": "Fichier à exécuter",
-					"inputLabel": "Instruction à envoyer au processus",
+					"noMetric": "Aucune métrique n'est disponible pour cet exécutable.",
 					"sendButton": "Envoyer à l'entrée standard (stdin)",
-					"startButton": "Lancer le fichier",
-					"title": "Exécutable à lancer et monitorer"
+					"startButton": "Démarrer",
+					"stdinLabel": "Instruction à envoyer au processus",
+					"stopButton": "Arrêter",
+					"title": "Surveillance des processus"
 				},
-				"logs": {
-					"title": "Journaux du processus"
-				},
-				"performance": {
-					"title": "Performance du processus"
+				"workflow": {
+					"addButton": "Ajouter un exécutable",
+					"argsLabel": "Arguments",
+					"argsPlaceholder": "Saisissez un argument puis faites \"Entrer\" pour l'ajouter",
+					"commandLabel": "Fichier ou commande à exécuter",
+					"delayLabel": "Délai (ms)",
+					"editButton": "Modifier le workflow",
+					"executablesLocked": "Les exécutables ne seront pas éditables tant qu'ils ne seront pas tous à l'arrêt.",
+					"removeButton": "Supprimer",
+					"saveButton": "Sauvegarder le workflow",
+					"startAllButton": "Démarrer tous les exécutables du workflow",
+					"title": "Workflow des exécutables du serveur"
 				}
 			},
 			"title": "Gestionnaire de serveur"
