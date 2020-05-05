@@ -4,7 +4,7 @@
       id="workflow"
       width="25%"
       bg-variant="dark"
-      no-header=""
+      no-header
       backdrop
       shadow
     >
