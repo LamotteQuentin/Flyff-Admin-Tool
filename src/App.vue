@@ -2,7 +2,9 @@
   <div id="app">
     <MenuComponent id="app-menu" />
     <transition name="fade" mode="out-in">
-      <router-view id="app-content" class="py-4" />
+      <keep-alive include="Server">
+        <router-view id="app-content" class="py-4" />
+      </keep-alive>
     </transition>
     <FooterComponent id="app-footer" />
   </div>
