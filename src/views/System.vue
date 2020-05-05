@@ -10,7 +10,7 @@
           <hr />
 
           <b-card :title="cpu.manufacturer" :sub-title="cpu.brand">
-            <json-viewer :value="cpu" />
+            <pre>{{ cpu }}</pre>
           </b-card>
         </b-col>
 
