@@ -1,11 +1,9 @@
 <template>
   <div id="app">
     <MenuComponent id="app-menu" />
-    <transition name="fade" mode="out-in">
-      <keep-alive include="Server">
-        <router-view id="app-content" class="py-4" />
-      </keep-alive>
-    </transition>
+    <keep-alive include="Server">
+      <router-view id="app-content" class="py-4" />
+    </keep-alive>
     <FooterComponent id="app-footer" />
   </div>
 </template>
@@ -45,16 +43,5 @@ export default {
   flex-grow: 1;
   flex-shrink: 1;
   overflow: auto;
-}
-
-.fade-enter-active,
-.fade-leave-active {
-  transition-duration: 0.3s;
-  transition-property: opacity;
-  transition-timing-function: ease;
-}
-.fade-enter,
-.fade-leave-active {
-  opacity: 0;
 }
 </style>
