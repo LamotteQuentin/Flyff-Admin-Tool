@@ -121,23 +121,19 @@
                 {{ $t('views.server.sections.workflow.executablesLocked') }}
               </b-alert>
 
-              <b-button
-                v-b-toggle.workflow
-                :disabled="!areExecutablesEditable"
-                block
-              >
-                <b-icon icon="arrow-left-right" />
-                {{ $t('views.server.sections.workflow.editButton') }}
-              </b-button>
-
-              <b-button
-                :disabled="!areExecutablesEditable"
-                variant="primary"
-                block
-              >
-                <b-icon icon="collection-play" />
-                {{ $t('views.server.sections.workflow.startAllButton') }}
-              </b-button>
+              <b-button-group class="w-100">
+                <b-button :disabled="!areExecutablesEditable" variant="primary">
+                  <b-icon icon="collection-play" />
+                  {{ $t('views.server.sections.workflow.startAllButton') }}
+                </b-button>
+                <b-button
+                  v-b-toggle.workflow
+                  :disabled="!areExecutablesEditable"
+                >
+                  <b-icon icon="arrow-left-right" />
+                  {{ $t('views.server.sections.workflow.editButton') }}
+                </b-button>
+              </b-button-group>
             </b-card-footer>
           </b-card>
         </b-col>
