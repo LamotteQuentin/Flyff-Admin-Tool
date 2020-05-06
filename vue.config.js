@@ -23,6 +23,9 @@ module.exports = {
         return options;
       });
   },
+  configureWebpack: {
+    devtool: 'source-map'
+  },
   pages: {
     index: {
       entry: 'src/main.js',
