@@ -281,9 +281,12 @@ export default {
     getBaseName: path.basename,
     add() {
       this.executables.push({
-        command: 'explorer.exe',
         args: [],
-        delay: 0
+        command: 'explorer.exe',
+        delay: 0,
+        logs: [],
+        metrics: [],
+        process: null
       });
     },
     remove(executable) {
