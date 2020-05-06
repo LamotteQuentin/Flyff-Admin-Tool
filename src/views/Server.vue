@@ -241,6 +241,7 @@ import pidUsage from 'pidusage';
 import SystemInformation from 'systeminformation';
 import SettingsManager from '@/utils/SettingsManager';
 import ProcessMetricsChart from '@/components/Server/ProcessMetricsChart';
+import Executable from '@/models/Executable';
 
 export default {
   name: 'Server',
@@ -280,24 +281,14 @@ export default {
   methods: {
     getBaseName: path.basename,
     add() {
-      this.executables.push({
-        args: [],
-        command: 'explorer.exe',
-        delay: 0,
-        logs: [],
-        metrics: [],
-        process: null
-      });
+      this.executables.push(new Executable());
     },
     remove(executable) {
       this.executables.splice(this.executables.indexOf(executable), 1);
     },
     save() {
       SettingsManager.setExecutables(
-        this.executables.map(
-          // eslint-disable-next-line
-          ({ process, metrics, logs, ...executable }) => executable
-        )
+        this.executables.map(executable => executable.getSavableObject())
       );
 
       this.$bvModal.msgBoxOk(
@@ -315,8 +306,7 @@ export default {
       });
 
       if (!result.canceled && result.filePaths.length > 0) {
-        executable.process = null;
-        executable.logs = [];
+        executable.reset();
         executable.command = result.filePaths[0];
       }
     },
@@ -432,12 +422,10 @@ export default {
     }
   },
   async mounted() {
-    this.executables = SettingsManager.getExecutables().map(executable => ({
-      ...executable,
-      process: null,
-      metrics: [],
-      logs: []
-    }));
+    this.executables = SettingsManager.getExecutables().map(
+      executable =>
+        new Executable(executable.args, executable.command, executable.delay)
+    );
 
     this.cpuCores = (await SystemInformation.cpu()).cores;
 
