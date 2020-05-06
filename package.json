@@ -1,6 +1,6 @@
 {
   "name": "flyff-admin-tool",
-  "version": "0.2.2",
+  "version": "0.3.0",
   "private": true,
   "description": "Flyff Admin Tool",
   "author": "Quentin Lamotte",
@@ -24,6 +24,7 @@
     "chart.js": "^2.9.3",
     "core-js": "^3.6.4",
     "electron-settings": "^3.2.0",
+    "electron-updater": "^4.3.1",
     "node-powershell": "^4.0.0",
     "odbc": "^2.2.2",
     "pidusage": "^2.0.18",

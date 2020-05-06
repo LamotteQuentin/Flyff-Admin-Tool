@@ -41,7 +41,8 @@ module.exports = {
     },
     electronBuilder: {
       builderOptions: {
-        productName: 'Flyff Admin Tool'
+        productName: 'Flyff Admin Tool',
+        publish: ['github']
       }
     }
   }
