@@ -176,7 +176,7 @@
 
                   <b-button-group class="w-100">
                     <b-button
-                      @click="start(executable)"
+                      @click="sequentialStart(id)"
                       :disabled="Boolean(executable.process)"
                       variant="primary"
                     >
@@ -184,7 +184,7 @@
                       {{ $t('views.server.sections.processes.startButton') }}
                     </b-button>
                     <b-button
-                      @click="stop(executable)"
+                      @click="sequentialStop(id)"
                       :disabled="!Boolean(executable.process)"
                       variant="secondary"
                     >
@@ -341,9 +341,22 @@ export default {
         executable.process = null;
       });
     },
+    async sequentialStart(executableId) {
+      for (const executable of this.executables.slice(0, executableId + 1)) {
+        await new Promise(resolve => setTimeout(resolve, executable.delay));
+        this.start(executable);
+      }
+    },
     stop(executable) {
       kill(executable.process.pid);
       executable.process = null;
+    },
+    async sequentialStop(executableId) {
+      for (const executable of this.executables
+        .slice(0, executableId + 1)
+        .reverse()) {
+        this.stop(executable);
+      }
     },
     send(executable) {
       executable.process.stdin.write(this.stdin);
