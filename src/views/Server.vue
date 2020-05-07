@@ -121,19 +121,14 @@
                 {{ $t('views.server.sections.workflow.executablesLocked') }}
               </b-alert>
 
-              <b-button-group class="w-100">
-                <b-button :disabled="!areExecutablesEditable" variant="primary">
-                  <b-icon icon="collection-play" />
-                  {{ $t('views.server.sections.workflow.startAllButton') }}
-                </b-button>
-                <b-button
-                  v-b-toggle.workflow
-                  :disabled="!areExecutablesEditable"
-                >
-                  <b-icon icon="arrow-left-right" />
-                  {{ $t('views.server.sections.workflow.editButton') }}
-                </b-button>
-              </b-button-group>
+              <b-button
+                v-b-toggle.workflow
+                :disabled="!areExecutablesEditable"
+                block
+              >
+                <b-icon icon="arrow-left-right" />
+                {{ $t('views.server.sections.workflow.editButton') }}
+              </b-button>
             </b-card-footer>
           </b-card>
         </b-col>
@@ -144,12 +139,56 @@
           <hr />
 
           <b-card no-body>
-            <b-tabs fill pills card>
+            <b-tabs fill pills card small>
               <b-tab v-for="(executable, id) in executables" v-bind:key="id">
                 <template v-slot:title>
                   <b-spinner v-if="executable.process" type="grow" small />
                   {{ getBaseName(executable.command) }}
                 </template>
+
+                <b-button-group class="w-100 my-2">
+                  <b-button
+                    @click="sequentialStart(executable)"
+                    :disabled="Boolean(executable.process)"
+                    variant="primary"
+                  >
+                    <b-icon icon="play-fill" />
+                    {{
+                      $t(
+                        'views.server.sections.processes.sequentialStartButton'
+                      )
+                    }}
+                  </b-button>
+                  <b-button
+                    @click="sequentialStop(executable)"
+                    :disabled="!Boolean(executable.process)"
+                    variant="secondary"
+                  >
+                    <b-icon icon="stop-fill" />
+                    {{
+                      $t('views.server.sections.processes.sequentialStopButton')
+                    }}
+                  </b-button>
+                </b-button-group>
+
+                <b-button-group class="w-100 my-2">
+                  <b-button
+                    @click="start(executable)"
+                    :disabled="Boolean(executable.process)"
+                    variant="outline-primary"
+                  >
+                    <b-icon icon="play" />
+                    {{ $t('views.server.sections.processes.startButton') }}
+                  </b-button>
+                  <b-button
+                    @click="stop(executable)"
+                    :disabled="!Boolean(executable.process)"
+                    variant="outline-secondary"
+                  >
+                    <b-icon icon="stop" />
+                    {{ $t('views.server.sections.processes.stopButton') }}
+                  </b-button>
+                </b-button-group>
 
                 <b-form @submit="send(executable)">
                   <b-form-group
@@ -173,25 +212,6 @@
                       </b-input-group-append>
                     </b-input-group>
                   </b-form-group>
-
-                  <b-button-group class="w-100">
-                    <b-button
-                      @click="sequentialStart(id)"
-                      :disabled="Boolean(executable.process)"
-                      variant="primary"
-                    >
-                      <b-icon icon="play" />
-                      {{ $t('views.server.sections.processes.startButton') }}
-                    </b-button>
-                    <b-button
-                      @click="sequentialStop(id)"
-                      :disabled="!Boolean(executable.process)"
-                      variant="secondary"
-                    >
-                      <b-icon icon="stop" />
-                      {{ $t('views.server.sections.processes.stopButton') }}
-                    </b-button>
-                  </b-button-group>
                 </b-form>
 
                 <b-card title="CPU / RAM" class="my-2">
@@ -311,40 +331,45 @@ export default {
       }
     },
     start(executable) {
-      executable.process = null;
-      executable.metrics = [];
-      executable.logs = [];
-
-      executable.process = spawn(executable.command, executable.args, {
-        cwd: path.dirname(executable.command)
-      });
-
-      executable.process.stdout.on('data', data => {
-        executable.logs.push({
-          type: 'stdout',
-          data: Buffer.from(data).toString(this.encoding)
-        });
-      });
-
-      executable.process.stderr.on('data', data => {
-        executable.logs.push({
-          type: 'stderr',
-          data: Buffer.from(data).toString(this.encoding)
-        });
-      });
-
-      executable.process.on('exit', data => {
-        executable.logs.push({
-          type: 'exit',
-          data
-        });
+      if (!executable.process) {
         executable.process = null;
-      });
+        executable.metrics = [];
+        executable.logs = [];
+
+        executable.process = spawn(executable.command, executable.args, {
+          cwd: path.dirname(executable.command)
+        });
+
+        executable.process.stdout.on('data', data => {
+          executable.logs.push({
+            type: 'stdout',
+            data: Buffer.from(data).toString(this.encoding)
+          });
+        });
+
+        executable.process.stderr.on('data', data => {
+          executable.logs.push({
+            type: 'stderr',
+            data: Buffer.from(data).toString(this.encoding)
+          });
+        });
+
+        executable.process.on('exit', data => {
+          executable.logs.push({
+            type: 'exit',
+            data
+          });
+          executable.process = null;
+        });
+      }
     },
-    async sequentialStart(executableId) {
-      for (const executable of this.executables.slice(0, executableId + 1)) {
-        await new Promise(resolve => setTimeout(resolve, executable.delay));
-        this.start(executable);
+    async sequentialStart(executable) {
+      for (const child of this.executables.slice(
+        0,
+        this.executables.indexOf(executable) + 1
+      )) {
+        await new Promise(resolve => setTimeout(resolve, child.delay));
+        this.start(child);
       }
     },
     stop(executable) {
@@ -353,9 +378,11 @@ export default {
         executable.process = null;
       }
     },
-    async sequentialStop(executableId) {
-      for (const executable of this.executables.slice(executableId).reverse()) {
-        this.stop(executable);
+    async sequentialStop(executable) {
+      for (const child of this.executables
+        .slice(this.executables.indexOf(executable))
+        .reverse()) {
+        this.stop(child);
       }
     },
     send(executable) {

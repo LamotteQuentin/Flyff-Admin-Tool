@@ -81,6 +81,8 @@
 					"encodingLabel": "Encodage des sorties standards (stdout et stderr)",
 					"noMetric": "Aucune métrique n'est disponible pour cet exécutable.",
 					"sendButton": "Envoyer à l'entrée standard (stdin)",
+					"sequentialStartButton": "Démarrer séquentiellement",
+					"sequentialStopButton": "Arrêter séquentiellement",
 					"startButton": "Démarrer",
 					"stdinLabel": "Instruction à envoyer au processus",
 					"stopButton": "Arrêter",

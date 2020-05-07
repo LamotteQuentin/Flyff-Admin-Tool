@@ -81,6 +81,8 @@
 					"encodingLabel": "Encoding of standard outputs (stdout and stderr)",
 					"noMetric": "No metric is available for this executable.",
 					"sendButton": "Send to standard input (stdin)",
+					"sequentialStartButton": "Start sequentially",
+					"sequentialStopButton": "Stop sequentially",
 					"startButton": "Start",
 					"stdinLabel": "Instruction to send to the process",
 					"stopButton": "Stop",
