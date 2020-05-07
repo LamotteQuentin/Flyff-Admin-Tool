@@ -82,8 +82,10 @@
 			},
 			"sections": {
 				"processes": {
+					"cpuUsage": "CPU : {0} ({1} moy.)",
 					"encodingLabel": "Encodage des sorties standards (stdout et stderr)",
 					"noMetric": "Aucune métrique n'est disponible pour cet exécutable.",
+					"ramUsage": "RAM : {0} ({1} moy.)",
 					"sendButton": "Envoyer à l'entrée standard (stdin)",
 					"sequentialStartButton": "Démarrer séquentiellement",
 					"sequentialStopButton": "Arrêter séquentiellement",

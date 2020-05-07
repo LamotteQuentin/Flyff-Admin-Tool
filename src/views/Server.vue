@@ -267,9 +267,19 @@
 
                 <b-card title="CPU / RAM" class="my-2">
                   <b-card-sub-title v-if="executable.metrics.length > 0">
-                    {{ getLastCpuUsage(executable) | percent(2) }}
+                    {{
+                      $t('views.server.sections.processes.cpuUsage', [
+                        vueFilters.percent(getLastCpuUsage(executable), 2),
+                        vueFilters.percent(getAverageCpuUsage(executable), 2)
+                      ])
+                    }}
                     /
-                    {{ getLastRamUsage(executable) | bytes }}
+                    {{
+                      $t('views.server.sections.processes.ramUsage', [
+                        vueFilters.bytes(getLastRamUsage(executable)),
+                        vueFilters.bytes(getAverageRamUsage(executable))
+                      ])
+                    }}
                   </b-card-sub-title>
 
                   <process-metrics-chart
@@ -357,6 +367,9 @@ export default {
       return prettyMs(
         this.metricsSettings.interval * this.metricsSettings.points
       );
+    },
+    vueFilters() {
+      return this.$options.filters;
     }
   },
   methods: {
@@ -482,9 +495,27 @@ export default {
         ? executable.metrics.slice(-1)[0].cpu / (100 * this.cpuCores)
         : null;
     },
+    getAverageCpuUsage(executable) {
+      return executable.metrics.length > 0
+        ? executable.metrics.reduce(
+            (previous, current) => previous + current.cpu,
+            0
+          ) /
+            executable.metrics.length /
+            (100 * this.cpuCores)
+        : null;
+    },
     getLastRamUsage(executable) {
       return executable.metrics.length > 0
         ? executable.metrics.slice(-1)[0].memory
+        : null;
+    },
+    getAverageRamUsage(executable) {
+      return executable.metrics.length > 0
+        ? executable.metrics.reduce(
+            (previous, current) => previous + current.memory,
+            0
+          ) / executable.metrics.length
         : null;
     },
     getChartData(executable) {
