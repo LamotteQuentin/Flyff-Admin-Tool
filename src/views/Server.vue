@@ -177,12 +177,7 @@
               }}
             </p>
 
-            <b-button
-              :disabled="!areExecutablesEditable"
-              type="submit"
-              variant="primary"
-              block
-            >
+            <b-button type="submit" variant="primary" block>
               <b-icon icon="archive" />
               {{ $t('views.server.sections.settings.saveButton') }}
             </b-button>

@@ -106,7 +106,7 @@
 					"argsPlaceholder": "Type in an argument then press \"Enter\" to add it",
 					"commandLabel": "File or command to execute",
 					"delayLabel": "Delay (ms)",
-					"executablesLocked": "The executables will not be editable until they are all stopped.",
+					"executablesLocked": "The workflow will not be editable until all the executables are stopped.",
 					"hideWindowLabel": "Hide the sub-process window (if supported)",
 					"removeButton": "Delete"
 				}

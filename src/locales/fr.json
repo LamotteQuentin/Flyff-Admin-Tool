@@ -106,7 +106,7 @@
 					"argsPlaceholder": "Saisissez un argument puis faites \"Entrer\" pour l'ajouter",
 					"commandLabel": "Fichier ou commande à exécuter",
 					"delayLabel": "Délai (ms)",
-					"executablesLocked": "Les exécutables ne seront pas éditables tant qu'ils ne seront pas tous à l'arrêt.",
+					"executablesLocked": "Le workflow ne sera pas modifiable tant que tous les exécutables ne seront pas à l'arrêt.",
 					"hideWindowLabel": "Cacher la fenêtre du sous-processus (si supporté)",
 					"removeButton": "Supprimer"
 				}
