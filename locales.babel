@@ -16,6 +16,45 @@
         <name></name>
         <children>
             <folder_node>
+                <name>common</name>
+                <children>
+                    <concept_node>
+                        <name>no</name>
+                        <definition_loaded>false</definition_loaded>
+                        <description></description>
+                        <comment></comment>
+                        <default_text></default_text>
+                        <translations>
+                            <translation>
+                                <language>en-US</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>fr-FR</language>
+                                <approved>false</approved>
+                            </translation>
+                        </translations>
+                    </concept_node>
+                    <concept_node>
+                        <name>yes</name>
+                        <definition_loaded>false</definition_loaded>
+                        <description></description>
+                        <comment></comment>
+                        <default_text></default_text>
+                        <translations>
+                            <translation>
+                                <language>en-US</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>fr-FR</language>
+                                <approved>false</approved>
+                            </translation>
+                        </translations>
+                    </concept_node>
+                </children>
+            </folder_node>
+            <folder_node>
                 <name>components</name>
                 <children>
                     <folder_node>
@@ -705,7 +744,7 @@
                                 <name>notifications</name>
                                 <children>
                                     <folder_node>
-                                        <name>executablesSaved</name>
+                                        <name>settingsSaved</name>
                                         <children>
                                             <concept_node>
                                                 <name>message</name>
@@ -907,6 +946,113 @@
                                         </children>
                                     </folder_node>
                                     <folder_node>
+                                        <name>settings</name>
+                                        <children>
+                                            <concept_node>
+                                                <name>editWorkflowButton</name>
+                                                <definition_loaded>false</definition_loaded>
+                                                <description></description>
+                                                <comment></comment>
+                                                <default_text></default_text>
+                                                <translations>
+                                                    <translation>
+                                                        <language>en-US</language>
+                                                        <approved>false</approved>
+                                                    </translation>
+                                                    <translation>
+                                                        <language>fr-FR</language>
+                                                        <approved>false</approved>
+                                                    </translation>
+                                                </translations>
+                                            </concept_node>
+                                            <concept_node>
+                                                <name>metricsIntervalLabel</name>
+                                                <definition_loaded>false</definition_loaded>
+                                                <description></description>
+                                                <comment></comment>
+                                                <default_text></default_text>
+                                                <translations>
+                                                    <translation>
+                                                        <language>en-US</language>
+                                                        <approved>false</approved>
+                                                    </translation>
+                                                    <translation>
+                                                        <language>fr-FR</language>
+                                                        <approved>false</approved>
+                                                    </translation>
+                                                </translations>
+                                            </concept_node>
+                                            <concept_node>
+                                                <name>metricsPointsLabel</name>
+                                                <definition_loaded>false</definition_loaded>
+                                                <description></description>
+                                                <comment></comment>
+                                                <default_text></default_text>
+                                                <translations>
+                                                    <translation>
+                                                        <language>en-US</language>
+                                                        <approved>false</approved>
+                                                    </translation>
+                                                    <translation>
+                                                        <language>fr-FR</language>
+                                                        <approved>false</approved>
+                                                    </translation>
+                                                </translations>
+                                            </concept_node>
+                                            <concept_node>
+                                                <name>metricsSpan</name>
+                                                <definition_loaded>false</definition_loaded>
+                                                <description></description>
+                                                <comment></comment>
+                                                <default_text></default_text>
+                                                <translations>
+                                                    <translation>
+                                                        <language>en-US</language>
+                                                        <approved>false</approved>
+                                                    </translation>
+                                                    <translation>
+                                                        <language>fr-FR</language>
+                                                        <approved>false</approved>
+                                                    </translation>
+                                                </translations>
+                                            </concept_node>
+                                            <concept_node>
+                                                <name>saveButton</name>
+                                                <definition_loaded>false</definition_loaded>
+                                                <description></description>
+                                                <comment></comment>
+                                                <default_text></default_text>
+                                                <translations>
+                                                    <translation>
+                                                        <language>en-US</language>
+                                                        <approved>false</approved>
+                                                    </translation>
+                                                    <translation>
+                                                        <language>fr-FR</language>
+                                                        <approved>false</approved>
+                                                    </translation>
+                                                </translations>
+                                            </concept_node>
+                                            <concept_node>
+                                                <name>title</name>
+                                                <definition_loaded>false</definition_loaded>
+                                                <description></description>
+                                                <comment></comment>
+                                                <default_text></default_text>
+                                                <translations>
+                                                    <translation>
+                                                        <language>en-US</language>
+                                                        <approved>false</approved>
+                                                    </translation>
+                                                    <translation>
+                                                        <language>fr-FR</language>
+                                                        <approved>false</approved>
+                                                    </translation>
+                                                </translations>
+                                            </concept_node>
+                                        </children>
+                                    </folder_node>
+                                    <folder_node>
                                         <name>workflow</name>
                                         <children>
                                             <concept_node>
@@ -995,23 +1141,6 @@
                                                 </translations>
                                             </concept_node>
                                             <concept_node>
-                                                <name>editButton</name>
-                                                <definition_loaded>false</definition_loaded>
-                                                <description></description>
-                                                <comment></comment>
-                                                <default_text></default_text>
-                                                <translations>
-                                                    <translation>
-                                                        <language>en-US</language>
-                                                        <approved>false</approved>
-                                                    </translation>
-                                                    <translation>
-                                                        <language>fr-FR</language>
-                                                        <approved>false</approved>
-                                                    </translation>
-                                                </translations>
-                                            </concept_node>
-                                            <concept_node>
                                                 <name>executablesLocked</name>
                                                 <definition_loaded>false</definition_loaded>
                                                 <description></description>
@@ -1029,58 +1158,24 @@
                                                 </translations>
                                             </concept_node>
                                             <concept_node>
+                                                <name>hideWindowLabel</name>
+                                                <definition_loaded>false</definition_loaded>
+                                                <description></description>
+                                                <comment></comment>
+                                                <default_text></default_text>
+                                                <translations>
+                                                    <translation>
+                                                        <language>en-US</language>
+                                                        <approved>false</approved>
+                                                    </translation>
+                                                    <translation>
+                                                        <language>fr-FR</language>
+                                                        <approved>false</approved>
+                                                    </translation>
+                                                </translations>
+                                            </concept_node>
+                                            <concept_node>
                                                 <name>removeButton</name>
-                                                <definition_loaded>false</definition_loaded>
-                                                <description></description>
-                                                <comment></comment>
-                                                <default_text></default_text>
-                                                <translations>
-                                                    <translation>
-                                                        <language>en-US</language>
-                                                        <approved>false</approved>
-                                                    </translation>
-                                                    <translation>
-                                                        <language>fr-FR</language>
-                                                        <approved>false</approved>
-                                                    </translation>
-                                                </translations>
-                                            </concept_node>
-                                            <concept_node>
-                                                <name>saveButton</name>
-                                                <definition_loaded>false</definition_loaded>
-                                                <description></description>
-                                                <comment></comment>
-                                                <default_text></default_text>
-                                                <translations>
-                                                    <translation>
-                                                        <language>en-US</language>
-                                                        <approved>false</approved>
-                                                    </translation>
-                                                    <translation>
-                                                        <language>fr-FR</language>
-                                                        <approved>false</approved>
-                                                    </translation>
-                                                </translations>
-                                            </concept_node>
-                                            <concept_node>
-                                                <name>startAllButton</name>
-                                                <definition_loaded>false</definition_loaded>
-                                                <description></description>
-                                                <comment></comment>
-                                                <default_text></default_text>
-                                                <translations>
-                                                    <translation>
-                                                        <language>en-US</language>
-                                                        <approved>false</approved>
-                                                    </translation>
-                                                    <translation>
-                                                        <language>fr-FR</language>
-                                                        <approved>false</approved>
-                                                    </translation>
-                                                </translations>
-                                            </concept_node>
-                                            <concept_node>
-                                                <name>title</name>
                                                 <definition_loaded>false</definition_loaded>
                                                 <description></description>
                                                 <comment></comment>

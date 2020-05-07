@@ -1,4 +1,8 @@
 {
+	"common": {
+		"no": "No",
+		"yes": "Yes"
+	},
 	"components": {
 		"menu": {
 			"links": {
@@ -71,9 +75,9 @@
 		},
 		"server": {
 			"notifications": {
-				"executablesSaved": {
-					"message": "The list of executables has been saved.",
-					"title": "Configuration saved"
+				"settingsSaved": {
+					"message": "The executables workflow as well as the execution parameters have been saved.",
+					"title": "Settings saved"
 				}
 			},
 			"sections": {
@@ -88,18 +92,23 @@
 					"stopButton": "Stop",
 					"title": "Processes monitoring"
 				},
+				"settings": {
+					"editWorkflowButton": "Edit workflow",
+					"metricsIntervalLabel": "Metrics interval (ms)",
+					"metricsPointsLabel": "Number of measurements to display",
+					"metricsSpan": "The metrics will display a time span of: {0}",
+					"saveButton": "Save the execution settings",
+					"title": "Execution settings"
+				},
 				"workflow": {
 					"addButton": "Add an executable",
 					"argsLabel": "Arguments",
 					"argsPlaceholder": "Type in an argument then press \"Enter\" to add it",
 					"commandLabel": "File or command to execute",
 					"delayLabel": "Delay (ms)",
-					"editButton": "Edit workflow",
 					"executablesLocked": "The executables will not be editable until they are all stopped.",
-					"removeButton": "Delete",
-					"saveButton": "Save the workflow",
-					"startAllButton": "Start all workflow executables",
-					"title": "Server executables workflow"
+					"hideWindowLabel": "Hide the sub-process window (if supported)",
+					"removeButton": "Delete"
 				}
 			},
 			"title": "Server manager"

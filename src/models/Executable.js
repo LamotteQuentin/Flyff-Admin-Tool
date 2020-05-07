@@ -3,6 +3,7 @@ export default class Executable {
     this.args = args;
     this.command = command;
     this.delay = delay;
+    this.hideWindow = false;
     this.logs = [];
     this.metrics = [];
     this.process = null;
@@ -18,7 +19,8 @@ export default class Executable {
     return {
       args: this.args,
       command: this.command,
-      delay: this.delay
+      delay: this.delay,
+      hideWindow: this.hideWindow
     };
   }
 }

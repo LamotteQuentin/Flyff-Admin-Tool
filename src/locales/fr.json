@@ -1,4 +1,8 @@
 {
+	"common": {
+		"no": "Non",
+		"yes": "Oui"
+	},
 	"components": {
 		"menu": {
 			"links": {
@@ -71,9 +75,9 @@
 		},
 		"server": {
 			"notifications": {
-				"executablesSaved": {
-					"message": "La liste des exécutables a bien été enregistrée.",
-					"title": "Configuration sauvegardée"
+				"settingsSaved": {
+					"message": "Le workflow des exécutables ainsi que les paramètres d'exécution ont bien été enregistrés.",
+					"title": "Paramètres sauvegardés"
 				}
 			},
 			"sections": {
@@ -88,18 +92,23 @@
 					"stopButton": "Arrêter",
 					"title": "Surveillance des processus"
 				},
+				"settings": {
+					"editWorkflowButton": "Modifier le workflow",
+					"metricsIntervalLabel": "Interval des mesures (ms)",
+					"metricsPointsLabel": "Nombre de mesures à afficher",
+					"metricsSpan": "Les métriques afficheront une période de : {0}",
+					"saveButton": "Sauvegarder les paramètres d'exécution",
+					"title": "Paramètres d'exécution"
+				},
 				"workflow": {
 					"addButton": "Ajouter un exécutable",
 					"argsLabel": "Arguments",
 					"argsPlaceholder": "Saisissez un argument puis faites \"Entrer\" pour l'ajouter",
 					"commandLabel": "Fichier ou commande à exécuter",
 					"delayLabel": "Délai (ms)",
-					"editButton": "Modifier le workflow",
 					"executablesLocked": "Les exécutables ne seront pas éditables tant qu'ils ne seront pas tous à l'arrêt.",
-					"removeButton": "Supprimer",
-					"saveButton": "Sauvegarder le workflow",
-					"startAllButton": "Démarrer tous les exécutables du workflow",
-					"title": "Workflow des exécutables du serveur"
+					"hideWindowLabel": "Cacher la fenêtre du sous-processus (si supporté)",
+					"removeButton": "Supprimer"
 				}
 			},
 			"title": "Gestionnaire de serveur"

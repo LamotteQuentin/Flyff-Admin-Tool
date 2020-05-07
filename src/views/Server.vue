@@ -67,6 +67,25 @@
                       :id="`delay-${id}`"
                     />
                   </b-form-group>
+
+                  <b-form-group
+                    :label="
+                      $t('views.server.sections.workflow.hideWindowLabel')
+                    "
+                    :label-for="`hide-window-${id}`"
+                  >
+                    <b-form-select
+                      v-model="executable.hideWindow"
+                      :id="`hide-window-${id}`"
+                    >
+                      <b-form-select-option :value="false">
+                        {{ $t('common.no') }}
+                      </b-form-select-option>
+                      <b-form-select-option :value="true">
+                        {{ $t('common.yes') }}
+                      </b-form-select-option>
+                    </b-form-select>
+                  </b-form-group>
                 </b-form-group>
               </b-form>
             </b-card-body>
@@ -90,15 +109,6 @@
           <b-icon icon="file-plus" />
           {{ $t('views.server.sections.workflow.addButton') }}
         </b-button>
-        <b-button
-          @click="save"
-          :disabled="!areExecutablesEditable"
-          variant="primary"
-          block
-        >
-          <b-icon icon="archive" />
-          {{ $t('views.server.sections.workflow.saveButton') }}
-        </b-button>
       </b-container>
     </b-sidebar>
 
@@ -107,14 +117,15 @@
 
       <b-row>
         <b-col cols="12" class="my-2">
-          <h3>{{ $t('views.server.sections.workflow.title') }}</h3>
+          <h3>{{ $t('views.server.sections.settings.title') }}</h3>
 
           <hr />
 
-          <b-card no-body>
-            <b-card-body class="text-center overflow-auto">
+          <b-card no-body class="text-center mb-4">
+            <b-card-body class="overflow-auto">
               <vue-mermaid :nodes="workflowGraph" type="graph LR" />
             </b-card-body>
+
             <b-card-footer>
               <b-alert :show="!areExecutablesEditable" variant="warning">
                 <b-icon icon="lock" />
@@ -127,10 +138,55 @@
                 block
               >
                 <b-icon icon="arrow-left-right" />
-                {{ $t('views.server.sections.workflow.editButton') }}
+                {{ $t('views.server.sections.settings.editWorkflowButton') }}
               </b-button>
             </b-card-footer>
           </b-card>
+
+          <b-form @submit.prevent="saveSettings" class="my-2">
+            <b-form-group
+              :label="$t('views.server.sections.settings.metricsIntervalLabel')"
+              label-for="metrics-interval"
+              label-cols="4"
+            >
+              <b-form-spinbutton
+                v-model="metricsSettings.interval"
+                min="1000"
+                step="1000"
+                max="10000"
+                id="metrics-interval"
+              />
+            </b-form-group>
+
+            <b-form-group
+              :label="$t('views.server.sections.settings.metricsPointsLabel')"
+              label-for="metrics-points"
+              label-cols="4"
+            >
+              <b-form-spinbutton
+                v-model="metricsSettings.points"
+                min="5"
+                max="100"
+                id="metrics-points"
+              />
+            </b-form-group>
+
+            <p>
+              {{
+                $t('views.server.sections.settings.metricsSpan', [metricsSpan])
+              }}
+            </p>
+
+            <b-button
+              :disabled="!areExecutablesEditable"
+              type="submit"
+              variant="primary"
+              block
+            >
+              <b-icon icon="archive" />
+              {{ $t('views.server.sections.settings.saveButton') }}
+            </b-button>
+          </b-form>
         </b-col>
 
         <b-col cols="12" class="my-2">
@@ -258,6 +314,7 @@ import { spawn } from 'child_process';
 import path from 'path';
 import kill from 'tree-kill';
 import pidUsage from 'pidusage';
+import prettyMs from 'pretty-ms';
 import SystemInformation from 'systeminformation';
 import SettingsManager from '@/utils/SettingsManager';
 import ProcessMetricsChart from '@/components/Server/ProcessMetricsChart';
@@ -272,7 +329,11 @@ export default {
     return {
       executables: [],
       stdin: null,
-      cpuCores: 1
+      cpuCores: 1,
+      metricsSettings: {
+        interval: 1000,
+        points: 5
+      }
     };
   },
   computed: {
@@ -296,6 +357,11 @@ export default {
           group: path.dirname(executable.command)
         };
       });
+    },
+    metricsSpan() {
+      return prettyMs(
+        this.metricsSettings.interval * this.metricsSettings.points
+      );
     }
   },
   methods: {
@@ -306,15 +372,16 @@ export default {
     remove(executable) {
       this.executables.splice(this.executables.indexOf(executable), 1);
     },
-    save() {
+    saveSettings() {
       SettingsManager.setExecutables(
         this.executables.map(executable => executable.getSavableObject())
       );
+      SettingsManager.setMetricsSettings(this.metricsSettings);
 
       this.$bvModal.msgBoxOk(
-        this.$t('views.server.notifications.executablesSaved.message'),
+        this.$t('views.server.notifications.settingsSaved.message'),
         {
-          title: this.$t('views.server.notifications.executablesSaved.title')
+          title: this.$t('views.server.notifications.settingsSaved.title')
         }
       );
     },
@@ -337,7 +404,8 @@ export default {
         executable.logs = [];
 
         executable.process = spawn(executable.command, executable.args, {
-          cwd: path.dirname(executable.command)
+          cwd: path.dirname(executable.command),
+          windowsHide: executable.hideWindow
         });
 
         executable.process.stdout.on('data', data => {
@@ -412,7 +480,7 @@ export default {
         }
       }
 
-      setTimeout(this.monitorExecutables, 1000);
+      setTimeout(this.monitorExecutables, this.metricsSettings.interval);
     },
     getLastCpuUsage(executable) {
       return executable.metrics.length > 0
@@ -430,7 +498,7 @@ export default {
       if (metricsCount > 0) {
         const labels = executable.metrics
           .map(metric => new Date(metric.timestamp).toLocaleTimeString())
-          .slice(Math.max(metricsCount - 10, 0));
+          .slice(Math.max(metricsCount - this.metricsSettings.points, 0));
 
         const datasets = [
           {
@@ -440,7 +508,7 @@ export default {
             backgroundColor: 'transparent',
             data: executable.metrics
               .map(metric => metric.cpu / 100 / this.cpuCores)
-              .slice(Math.max(metricsCount - 10, 0))
+              .slice(Math.max(metricsCount - this.metricsSettings.points, 0))
           },
           {
             label: 'RAM',
@@ -449,7 +517,7 @@ export default {
             backgroundColor: 'transparent',
             data: executable.metrics
               .map(metric => metric.memory)
-              .slice(Math.max(metricsCount - 10, 0))
+              .slice(Math.max(metricsCount - this.metricsSettings.points, 0))
           }
         ];
 
@@ -462,10 +530,15 @@ export default {
     }
   },
   async mounted() {
-    this.executables = SettingsManager.getExecutables().map(
-      executable =>
-        new Executable(executable.args, executable.command, executable.delay)
-    );
+    const executables = SettingsManager.getExecutables();
+    if (executables)
+      this.executables = executables.map(
+        executable =>
+          new Executable(executable.args, executable.command, executable.delay)
+      );
+
+    const metricsSettings = SettingsManager.getMetricsSettings();
+    if (metricsSettings) this.metricsSettings = metricsSettings;
 
     this.cpuCores = (await SystemInformation.cpu()).cores;
 
