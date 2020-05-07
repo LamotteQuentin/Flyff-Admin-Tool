@@ -348,13 +348,13 @@ export default {
       }
     },
     stop(executable) {
-      kill(executable.process.pid);
-      executable.process = null;
+      if (executable.process) {
+        kill(executable.process.pid);
+        executable.process = null;
+      }
     },
     async sequentialStop(executableId) {
-      for (const executable of this.executables
-        .slice(0, executableId + 1)
-        .reverse()) {
+      for (const executable of this.executables.slice(executableId).reverse()) {
         this.stop(executable);
       }
     },
