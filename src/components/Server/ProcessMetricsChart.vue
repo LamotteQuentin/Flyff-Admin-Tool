@@ -17,11 +17,15 @@ export default {
               type: 'linear',
               position: 'left',
               ticks: {
-                max: 100,
                 min: 0,
                 callback: value => {
                   return this.$options.filters.percent(value, 2, 1);
                 }
+              },
+              scaleLabel: {
+                display: true,
+                labelString: 'CPU',
+                fontColor: '#3b4545'
               }
             },
             {
@@ -32,6 +36,11 @@ export default {
                 callback: value => {
                   return this.$options.filters.bytes(value);
                 }
+              },
+              scaleLabel: {
+                display: true,
+                labelString: 'RAM',
+                fontColor: '#008080'
               }
             }
           ]
