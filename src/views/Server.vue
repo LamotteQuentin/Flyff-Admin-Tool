@@ -232,6 +232,14 @@
                     {{ $t('views.server.sections.processes.startButton') }}
                   </b-button>
                   <b-button
+                    @click="restart(executable)"
+                    :disabled="!Boolean(executable.process)"
+                    variant="outline-primary"
+                  >
+                    <b-icon icon="arrow-clockwise" />
+                    {{ $t('views.server.sections.processes.restartButton') }}
+                  </b-button>
+                  <b-button
                     @click="stop(executable)"
                     :disabled="!Boolean(executable.process)"
                     variant="outline-secondary"
@@ -460,6 +468,10 @@ export default {
         .reverse()) {
         this.stop(child);
       }
+    },
+    restart(executable) {
+      this.stop(executable);
+      setTimeout(() => this.start(executable), 500);
     },
     send(executable) {
       executable.process.stdin.write(this.stdin);

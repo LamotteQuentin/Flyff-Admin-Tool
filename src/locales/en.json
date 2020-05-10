@@ -86,6 +86,7 @@
 					"encodingLabel": "Encoding of standard outputs (stdout and stderr)",
 					"noMetric": "No metric is available for this executable.",
 					"ramUsage": "RAM: {0} ({1} avg.)",
+					"restartButton": "Restart",
 					"sendButton": "Send to standard input (stdin)",
 					"sequentialStartButton": "Start sequentially",
 					"sequentialStopButton": "Stop sequentially",
