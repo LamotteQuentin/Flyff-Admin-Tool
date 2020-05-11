@@ -1,6 +1,6 @@
 <template>
   <b-navbar toggleable="lg" type="dark" variant="dark" class="shadow">
-    <b-navbar-brand to="/" class="d-flex align-items-center">
+    <b-navbar-brand :to="{ name: 'Main' }" class="d-flex align-items-center">
       <b-img src="/icon.png" class="mr-2" height="32" />
       FAT
     </b-navbar-brand>
@@ -9,13 +9,13 @@
 
     <b-collapse id="nav-collapse" is-nav>
       <b-navbar-nav>
-        <b-nav-item to="/workflow">
+        <b-nav-item :to="{ name: 'Workflow' }">
           {{ $t('components.menu.links.workflow') }}
         </b-nav-item>
-        <b-nav-item to="/system">
+        <b-nav-item :to="{ name: 'System' }">
           {{ $t('components.menu.links.system') }}
         </b-nav-item>
-        <b-nav-item to="/odbc">
+        <b-nav-item :to="{ name: 'ODBC' }">
           {{ $t('components.menu.links.odbc') }}
         </b-nav-item>
       </b-navbar-nav>

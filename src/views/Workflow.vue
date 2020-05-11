@@ -370,11 +370,11 @@ import pidUsage from 'pidusage';
 import prettyMs from 'pretty-ms';
 import SystemInformation from 'systeminformation';
 import SettingsManager from '@/utils/SettingsManager';
-import ProcessMetricsChart from '@/components/Server/ProcessMetricsChart';
+import ProcessMetricsChart from '@/components/Workflow/ProcessMetricsChart';
 import Executable from '@/models/Executable';
 
 export default {
-  name: 'Server',
+  name: 'Workflow',
   components: {
     ProcessMetricsChart
   },

@@ -16,15 +16,15 @@
 
         <p>{{ $t('views.main.description') }}</p>
 
-        <b-button variant="primary" block to="/workflow">
+        <b-button :to="{ name: 'Workflow' }" variant="primary" block>
           <b-icon icon="lightning" />
           {{ $t('views.workflow.title') }}
         </b-button>
-        <b-button variant="primary" block to="/system">
+        <b-button :to="{ name: 'System' }" variant="primary" block>
           <b-icon icon="window" />
           {{ $t('views.system.title') }}
         </b-button>
-        <b-button variant="primary" block to="/odbc">
+        <b-button block :to="{ name: 'ODBC' }" variant="primary">
           <b-icon icon="layers" />
           {{ $t('views.odbc.title') }}
         </b-button>

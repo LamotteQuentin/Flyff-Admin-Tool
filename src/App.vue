@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <MenuComponent id="app-menu" />
-    <keep-alive include="Server">
+    <keep-alive include="Workflow">
       <router-view id="app-content" class="py-4" />
     </keep-alive>
     <FooterComponent id="app-footer" />
@@ -13,6 +13,7 @@ import MenuComponent from '@/components/Menu';
 import FooterComponent from '@/components/Footer';
 
 export default {
+  name: 'App',
   components: {
     MenuComponent,
     FooterComponent
