@@ -7,8 +7,8 @@
 		"menu": {
 			"links": {
 				"odbc": "ODBC",
-				"serverManager": "Serveur",
-				"system": "Système"
+				"system": "Système",
+				"workflow": "Workflow"
 			}
 		}
 	},
@@ -73,49 +73,6 @@
 			},
 			"title": "Assistant de configuration ODBC"
 		},
-		"server": {
-			"notifications": {
-				"settingsSaved": {
-					"message": "Le workflow des exécutables ainsi que les paramètres d'exécution ont bien été enregistrés.",
-					"title": "Paramètres sauvegardés"
-				}
-			},
-			"sections": {
-				"processes": {
-					"cpuUsage": "CPU : {0} ({1} moy.)",
-					"encodingLabel": "Encodage des sorties standards (stdout et stderr)",
-					"noMetric": "Aucune métrique n'est disponible pour cet exécutable.",
-					"ramUsage": "RAM : {0} ({1} moy.)",
-					"restartButton": "Redémarrer",
-					"sendButton": "Envoyer à l'entrée standard (stdin)",
-					"sequentialStartButton": "Démarrer séquentiellement",
-					"sequentialStopButton": "Arrêter séquentiellement",
-					"startButton": "Démarrer",
-					"stdinLabel": "Instruction à envoyer au processus",
-					"stopButton": "Arrêter",
-					"title": "Surveillance des processus"
-				},
-				"settings": {
-					"editWorkflowButton": "Modifier le workflow",
-					"metricsIntervalLabel": "Interval des mesures (ms)",
-					"metricsPointsLabel": "Nombre de mesures à afficher",
-					"metricsSpan": "Les métriques afficheront une période de : {0}",
-					"saveButton": "Sauvegarder les paramètres d'exécution",
-					"title": "Paramètres d'exécution"
-				},
-				"workflow": {
-					"addButton": "Ajouter un exécutable",
-					"argsLabel": "Arguments",
-					"argsPlaceholder": "Saisissez un argument puis faites \"Entrer\" pour l'ajouter",
-					"commandLabel": "Fichier ou commande à exécuter",
-					"delayLabel": "Délai (ms)",
-					"executablesLocked": "Le workflow ne sera pas modifiable tant que tous les exécutables ne seront pas à l'arrêt.",
-					"hideWindowLabel": "Cacher la fenêtre du sous-processus (si supporté)",
-					"removeButton": "Supprimer"
-				}
-			},
-			"title": "Gestionnaire de serveur"
-		},
 		"system": {
 			"sections": {
 				"cpu": {
@@ -139,6 +96,45 @@
 				}
 			},
 			"title": "Informations système"
+		},
+		"workflow": {
+			"sections": {
+				"processes": {
+					"cpuUsage": "CPU : {0} ({1} moy.)",
+					"encodingLabel": "Encodage des sorties standards (stdout et stderr)",
+					"metricsIntervalLabel": "Interval des mesures (ms)",
+					"metricsPointsLabel": "Nombre de mesures à afficher",
+					"metricsSpan": "Les métriques afficheront une période de : {0}",
+					"noMetric": "Aucune métrique n'est disponible pour cet exécutable.",
+					"ramUsage": "RAM : {0} ({1} moy.)",
+					"restartButton": "Redémarrer",
+					"sendButton": "Envoyer à l'entrée standard (stdin)",
+					"sequentialStartButton": "Démarrer jusqu'ici",
+					"sequentialStopButton": "Arrêter jusqu'ici",
+					"startButton": "Démarrer",
+					"stdinLabel": "Instruction à envoyer au processus",
+					"stopButton": "Arrêter",
+					"title": "Surveillance des processus"
+				},
+				"settings": {
+					"editWorkflowButton": "Modifier le workflow",
+					"isAnExecutableRunning": "Le workflow ne sera pas modifiable tant que tous les exécutables ne seront pas à l'arrêt.",
+					"isStarting": "Plusieurs exécutables sont en cours de démarrage. Les contrôles seront bloqués le temps que le workflow finisse sa séquence de lancement.",
+					"startAllButton": "Tout démarrer",
+					"stopAllButton": "Tout arrêter",
+					"title": "Paramètres d'exécution"
+				},
+				"workflowSidebar": {
+					"addButton": "Ajouter un exécutable",
+					"argsLabel": "Arguments",
+					"argsPlaceholder": "Saisissez un argument puis faites \"Entrer\" pour l'ajouter",
+					"commandLabel": "Fichier ou commande à exécuter",
+					"delayLabel": "Délai (ms)",
+					"hideWindowLabel": "Cacher la fenêtre du sous-processus (si supporté)",
+					"removeButton": "Supprimer"
+				}
+			},
+			"title": "Gestionnaire de workflow"
 		}
 	}
 }

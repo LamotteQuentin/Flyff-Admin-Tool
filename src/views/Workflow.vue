@@ -1,6 +1,7 @@
 <template>
   <div>
     <b-sidebar
+      @change="saveSettings"
       id="workflow"
       width="25%"
       bg-variant="dark"
@@ -24,9 +25,11 @@
             <b-card-body>
               <b-card-title>{{ getBaseName(executable.command) }}</b-card-title>
               <b-form>
-                <b-form-group :disabled="!areExecutablesEditable">
+                <b-form-group :disabled="isAnExecutableRunning">
                   <b-form-group
-                    :label="$t('views.server.sections.workflow.commandLabel')"
+                    :label="
+                      $t('views.workflow.sections.workflowSidebar.commandLabel')
+                    "
                     :label-for="`command-${id}`"
                   >
                     <b-input-group>
@@ -43,20 +46,26 @@
                   </b-form-group>
 
                   <b-form-group
-                    :label="$t('views.server.sections.workflow.argsLabel')"
+                    :label="
+                      $t('views.workflow.sections.workflowSidebar.argsLabel')
+                    "
                     :label-for="`args-${id}`"
                   >
                     <b-form-tags
                       v-model="executable.args"
                       :input-id="`args-${id}`"
                       :placeholder="
-                        $t('views.server.sections.workflow.argsPlaceholder')
+                        $t(
+                          'views.workflow.sections.workflowSidebar.argsPlaceholder'
+                        )
                       "
                     />
                   </b-form-group>
 
                   <b-form-group
-                    :label="$t('views.server.sections.workflow.delayLabel')"
+                    :label="
+                      $t('views.workflow.sections.workflowSidebar.delayLabel')
+                    "
                     :label-for="`delay-${id}`"
                   >
                     <b-form-spinbutton
@@ -70,7 +79,9 @@
 
                   <b-form-group
                     :label="
-                      $t('views.server.sections.workflow.hideWindowLabel')
+                      $t(
+                        'views.workflow.sections.workflowSidebar.hideWindowLabel'
+                      )
                     "
                     :label-for="`hide-window-${id}`"
                   >
@@ -94,98 +105,75 @@
               <b-button-group class="w-100" size="sm">
                 <b-button
                   @click="remove(executable)"
-                  :disabled="!areExecutablesEditable"
+                  :disabled="isAnExecutableRunning"
                   variant="outline-danger"
                 >
                   <b-icon icon="trash" />
-                  {{ $t('views.server.sections.workflow.removeButton') }}
+                  {{
+                    $t('views.workflow.sections.workflowSidebar.removeButton')
+                  }}
                 </b-button>
               </b-button-group>
             </b-card-footer>
           </b-card>
         </draggable>
 
-        <b-button @click="add" :disabled="!areExecutablesEditable" block="">
+        <b-button @click="add" :disabled="isAnExecutableRunning" block="">
           <b-icon icon="file-plus" />
-          {{ $t('views.server.sections.workflow.addButton') }}
+          {{ $t('views.workflow.sections.workflowSidebar.addButton') }}
         </b-button>
       </b-container>
     </b-sidebar>
 
     <b-container fluid>
-      <h1>{{ $t('views.server.title') }}</h1>
+      <h1>{{ $t('views.workflow.title') }}</h1>
+
+      <b-alert :show="isStarting" variant="info">
+        <b-icon icon="lock" />
+        {{ $t('views.workflow.sections.settings.isStarting') }}
+      </b-alert>
+
+      <b-alert :show="isAnExecutableRunning" variant="warning">
+        <b-icon icon="lock" />
+        {{ $t('views.workflow.sections.settings.isAnExecutableRunning') }}
+      </b-alert>
 
       <b-row>
         <b-col cols="12" class="my-2">
-          <h3>{{ $t('views.server.sections.settings.title') }}</h3>
+          <h3>{{ $t('views.workflow.sections.settings.title') }}</h3>
 
           <hr />
 
-          <b-card no-body class="text-center mb-4">
-            <b-card-body class="overflow-auto">
-              <vue-mermaid :nodes="workflowGraph" type="graph LR" />
-            </b-card-body>
-
-            <b-card-footer>
-              <b-alert :show="!areExecutablesEditable" variant="warning">
-                <b-icon icon="lock" />
-                {{ $t('views.server.sections.workflow.executablesLocked') }}
-              </b-alert>
-
+          <b-row>
+            <b-col cols="4">
               <b-button
                 v-b-toggle.workflow
-                :disabled="!areExecutablesEditable"
+                :disabled="isAnExecutableRunning"
                 block
               >
                 <b-icon icon="arrow-left-right" />
-                {{ $t('views.server.sections.settings.editWorkflowButton') }}
+                {{ $t('views.workflow.sections.settings.editWorkflowButton') }}
               </b-button>
-            </b-card-footer>
-          </b-card>
-
-          <b-form @submit.prevent="saveSettings" class="my-2">
-            <b-form-group
-              :label="$t('views.server.sections.settings.metricsIntervalLabel')"
-              label-for="metrics-interval"
-              label-cols="4"
-            >
-              <b-form-spinbutton
-                v-model="metricsSettings.interval"
-                min="1000"
-                step="1000"
-                max="10000"
-                id="metrics-interval"
-              />
-            </b-form-group>
-
-            <b-form-group
-              :label="$t('views.server.sections.settings.metricsPointsLabel')"
-              label-for="metrics-points"
-              label-cols="4"
-            >
-              <b-form-spinbutton
-                v-model="metricsSettings.points"
-                min="5"
-                max="100"
-                id="metrics-points"
-              />
-            </b-form-group>
-
-            <p>
-              {{
-                $t('views.server.sections.settings.metricsSpan', [metricsSpan])
-              }}
-            </p>
-
-            <b-button type="submit" variant="primary" block>
-              <b-icon icon="archive" />
-              {{ $t('views.server.sections.settings.saveButton') }}
-            </b-button>
-          </b-form>
+            </b-col>
+            <b-col>
+              <b-form-group :disabled="isStarting">
+                <b-button-group class="w-100 mb-3">
+                  <b-button @click="startAll" variant="success">
+                    <b-icon icon="play-fill" />
+                    {{ $t('views.workflow.sections.settings.startAllButton') }}
+                  </b-button>
+                  <b-button @click="stopAll" variant="danger">
+                    <b-icon icon="stop-fill" />
+                    {{ $t('views.workflow.sections.settings.stopAllButton') }}
+                  </b-button>
+                </b-button-group>
+              </b-form-group>
+            </b-col>
+          </b-row>
         </b-col>
 
         <b-col cols="12" class="my-2">
-          <h3>{{ $t('views.server.sections.processes.title') }}</h3>
+          <h3>{{ $t('views.workflow.sections.processes.title') }}</h3>
 
           <hr />
 
@@ -195,64 +183,72 @@
                 <template v-slot:title>
                   <b-spinner v-if="executable.process" type="grow" small />
                   {{ getBaseName(executable.command) }}
+                  <b-icon v-if="executable.delay" icon="clock-history" />
                 </template>
 
-                <b-button-group class="w-100 my-2">
-                  <b-button
-                    @click="sequentialStart(executable)"
-                    :disabled="Boolean(executable.process)"
-                    variant="primary"
-                  >
-                    <b-icon icon="play-fill" />
-                    {{
-                      $t(
-                        'views.server.sections.processes.sequentialStartButton'
-                      )
-                    }}
-                  </b-button>
-                  <b-button
-                    @click="sequentialStop(executable)"
-                    :disabled="!Boolean(executable.process)"
-                    variant="secondary"
-                  >
-                    <b-icon icon="stop-fill" />
-                    {{
-                      $t('views.server.sections.processes.sequentialStopButton')
-                    }}
-                  </b-button>
-                </b-button-group>
+                <b-form-group :disabled="isStarting">
+                  <b-button-group class="w-100 my-2">
+                    <b-button
+                      @click="sequentialStart(executable)"
+                      :disabled="Boolean(executable.process)"
+                      variant="success"
+                    >
+                      <b-icon icon="play-fill" />
+                      {{
+                        $t(
+                          'views.workflow.sections.processes.sequentialStartButton'
+                        )
+                      }}
+                    </b-button>
+                    <b-button
+                      @click="sequentialStop(executable)"
+                      :disabled="!Boolean(executable.process)"
+                      variant="danger"
+                    >
+                      <b-icon icon="stop-fill" />
+                      {{
+                        $t(
+                          'views.workflow.sections.processes.sequentialStopButton'
+                        )
+                      }}
+                    </b-button>
+                  </b-button-group>
 
-                <b-button-group class="w-100 my-2">
-                  <b-button
-                    @click="start(executable)"
-                    :disabled="Boolean(executable.process)"
-                    variant="outline-primary"
-                  >
-                    <b-icon icon="play" />
-                    {{ $t('views.server.sections.processes.startButton') }}
-                  </b-button>
-                  <b-button
-                    @click="restart(executable)"
-                    :disabled="!Boolean(executable.process)"
-                    variant="outline-primary"
-                  >
-                    <b-icon icon="arrow-clockwise" />
-                    {{ $t('views.server.sections.processes.restartButton') }}
-                  </b-button>
-                  <b-button
-                    @click="stop(executable)"
-                    :disabled="!Boolean(executable.process)"
-                    variant="outline-secondary"
-                  >
-                    <b-icon icon="stop" />
-                    {{ $t('views.server.sections.processes.stopButton') }}
-                  </b-button>
-                </b-button-group>
+                  <b-button-group class="w-100 my-2">
+                    <b-button
+                      @click="start(executable)"
+                      :disabled="Boolean(executable.process)"
+                      variant="outline-success"
+                    >
+                      <b-icon icon="play" />
+                      {{ $t('views.workflow.sections.processes.startButton') }}
+                    </b-button>
+                    <b-button
+                      @click="restart(executable)"
+                      :disabled="!Boolean(executable.process)"
+                      variant="outline-info"
+                    >
+                      <b-icon icon="arrow-clockwise" />
+                      {{
+                        $t('views.workflow.sections.processes.restartButton')
+                      }}
+                    </b-button>
+                    <b-button
+                      @click="stop(executable)"
+                      :disabled="!Boolean(executable.process)"
+                      variant="outline-danger"
+                    >
+                      <b-icon icon="stop" />
+                      {{ $t('views.workflow.sections.processes.stopButton') }}
+                    </b-button>
+                  </b-button-group>
+                </b-form-group>
 
-                <b-form @submit="send(executable)">
+                <b-form @submit.prevent="send(executable)">
                   <b-form-group
-                    :label="$t('views.server.sections.processes.stdinLabel')"
+                    :label="$t('views.workflow.sections.processes.stdinLabel')"
                     label-for="stdin"
+                    label-cols="4"
                   >
                     <b-input-group>
                       <b-form-input
@@ -273,30 +269,74 @@
                   </b-form-group>
                 </b-form>
 
+                <b-form class="my-2">
+                  <b-form-group
+                    :label="
+                      $t(
+                        'views.workflow.sections.processes.metricsIntervalLabel'
+                      )
+                    "
+                    label-for="metrics-interval"
+                    label-cols="4"
+                  >
+                    <b-form-spinbutton
+                      v-model="metricsSettings.interval"
+                      @change="saveSettings"
+                      min="1000"
+                      step="1000"
+                      max="10000"
+                      id="metrics-interval"
+                    />
+                  </b-form-group>
+
+                  <b-form-group
+                    :label="
+                      $t('views.workflow.sections.processes.metricsPointsLabel')
+                    "
+                    label-for="metrics-points"
+                    label-cols="4"
+                  >
+                    <b-form-spinbutton
+                      v-model="metricsSettings.points"
+                      @change="saveSettings"
+                      min="5"
+                      max="100"
+                      id="metrics-points"
+                    />
+                  </b-form-group>
+
+                  <p>
+                    {{
+                      $t('views.workflow.sections.processes.metricsSpan', [
+                        metricsSpan
+                      ])
+                    }}
+                  </p>
+                </b-form>
+
                 <b-card title="CPU / RAM" class="my-2">
                   <b-card-sub-title v-if="executable.metrics.length > 0">
                     {{
-                      $t('views.server.sections.processes.cpuUsage', [
+                      $t('views.workflow.sections.processes.cpuUsage', [
                         vueFilters.percent(getLastCpuUsage(executable), 2),
                         vueFilters.percent(getAverageCpuUsage(executable), 2)
                       ])
                     }}
                     /
                     {{
-                      $t('views.server.sections.processes.ramUsage', [
+                      $t('views.workflow.sections.processes.ramUsage', [
                         vueFilters.bytes(getLastRamUsage(executable)),
                         vueFilters.bytes(getAverageRamUsage(executable))
                       ])
                     }}
                   </b-card-sub-title>
-
                   <process-metrics-chart
                     v-if="getChartData(executable)"
                     :chartData="getChartData(executable)"
                     class="metrics-chart"
                   />
                   <p v-else>
-                    {{ $t('views.server.sections.processes.noMetric') }}
+                    {{ $t('views.workflow.sections.processes.noMetric') }}
                   </p>
                 </b-card>
 
@@ -346,18 +386,19 @@ export default {
       metricsSettings: {
         interval: 1000,
         points: 5
-      }
+      },
+      isStarting: false
     };
   },
   computed: {
-    areExecutablesEditable() {
+    isAnExecutableRunning() {
       return (
-        this.executables.filter(executable => executable.process).length === 0
+        this.executables.filter(executable => executable.process).length > 0
       );
     },
     dragOptions() {
       return {
-        disabled: !this.areExecutablesEditable
+        disabled: this.isAnExecutableRunning
       };
     },
     workflowGraph() {
@@ -393,13 +434,6 @@ export default {
         this.executables.map(executable => executable.getSavableObject())
       );
       SettingsManager.setMetricsSettings(this.metricsSettings);
-
-      this.$bvModal.msgBoxOk(
-        this.$t('views.server.notifications.settingsSaved.message'),
-        {
-          title: this.$t('views.server.notifications.settingsSaved.title')
-        }
-      );
     },
     async editExecutableFile(executable) {
       const result = await remote.dialog.showOpenDialog({
@@ -448,6 +482,7 @@ export default {
       }
     },
     async sequentialStart(executable) {
+      this.isStarting = true;
       for (const child of this.executables.slice(
         0,
         this.executables.indexOf(executable) + 1
@@ -455,6 +490,10 @@ export default {
         await new Promise(resolve => setTimeout(resolve, child.delay));
         this.start(child);
       }
+      this.isStarting = false;
+    },
+    startAll() {
+      this.sequentialStart(this.executables[this.executables.length - 1]);
     },
     stop(executable) {
       if (executable.process) {
@@ -468,6 +507,9 @@ export default {
         .reverse()) {
         this.stop(child);
       }
+    },
+    stopAll() {
+      this.sequentialStop(this.executables[0]);
     },
     restart(executable) {
       this.stop(executable);

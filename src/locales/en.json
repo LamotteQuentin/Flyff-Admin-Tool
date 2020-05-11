@@ -7,8 +7,8 @@
 		"menu": {
 			"links": {
 				"odbc": "ODBC",
-				"serverManager": "Server",
-				"system": "System"
+				"system": "System",
+				"workflow": "Workflow"
 			}
 		}
 	},
@@ -73,49 +73,6 @@
 			},
 			"title": "ODBC configuration wizard"
 		},
-		"server": {
-			"notifications": {
-				"settingsSaved": {
-					"message": "The executables workflow as well as the execution parameters have been saved.",
-					"title": "Settings saved"
-				}
-			},
-			"sections": {
-				"processes": {
-					"cpuUsage": "CPU: {0} ({1} avg.)",
-					"encodingLabel": "Encoding of standard outputs (stdout and stderr)",
-					"noMetric": "No metric is available for this executable.",
-					"ramUsage": "RAM: {0} ({1} avg.)",
-					"restartButton": "Restart",
-					"sendButton": "Send to standard input (stdin)",
-					"sequentialStartButton": "Start sequentially",
-					"sequentialStopButton": "Stop sequentially",
-					"startButton": "Start",
-					"stdinLabel": "Instruction to send to the process",
-					"stopButton": "Stop",
-					"title": "Processes monitoring"
-				},
-				"settings": {
-					"editWorkflowButton": "Edit workflow",
-					"metricsIntervalLabel": "Metrics interval (ms)",
-					"metricsPointsLabel": "Number of measurements to display",
-					"metricsSpan": "The metrics will display a time span of: {0}",
-					"saveButton": "Save the execution settings",
-					"title": "Execution settings"
-				},
-				"workflow": {
-					"addButton": "Add an executable",
-					"argsLabel": "Arguments",
-					"argsPlaceholder": "Type in an argument then press \"Enter\" to add it",
-					"commandLabel": "File or command to execute",
-					"delayLabel": "Delay (ms)",
-					"executablesLocked": "The workflow will not be editable until all the executables are stopped.",
-					"hideWindowLabel": "Hide the sub-process window (if supported)",
-					"removeButton": "Delete"
-				}
-			},
-			"title": "Server manager"
-		},
 		"system": {
 			"sections": {
 				"cpu": {
@@ -139,6 +96,45 @@
 				}
 			},
 			"title": "System Information"
+		},
+		"workflow": {
+			"sections": {
+				"processes": {
+					"cpuUsage": "CPU: {0} ({1} avg.)",
+					"encodingLabel": "Encoding of standard outputs (stdout and stderr)",
+					"metricsIntervalLabel": "Metrics interval (ms)",
+					"metricsPointsLabel": "Number of measurements to display",
+					"metricsSpan": "The metrics will display a time span of: {0}",
+					"noMetric": "No metric is available for this executable.",
+					"ramUsage": "RAM: {0} ({1} avg.)",
+					"restartButton": "Restart",
+					"sendButton": "Send to standard input (stdin)",
+					"sequentialStartButton": "Start up to there",
+					"sequentialStopButton": "Stop up to there",
+					"startButton": "Start",
+					"stdinLabel": "Instruction to send to the process",
+					"stopButton": "Stop",
+					"title": "Processes monitoring"
+				},
+				"settings": {
+					"editWorkflowButton": "Edit workflow",
+					"isAnExecutableRunning": "The workflow will not be editable until all the executables are stopped.",
+					"isStarting": "Several executables are being started. The controls will be blocked until the workflow finishes its launching sequence.",
+					"startAllButton": "Start all",
+					"stopAllButton": "Stop all",
+					"title": "Execution settings"
+				},
+				"workflowSidebar": {
+					"addButton": "Add an executable",
+					"argsLabel": "Arguments",
+					"argsPlaceholder": "Type in an argument then press \"Enter\" to add it",
+					"commandLabel": "File or command to execute",
+					"delayLabel": "Delay (ms)",
+					"hideWindowLabel": "Hide the sub-process window (if supported)",
+					"removeButton": "Delete"
+				}
+			},
+			"title": "Workflow manager"
 		}
 	}
 }

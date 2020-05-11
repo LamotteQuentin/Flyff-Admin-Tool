@@ -16,9 +16,9 @@
 
         <p>{{ $t('views.main.description') }}</p>
 
-        <b-button variant="primary" block to="/server">
+        <b-button variant="primary" block to="/workflow">
           <b-icon icon="lightning" />
-          {{ $t('views.server.title') }}
+          {{ $t('views.workflow.title') }}
         </b-button>
         <b-button variant="primary" block to="/system">
           <b-icon icon="window" />

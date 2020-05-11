@@ -15,9 +15,10 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '@/views/About')
   },
   {
-    path: '/server',
-    name: 'Server',
-    component: () => import(/* webpackChunkName: "server" */ '@/views/Server')
+    path: '/workflow',
+    name: 'Workflow',
+    component: () =>
+      import(/* webpackChunkName: "workflow" */ '@/views/Workflow')
   },
   {
     path: '/system',
