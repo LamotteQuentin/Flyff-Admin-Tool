@@ -4,6 +4,11 @@
 		"yes": "Yes"
 	},
 	"components": {
+		"footer": {
+			"copyright": "Under CreativeCommons license",
+			"githubLink": "Follow FAT on GitHub",
+			"signature": "Developed by Quentin Lamotte"
+		},
 		"menu": {
 			"links": {
 				"odbc": "ODBC",
@@ -14,28 +19,6 @@
 	},
 	"message": "hello i18n !!",
 	"views": {
-		"about": {
-			"sections": {
-				"versions": {
-					"title": "Component versions of FAT"
-				}
-			},
-			"title": "About FAT",
-			"versions": {
-				"properties": {
-					"appMode": "Application execution mode",
-					"appVersion": "Application version",
-					"chromiumVersion": "Chromium version",
-					"cpuArchitecture": "CPU architecture",
-					"endianness": "Endianness",
-					"nodeVersion": "NodeJS version",
-					"openSslVersion": "OpenSSL version",
-					"platform": "System platform",
-					"v8Version": "V8 engine version",
-					"vueVersion": "VueJS version"
-				}
-			}
-		},
 		"main": {
 			"description": "Other features will be added soon!",
 			"subtitle": "Administration tool for Flyff servers"

@@ -21,9 +21,6 @@
       </b-navbar-nav>
 
       <b-navbar-nav class="ml-auto">
-        <b-nav-item to="/about">
-          <b-icon icon="question" />
-        </b-nav-item>
         <b-nav-item>
           <b-icon @click="minimizeWindow()" icon="dash" variant="warning" />
         </b-nav-item>
