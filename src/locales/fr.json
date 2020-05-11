@@ -79,6 +79,7 @@
 					"title": "CPU"
 				},
 				"processes": {
+					"experimentalWarning": "Cette section est expérimentale ! Vous y trouverez des informations techniques très détaillées. Vous pourrez vous en passer pour gérer votre serveur mais elles pourraient être utiles dans des cas très spécifiques.",
 					"graph": {
 						"linkLabel": "Lancé par {0} le {1}",
 						"title": "Vue graphique des processus"

@@ -88,11 +88,18 @@
             </b-progress>
           </b-card>
         </b-col>
+      </b-row>
 
+      <b-row>
         <b-col v-if="processes">
           <h3>{{ $t('views.system.sections.processes.title') }}</h3>
 
           <hr />
+
+          <b-alert variant="warning" show>
+            <b-icon icon="tools" />
+            {{ $t('views.system.sections.processes.experimentalWarning') }}
+          </b-alert>
 
           <h5>{{ $t('views.system.sections.processes.tree.title') }}</h5>
           <b-card bg-variant="dark">

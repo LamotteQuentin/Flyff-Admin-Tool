@@ -79,6 +79,7 @@
 					"title": "CPU"
 				},
 				"processes": {
+					"experimentalWarning": "This section is experimental! You will find very detailed technical information there. You can do without them to manage your server but they could be useful in very specific cases.",
 					"graph": {
 						"linkLabel": "Started by {0} on {1}",
 						"title": "Processes graph view"

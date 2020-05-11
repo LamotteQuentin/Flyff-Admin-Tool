@@ -768,6 +768,23 @@
                                     <folder_node>
                                         <name>processes</name>
                                         <children>
+                                            <concept_node>
+                                                <name>experimentalWarning</name>
+                                                <definition_loaded>false</definition_loaded>
+                                                <description></description>
+                                                <comment></comment>
+                                                <default_text></default_text>
+                                                <translations>
+                                                    <translation>
+                                                        <language>en-US</language>
+                                                        <approved>false</approved>
+                                                    </translation>
+                                                    <translation>
+                                                        <language>fr-FR</language>
+                                                        <approved>false</approved>
+                                                    </translation>
+                                                </translations>
+                                            </concept_node>
                                             <folder_node>
                                                 <name>graph</name>
                                                 <children>
