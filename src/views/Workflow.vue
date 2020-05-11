@@ -401,17 +401,6 @@ export default {
         disabled: this.isAnExecutableRunning
       };
     },
-    workflowGraph() {
-      return this.executables.map((executable, id) => {
-        return {
-          id: id,
-          text: path.basename(executable.command),
-          link: executable.delay ? `-- ${executable.delay} ms -->` : '-->',
-          next: [id + 1],
-          group: path.dirname(executable.command)
-        };
-      });
-    },
     metricsSpan() {
       return prettyMs(
         this.metricsSettings.interval * this.metricsSettings.points
