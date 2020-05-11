@@ -4,13 +4,47 @@
       <h1>{{ $t('views.system.title') }}</h1>
 
       <b-row class="my-2">
-        <b-col v-if="cpu">
+        <b-col v-if="cpu && cpuCurrentspeed">
           <h3>{{ $t('views.system.sections.cpu.title') }}</h3>
 
           <hr />
 
-          <b-card :title="cpu.manufacturer" :sub-title="cpu.brand">
-            <pre>{{ cpu }}</pre>
+          <b-card no-body>
+            <b-card-header>
+              <b-card-title>
+                {{ cpu.manufacturer }}
+              </b-card-title>
+              <b-card-sub-title>
+                {{ cpu.brand }}
+              </b-card-sub-title>
+            </b-card-header>
+            <b-card-body>
+              <b-avatar
+                src="/images/icons/icons8-processor.svg"
+                variant="transparent"
+                square
+              />
+              {{
+                $t('views.system.sections.cpu.cores', [
+                  cpu.cores,
+                  cpu.physicalCores
+                ])
+              }}
+            </b-card-body>
+            <b-card-body>
+              <b-avatar
+                src="/images/icons/icons8-speed.svg"
+                variant="transparent"
+                square
+              />
+              {{
+                $t('views.system.sections.cpu.speed', [
+                  cpuCurrentspeed.min,
+                  cpuCurrentspeed.max,
+                  cpuCurrentspeed.avg
+                ])
+              }}
+            </b-card-body>
           </b-card>
         </b-col>
 
@@ -19,47 +53,59 @@
 
           <hr />
 
-          <b-card>
-            <b-card-title>
-              {{ ram.total | bytes }}
-            </b-card-title>
-            <b-card-sub-title>
-              {{ ram.swaptotal | bytes }}
-            </b-card-sub-title>
-
-            <br />
-
-            <b-progress :max="ram.total">
-              <b-progress-bar
-                :value="ram.used"
-                :variant="
-                  (ram.used * 100) / ram.total < 90 ? 'success' : 'danger'
-                "
-              >
-                <strong>
-                  {{ ram.used | bytes }} /
-                  {{ ram.total | bytes }}
-                </strong>
-              </b-progress-bar>
-            </b-progress>
-
-            <br />
-
-            <b-progress :max="ram.swaptotal">
-              <b-progress-bar
-                :value="ram.swapused"
-                :variant="
-                  (ram.swapused * 100) / ram.swaptotal < 90
-                    ? 'success'
-                    : 'danger'
-                "
-              >
-                <strong>
-                  {{ ram.swapused | bytes }} /
-                  {{ ram.swaptotal | bytes }}
-                </strong>
-              </b-progress-bar>
-            </b-progress>
+          <b-card no-body>
+            <b-card-header>
+              <b-card-title>
+                {{ ram.total | bytes }}
+              </b-card-title>
+              <b-card-sub-title>
+                {{ ram.swaptotal | bytes }}
+              </b-card-sub-title>
+            </b-card-header>
+            <b-card-body class="d-flex align-items-center">
+              <b-avatar
+                src="/images/icons/icons8-memory-slot.svg"
+                variant="transparent"
+                class="mr-2"
+                square
+              />
+              <b-progress :max="ram.total" class="flex-grow-1">
+                <b-progress-bar
+                  :value="ram.used"
+                  :variant="
+                    (ram.used * 100) / ram.total < 90 ? 'success' : 'danger'
+                  "
+                >
+                  <strong>
+                    {{ ram.used | bytes }} /
+                    {{ ram.total | bytes }}
+                  </strong>
+                </b-progress-bar>
+              </b-progress>
+            </b-card-body>
+            <b-card-body class="d-flex align-items-center">
+              <b-avatar
+                src="/images/icons/icons8-archive-folder.svg"
+                variant="transparent"
+                class="mr-2"
+                square
+              />
+              <b-progress :max="ram.swaptotal" class="flex-grow-1">
+                <b-progress-bar
+                  :value="ram.swapused"
+                  :variant="
+                    (ram.swapused * 100) / ram.swaptotal < 90
+                      ? 'success'
+                      : 'danger'
+                  "
+                >
+                  <strong>
+                    {{ ram.swapused | bytes }} /
+                    {{ ram.swaptotal | bytes }}
+                  </strong>
+                </b-progress-bar>
+              </b-progress>
+            </b-card-body>
           </b-card>
         </b-col>
 
@@ -71,21 +117,36 @@
           <b-card
             v-for="(fileSystem, id) in storage"
             v-bind:key="id"
-            :title="fileSystem.mount"
-            :sub-title="fileSystem.type"
             class="my-2"
+            no-body
           >
-            <b-progress>
-              <b-progress-bar
-                :value="fileSystem.use"
-                :variant="fileSystem.use < 90 ? 'success' : 'danger'"
-              >
-                <strong>
-                  {{ fileSystem.used | bytes }} /
-                  {{ fileSystem.size | bytes }}
-                </strong>
-              </b-progress-bar>
-            </b-progress>
+            <b-card-header>
+              <b-card-title>
+                {{ fileSystem.mount }}
+              </b-card-title>
+              <b-card-sub-title>
+                {{ fileSystem.type }}
+              </b-card-sub-title>
+            </b-card-header>
+            <b-card-body class="d-flex align-items-center">
+              <b-avatar
+                src="/images/icons/icons8-ssd.svg"
+                variant="transparent"
+                class="mr-2"
+                square
+              />
+              <b-progress class="flex-grow-1">
+                <b-progress-bar
+                  :value="fileSystem.use"
+                  :variant="fileSystem.use < 90 ? 'success' : 'danger'"
+                >
+                  <strong>
+                    {{ fileSystem.used | bytes }} /
+                    {{ fileSystem.size | bytes }}
+                  </strong>
+                </b-progress-bar>
+              </b-progress>
+            </b-card-body>
           </b-card>
         </b-col>
       </b-row>
@@ -111,7 +172,6 @@
           <h5>{{ $t('views.system.sections.processes.graph.title') }}</h5>
           <b-card v-dragscroll class="overflow-auto">
             <vue-mermaid
-              @nodeClick="showProcessDetails"
               :nodes="processesGraph"
               :config="mermaidConfig"
               type="graph LR"
@@ -127,9 +187,11 @@
 import SystemInformation from 'systeminformation';
 
 export default {
+  name: 'System',
   data() {
     return {
       cpu: undefined,
+      cpuCurrentspeed: undefined,
       ram: undefined,
       storage: undefined,
       processes: undefined,
@@ -202,16 +264,17 @@ export default {
   methods: {
     async refresh() {
       this.cpu = await SystemInformation.cpu();
+      this.cpuCurrentspeed = await SystemInformation.cpuCurrentspeed();
       this.ram = await SystemInformation.mem();
       this.storage = await SystemInformation.fsSize();
-      this.processes = await SystemInformation.processes();
-    },
-    showProcessDetails(proc) {
-      console.log('click', proc);
+
+      setTimeout(await this.refresh, 3000);
     }
   },
   async mounted() {
     await this.refresh();
+
+    this.processes = await SystemInformation.processes();
   }
 };
 </script>

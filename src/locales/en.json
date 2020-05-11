@@ -76,6 +76,8 @@
 		"system": {
 			"sections": {
 				"cpu": {
+					"cores": "{0} cores (including {1} physical)",
+					"speed": "{0} GHz max. / {1} GHz min. / {2} GHz avg.",
 					"title": "CPU"
 				},
 				"processes": {

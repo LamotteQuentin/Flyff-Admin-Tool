@@ -747,6 +747,40 @@
                                         <name>cpu</name>
                                         <children>
                                             <concept_node>
+                                                <name>cores</name>
+                                                <definition_loaded>false</definition_loaded>
+                                                <description></description>
+                                                <comment></comment>
+                                                <default_text></default_text>
+                                                <translations>
+                                                    <translation>
+                                                        <language>en-US</language>
+                                                        <approved>false</approved>
+                                                    </translation>
+                                                    <translation>
+                                                        <language>fr-FR</language>
+                                                        <approved>false</approved>
+                                                    </translation>
+                                                </translations>
+                                            </concept_node>
+                                            <concept_node>
+                                                <name>speed</name>
+                                                <definition_loaded>false</definition_loaded>
+                                                <description></description>
+                                                <comment></comment>
+                                                <default_text></default_text>
+                                                <translations>
+                                                    <translation>
+                                                        <language>en-US</language>
+                                                        <approved>false</approved>
+                                                    </translation>
+                                                    <translation>
+                                                        <language>fr-FR</language>
+                                                        <approved>false</approved>
+                                                    </translation>
+                                                </translations>
+                                            </concept_node>
+                                            <concept_node>
                                                 <name>title</name>
                                                 <definition_loaded>false</definition_loaded>
                                                 <description></description>
