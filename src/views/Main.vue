@@ -57,15 +57,15 @@ export default {
         '/images/artworks/cd4bb8b3d834e61fd648ba02d8085d98.png',
         '/images/artworks/e0efcbae9eecc91d5292a729b49521bf.png',
         '/images/artworks/f3eb6dd0d31656970ed7995b7b0d724c.png',
-        '/images/artworks/f7095acef9cd3534faaf552baf7526d2.png'
-      ]
+        '/images/artworks/f7095acef9cd3534faaf552baf7526d2.png',
+      ],
     };
   },
   created() {
-    this.slides.sort(function() {
+    this.slides.sort(function () {
       return 0.5 - Math.random();
     });
-  }
+  },
 };
 </script>
 

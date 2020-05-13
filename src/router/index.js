@@ -7,33 +7,33 @@ const routes = [
   {
     path: '/',
     name: 'Main',
-    component: () => import(/* webpackChunkName: "main" */ '@/views/Main')
+    component: () => import(/* webpackChunkName: "main" */ '@/views/Main'),
   },
   {
     path: '/workflow',
     name: 'Workflow',
     component: () =>
-      import(/* webpackChunkName: "workflow" */ '@/views/Workflow')
+      import(/* webpackChunkName: "workflow" */ '@/views/Workflow'),
   },
   {
     path: '/system',
     name: 'System',
-    component: () => import(/* webpackChunkName: "system" */ '@/views/System')
+    component: () => import(/* webpackChunkName: "system" */ '@/views/System'),
   },
   {
     path: '/odbc',
     name: 'ODBC',
-    component: () => import(/* webpackChunkName: "odbc" */ '@/views/ODBC')
+    component: () => import(/* webpackChunkName: "odbc" */ '@/views/ODBC'),
   },
   {
     path: '*',
-    redirect: '/'
-  }
+    redirect: '/',
+  },
 ];
 
 const router = new VueRouter({
   mode: process.env.IS_ELECTRON ? 'hash' : 'history',
-  routes
+  routes,
 });
 
 export default router;

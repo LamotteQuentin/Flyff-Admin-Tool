@@ -20,7 +20,7 @@ export default class Executable {
       args: this.args,
       command: this.command,
       delay: this.delay,
-      hideWindow: this.hideWindow
+      hideWindow: this.hideWindow,
     };
   }
 }
