@@ -46,10 +46,10 @@ export default {
   name: 'Footer',
   computed: {
     appVersion: () => remote.app.getVersion(),
-    appMode: () => process.env.NODE_ENV
+    appMode: () => process.env.NODE_ENV,
   },
   methods: {
-    openExternal: shell.openExternal
-  }
+    openExternal: shell.openExternal,
+  },
 };
 </script>

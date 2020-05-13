@@ -1,10 +1,10 @@
 module.exports = {
-  chainWebpack: config => {
+  chainWebpack: (config) => {
     config.module
       .rule('vue')
       .use('vue-loader')
       .loader('vue-loader')
-      .tap(options => {
+      .tap((options) => {
         options['transformAssetUrls'] = {
           video: ['src', 'poster'],
           source: 'src',
@@ -17,33 +17,33 @@ module.exports = {
           'b-card-img': 'src',
           'b-card-img-lazy': ['src', 'blank-src'],
           'b-carousel-slide': 'img-src',
-          'b-embed': 'src'
+          'b-embed': 'src',
         };
 
         return options;
       });
   },
   configureWebpack: {
-    devtool: 'source-map'
+    devtool: 'source-map',
   },
   pages: {
     index: {
       entry: 'src/main.js',
-      title: 'Flyff Admin Tool'
-    }
+      title: 'Flyff Admin Tool',
+    },
   },
   pluginOptions: {
     i18n: {
       locale: 'fr',
       fallbackLocale: 'fr',
       localeDir: 'locales',
-      enableInSFC: false
+      enableInSFC: false,
     },
     electronBuilder: {
       builderOptions: {
         productName: 'Flyff Admin Tool',
-        publish: ['github']
-      }
-    }
-  }
+        publish: ['github'],
+      },
+    },
+  },
 };
