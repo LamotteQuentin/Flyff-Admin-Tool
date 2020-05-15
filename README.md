@@ -49,5 +49,5 @@ The following command bulds the app in production mode.
 yarn electron:build
 ```
 
-> You can add the `--publish always` option to publish it to GitHub.
+> You can add the `-p always` option to publish it to GitHub.
 > See [this guide](https://nklayman.github.io/vue-cli-plugin-electron-builder/guide/recipes.html#auto-update) for more info.
