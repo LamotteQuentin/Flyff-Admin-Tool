@@ -13,7 +13,7 @@ Some calls to PowerShell make it unable to be built for other operating systems 
 	<img src="https://nklayman.github.io/vue-cli-plugin-electron-builder/hero.png" height="100">
 </p>
 
-Flyff Admin Tool uses a [VueJS]()+ElectronJS stack and relies on the [Vue CLI Plugion Electron Builder](https://nklayman.github.io/vue-cli-plugin-electron-builder/) plugin to wrap the VueJS app within an ElectronJS shell.
+Flyff Admin Tool uses a [Vue](https://vuejs.org/) + [Electron](https://www.electronjs.org/) stack and relies on the [Vue CLI Plugion Electron Builder](https://nklayman.github.io/vue-cli-plugin-electron-builder/) plugin to wrap the VueJS app within an ElectronJS shell.
 
 ## Development
 
