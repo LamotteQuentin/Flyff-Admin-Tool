@@ -127,7 +127,7 @@ export default {
   },
   mounted() {
     ipcRenderer.on(ipc.UPDATE_ERROR, (event, error) => {
-      console.error(ipc.UPDATE_ERROR, error);
+      console.error('AutoUpdater error', error);
       this.autoUpdaterStatus = ipc.UPDATE_ERROR;
 
       this.$bvModal.msgBoxOk(
@@ -140,24 +140,19 @@ export default {
       );
     });
     ipcRenderer.on(ipc.CHECKING_FOR_UPDATE, () => {
-      console.log(ipc.CHECKING_FOR_UPDATE);
       this.autoUpdaterStatus = ipc.CHECKING_FOR_UPDATE;
     });
     ipcRenderer.on(ipc.UPDATE_AVAILABLE, () => {
-      console.log(ipc.UPDATE_AVAILABLE);
       this.autoUpdaterStatus = ipc.UPDATE_AVAILABLE;
     });
     ipcRenderer.on(ipc.UPDATE_NOT_AVAILABLE, () => {
-      console.log(ipc.UPDATE_NOT_AVAILABLE);
       this.autoUpdaterStatus = ipc.UPDATE_NOT_AVAILABLE;
     });
     ipcRenderer.on(ipc.UPDATE_PROGRESS, (event, progress) => {
-      console.log(ipc.UPDATE_PROGRESS);
       this.autoUpdaterStatus = ipc.UPDATE_PROGRESS;
       this.autoUpdaterProgress = progress;
     });
     ipcRenderer.on(ipc.UPDATE_DOWNLOADED, (event, version) => {
-      console.log(ipc.UPDATE_DOWNLOADED, version);
       this.autoUpdaterStatus = ipc.UPDATE_DOWNLOADED;
       this.newVersion = version;
 
