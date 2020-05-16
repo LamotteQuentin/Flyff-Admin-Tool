@@ -27,7 +27,7 @@
               {{
                 $t('views.system.sections.cpu.cores', [
                   cpu.cores,
-                  cpu.physicalCores
+                  cpu.physicalCores,
                 ])
               }}
             </b-card-body>
@@ -41,7 +41,7 @@
                 $t('views.system.sections.cpu.speed', [
                   cpuCurrentspeed.min,
                   cpuCurrentspeed.max,
-                  cpuCurrentspeed.avg
+                  cpuCurrentspeed.avg,
                 ])
               }}
             </b-card-body>
@@ -196,31 +196,31 @@ export default {
       storage: undefined,
       processes: undefined,
       mermaidConfig: {
-        theme: 'neutral'
-      }
+        theme: 'neutral',
+      },
     };
   },
   computed: {
     processesTree() {
       if (this.processes) {
-        const flat = this.processes.list.map(proc => {
+        const flat = this.processes.list.map((proc) => {
           return {
             id: proc.pid,
             parent: proc.parentPid,
-            text: `[${proc.pid}] ${proc.name}`
+            text: `[${proc.pid}] ${proc.name}`,
           };
         });
         const root = [];
         const map = {};
 
-        flat.forEach(node => {
+        flat.forEach((node) => {
           try {
-            if (!flat.find(proc => proc.id == node.parent))
+            if (!flat.find((proc) => proc.id == node.parent))
               return root.push(node);
 
             let parentIndex = map[node.parent];
             if (typeof parentIndex !== 'number') {
-              parentIndex = flat.findIndex(el => el.id === node.parent);
+              parentIndex = flat.findIndex((el) => el.id === node.parent);
               map[node.parent] = parentIndex;
             }
 
@@ -241,10 +241,10 @@ export default {
     },
     processesGraph() {
       return this.processes.list
-        .filter(proc => proc.pid !== proc.parentPid)
-        .map(proc => {
+        .filter((proc) => proc.pid !== proc.parentPid)
+        .map((proc) => {
           const parentProc = this.processes.list.find(
-            parent => parent.pid == proc.parentPid
+            (parent) => parent.pid == proc.parentPid
           );
           const parentProcName = parentProc ? parentProc.name : 'NA';
 
@@ -256,10 +256,10 @@ export default {
               [parentProcName, new Date(proc.started).toLocaleString()]
             )} -->`,
             next: [proc.parentPid],
-            group: `"[${proc.parentPid}]"`
+            group: `"[${proc.parentPid}]"`,
           };
         });
-    }
+    },
   },
   methods: {
     async refresh() {
@@ -269,13 +269,13 @@ export default {
       this.storage = await SystemInformation.fsSize();
 
       setTimeout(await this.refresh, 3000);
-    }
+    },
   },
   async mounted() {
     await this.refresh();
 
     this.processes = await SystemInformation.processes();
-  }
+  },
 };
 </script>
 

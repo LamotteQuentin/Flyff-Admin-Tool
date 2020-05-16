@@ -308,7 +308,7 @@
                   <p>
                     {{
                       $t('views.workflow.sections.processes.metricsSpan', [
-                        metricsSpan
+                        metricsSpan,
                       ])
                     }}
                   </p>
@@ -319,14 +319,14 @@
                     {{
                       $t('views.workflow.sections.processes.cpuUsage', [
                         vueFilters.percent(getLastCpuUsage(executable), 2),
-                        vueFilters.percent(getAverageCpuUsage(executable), 2)
+                        vueFilters.percent(getAverageCpuUsage(executable), 2),
                       ])
                     }}
                     /
                     {{
                       $t('views.workflow.sections.processes.ramUsage', [
                         vueFilters.bytes(getLastRamUsage(executable)),
-                        vueFilters.bytes(getAverageRamUsage(executable))
+                        vueFilters.bytes(getAverageRamUsage(executable)),
                       ])
                     }}
                   </b-card-sub-title>
@@ -376,7 +376,7 @@ import Executable from '@/models/Executable';
 export default {
   name: 'Workflow',
   components: {
-    ProcessMetricsChart
+    ProcessMetricsChart,
   },
   data() {
     return {
@@ -385,20 +385,20 @@ export default {
       cpuCores: 1,
       metricsSettings: {
         interval: 1000,
-        points: 5
+        points: 5,
       },
-      isStarting: false
+      isStarting: false,
     };
   },
   computed: {
     isAnExecutableRunning() {
       return (
-        this.executables.filter(executable => executable.process).length > 0
+        this.executables.filter((executable) => executable.process).length > 0
       );
     },
     dragOptions() {
       return {
-        disabled: this.isAnExecutableRunning
+        disabled: this.isAnExecutableRunning,
       };
     },
     metricsSpan() {
@@ -408,7 +408,7 @@ export default {
     },
     vueFilters() {
       return this.$options.filters;
-    }
+    },
   },
   methods: {
     getBaseName: path.basename,
@@ -420,7 +420,7 @@ export default {
     },
     saveSettings() {
       SettingsManager.setExecutables(
-        this.executables.map(executable => executable.getSavableObject())
+        this.executables.map((executable) => executable.getSavableObject())
       );
       SettingsManager.setMetricsSettings(this.metricsSettings);
     },
@@ -428,7 +428,7 @@ export default {
       const result = await remote.dialog.showOpenDialog({
         defaultPath: path.dirname(executable.command),
         properties: ['openFile'],
-        filters: [{ name: 'exe', extensions: ['exe'] }]
+        filters: [{ name: 'exe', extensions: ['exe'] }],
       });
 
       if (!result.canceled && result.filePaths.length > 0) {
@@ -444,27 +444,27 @@ export default {
 
         executable.process = spawn(executable.command, executable.args, {
           cwd: path.dirname(executable.command),
-          windowsHide: executable.hideWindow
+          windowsHide: executable.hideWindow,
         });
 
-        executable.process.stdout.on('data', data => {
+        executable.process.stdout.on('data', (data) => {
           executable.logs.push({
             type: 'stdout',
-            data: Buffer.from(data).toString(this.encoding)
+            data: Buffer.from(data).toString(this.encoding),
           });
         });
 
-        executable.process.stderr.on('data', data => {
+        executable.process.stderr.on('data', (data) => {
           executable.logs.push({
             type: 'stderr',
-            data: Buffer.from(data).toString(this.encoding)
+            data: Buffer.from(data).toString(this.encoding),
           });
         });
 
-        executable.process.on('exit', data => {
+        executable.process.on('exit', (data) => {
           executable.logs.push({
             type: 'exit',
-            data
+            data,
           });
           executable.process = null;
         });
@@ -476,7 +476,7 @@ export default {
         0,
         this.executables.indexOf(executable) + 1
       )) {
-        await new Promise(resolve => setTimeout(resolve, child.delay));
+        await new Promise((resolve) => setTimeout(resolve, child.delay));
         this.start(child);
       }
       this.isStarting = false;
@@ -509,7 +509,7 @@ export default {
 
       executable.logs.push({
         type: 'stdin',
-        data: this.stdin
+        data: this.stdin,
       });
     },
     getLogVariant(type) {
@@ -566,7 +566,7 @@ export default {
 
       if (metricsCount > 0) {
         const labels = executable.metrics
-          .map(metric => new Date(metric.timestamp).toLocaleTimeString())
+          .map((metric) => new Date(metric.timestamp).toLocaleTimeString())
           .slice(Math.max(metricsCount - this.metricsSettings.points, 0));
 
         const datasets = [
@@ -576,8 +576,8 @@ export default {
             borderColor: '#3b4545',
             backgroundColor: 'transparent',
             data: executable.metrics
-              .map(metric => metric.cpu / 100 / this.cpuCores)
-              .slice(Math.max(metricsCount - this.metricsSettings.points, 0))
+              .map((metric) => metric.cpu / 100 / this.cpuCores)
+              .slice(Math.max(metricsCount - this.metricsSettings.points, 0)),
           },
           {
             label: 'RAM',
@@ -585,24 +585,24 @@ export default {
             borderColor: '#008080',
             backgroundColor: 'transparent',
             data: executable.metrics
-              .map(metric => metric.memory)
-              .slice(Math.max(metricsCount - this.metricsSettings.points, 0))
-          }
+              .map((metric) => metric.memory)
+              .slice(Math.max(metricsCount - this.metricsSettings.points, 0)),
+          },
         ];
 
         return {
           labels,
-          datasets
+          datasets,
         };
       }
       return null;
-    }
+    },
   },
   async mounted() {
     const executables = SettingsManager.getExecutables();
     if (executables)
       this.executables = executables.map(
-        executable =>
+        (executable) =>
           new Executable(executable.args, executable.command, executable.delay)
       );
 
@@ -612,7 +612,7 @@ export default {
     this.cpuCores = (await SystemInformation.cpu()).cores;
 
     this.monitorExecutables();
-  }
+  },
 };
 </script>
 
