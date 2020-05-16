@@ -1,8 +1,16 @@
 # Flyff Admin Tool
 
-## ![](https://img.icons8.com/color/24/000000/creative-commons--v1.png)License
+## ![](https://img.icons8.com/color/24/000000/creative-commons--v1.png) License
 
-The source code and the app itslef are inteded to be used accordingly to the attached [license file](./LICENSE.md).
+The source code and the app itself are intended to be used accordingly to the attached [license file](./LICENSE.md).
+
+## ![](https://img.icons8.com/color/24/000000/error.png) Disclaimer
+
+**FAT is under development!**
+
+During this phase, I might have to publish updates that would break compatibility with older versions and some features might dramatically change over time.
+I'll do my best to take your feedback into account and will reduce breaking changes as much as possible...
+But hey, change is a good thing, right? :sweat_smile:
 
 ## ![](https://img.icons8.com/color/24/000000/user-manual.png) User guide
 
@@ -16,7 +24,7 @@ This app only runs on **64 bits Windows 10** or **64 bits Windows Server 2016** 
 
 #### Getting started with the Workflow Manager
 
-The main feature of FAT consists in setting up a complitely customizable Workflow where each node represents a command or file to execute:
+The main feature of FAT consists in setting up a completely customizable Workflow where each node represents a command or file to execute:
 - Command or file path
 - Arguments
 - Delay
@@ -37,7 +45,7 @@ Everything the [standard IO](https://en.wikipedia.org/wiki/Standard_streams) doe
 
 #### Getting started with the System Dashboard
 
-The System Dashboard provides quick overview on you system information.
+The System Dashboard provides a quick overview on your system information.
 
 It will be improved over time to provide even more data! :ok_hand:
 
