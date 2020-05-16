@@ -38,9 +38,7 @@ function setupAutoUpdater() {
     win.webContents.send(ipc.UPDATE_DOWNLOADED, releaseName);
   });
 
-  setTimeout(() => {
-    autoUpdater.checkForUpdates();
-  }, 5000);
+  autoUpdater.checkForUpdates();
 }
 
 function createWindow() {
