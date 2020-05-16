@@ -129,7 +129,7 @@ import { shell } from 'electron';
 import PowerShell from 'node-powershell';
 const ps = new PowerShell({
   executionPolicy: 'Bypass',
-  noProfile: true
+  noProfile: true,
 });
 
 export default {
@@ -138,20 +138,20 @@ export default {
     return {
       filter: '',
       datasources: [],
-      drivers: []
+      drivers: [],
     };
   },
   computed: {
     filteredDrivers() {
       return this.drivers.filter(
-        driver =>
+        (driver) =>
           driver.Name &&
           driver.Name.toLowerCase().includes(this.filter.toLowerCase())
       );
     },
     filteredDatasources() {
       return this.datasources.filter(
-        datasource =>
+        (datasource) =>
           (datasource.Name &&
             datasource.Name.toLowerCase().includes(
               this.filter.toLowerCase()
@@ -161,7 +161,7 @@ export default {
               this.filter.toLowerCase()
             ))
       );
-    }
+    },
   },
   methods: {
     openExternal: shell.openExternal,
@@ -190,7 +190,7 @@ export default {
     },
     isDriverUsed(driver) {
       return this.datasources.find(
-        datasource => datasource.DriverName === driver.Name
+        (datasource) => datasource.DriverName === driver.Name
       );
     },
     async testConnection(datasource) {
@@ -207,10 +207,10 @@ export default {
 
         this.$bvModal.msgBoxOk(
           this.$t('views.odbc.notifications.testSucceeded.message', [
-            datasource.Name
+            datasource.Name,
           ]),
           {
-            title: this.$t('views.odbc.notifications.testSucceeded.title')
+            title: this.$t('views.odbc.notifications.testSucceeded.title'),
           }
         );
       } catch (error) {
@@ -219,17 +219,17 @@ export default {
 
         this.$bvModal.msgBoxOk(
           this.$t('views.odbc.notifications.testFailed.message', [
-            datasource.Name
+            datasource.Name,
           ]),
           {
-            title: this.$t('views.odbc.notifications.testFailed.title')
+            title: this.$t('views.odbc.notifications.testFailed.title'),
           }
         );
       }
-    }
+    },
   },
   async created() {
     await this.refresh();
-  }
+  },
 };
 </script>

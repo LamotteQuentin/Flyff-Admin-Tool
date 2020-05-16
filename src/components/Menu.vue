@@ -45,7 +45,7 @@ import { remote } from 'electron';
 export default {
   data() {
     return {
-      isWindowMaximized: remote.getCurrentWindow().isMaximized()
+      isWindowMaximized: remote.getCurrentWindow().isMaximized(),
     };
   },
   computed: {
@@ -53,23 +53,23 @@ export default {
       return this.isWindowMaximized
         ? 'arrows-angle-contract'
         : 'arrows-angle-expand';
-    }
+    },
   },
   methods: {
-    minimizeWindow: function() {
+    minimizeWindow: function () {
       remote.getCurrentWindow().minimize();
     },
-    toggleMaximizeWindow: function() {
+    toggleMaximizeWindow: function () {
       let currentWindow = remote.getCurrentWindow();
       currentWindow.isMaximized()
         ? currentWindow.unmaximize()
         : currentWindow.maximize();
       this.isWindowMaximized = currentWindow.isMaximized();
     },
-    closeWindow: function() {
+    closeWindow: function () {
       remote.getCurrentWindow().close();
-    }
-  }
+    },
+  },
 };
 </script>
 

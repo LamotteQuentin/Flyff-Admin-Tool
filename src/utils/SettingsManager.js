@@ -3,7 +3,7 @@ import path from 'path';
 
 const KEYS = {
   EXECUTABLES: 'executables',
-  METRICS_SETTINGS: 'metricsSettings'
+  METRICS_SETTINGS: 'metricsSettings',
 };
 
 Settings.setPath(path.join(path.dirname(Settings.file()), 'config.json'));
@@ -23,5 +23,5 @@ export default {
   },
   setMetricsSettings(settings) {
     return Settings.set(KEYS.METRICS_SETTINGS, settings);
-  }
+  },
 };

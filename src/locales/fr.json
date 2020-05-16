@@ -5,9 +5,28 @@
 	},
 	"components": {
 		"footer": {
+			"appVersion": "{0} - {1}",
 			"copyright": "Sous licence CreativeCommons",
 			"githubLink": "Suivre FAT sur GitHub",
-			"signature": "Développé par Quentin Lamotte"
+			"notifications": {
+				"updateDownloaded": {
+					"message": "La nouvelle version {0} de FAT a été téléchargée. Elle sera appliquée au prochain démarrage de l'application.",
+					"title": "Mise à jour prête"
+				},
+				"updateError": {
+					"message": "Une erreur est survenue lors de la mise à jour de FAT avec le massage suivant : {0}",
+					"title": "Mise à jour échouée"
+				}
+			},
+			"signature": "Développé par Quentin Lamotte",
+			"updateStatus": {
+				"CHECKING_FOR_UPDATE": "Vérification des mises à jour...",
+				"UPDATE_AVAILABLE": "Mise à jour disponible !",
+				"UPDATE_DOWNLOADED": "Mise à jour {0} prête !",
+				"UPDATE_ERROR": "Mise à jour échouée. Réessayer ?",
+				"UPDATE_NOT_AVAILABLE": "Version à jour. Revérifier ?",
+				"UPDATE_PROGRESS": "Mise à jour en cours..."
+			}
 		},
 		"menu": {
 			"links": {
