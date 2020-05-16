@@ -5,9 +5,28 @@
 	},
 	"components": {
 		"footer": {
+			"appVersion": "{0} - {1}",
 			"copyright": "Under CreativeCommons license",
 			"githubLink": "Follow FAT on GitHub",
-			"signature": "Developed by Quentin Lamotte"
+			"notifications": {
+				"updateDownloaded": {
+					"message": "The new version {0} of FAT has been downloaded. It will be applied the next time the application is started.",
+					"title": "Update ready"
+				},
+				"updateError": {
+					"message": "An error occurred while updating FAT with the following massage: {0}",
+					"title": "Update failed"
+				}
+			},
+			"signature": "Developed by Quentin Lamotte",
+			"updateStatus": {
+				"CHECKING_FOR_UPDATE": "Checking for updates...",
+				"UPDATE_AVAILABLE": "Update available!",
+				"UPDATE_DOWNLOADED": "Update {0} ready!",
+				"UPDATE_ERROR": "Update failed. Retry?",
+				"UPDATE_NOT_AVAILABLE": "Updated version. Check again?",
+				"UPDATE_PROGRESS": "Update in progress..."
+			}
 		},
 		"menu": {
 			"links": {
