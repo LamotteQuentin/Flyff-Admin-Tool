@@ -110,6 +110,7 @@
 					"metricsIntervalLabel": "Metrics interval (ms)",
 					"metricsPointsLabel": "Number of measurements to display",
 					"metricsSpan": "The metrics will display a time span of: {0}",
+					"noExecutable": "You have not yet configured an executable in your Workflow. Please add them first by clicking on the \"@: views.workflow.sections.settings.editWorkflowButton\" button above. Once your Workflow configured, you can start and stop your executables, as well as monitor them during their execution.",
 					"noMetric": "No metric is available for this executable.",
 					"ramUsage": "RAM: {0} ({1} avg.)",
 					"restartButton": "Restart",
