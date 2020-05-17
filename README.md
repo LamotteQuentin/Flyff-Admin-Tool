@@ -4,12 +4,15 @@
 
 The source code and the app itself are intended to be used accordingly to the attached [license file](./LICENSE.md).
 
+![](https://mirrors.creativecommons.org/presskit/buttons/88x31/svg/by-nc-sa.svg)
+
 ## ![](https://img.icons8.com/color/24/000000/error.png) Disclaimer
 
 **FAT is under development!**
 
 During this phase, I might have to publish updates that would break compatibility with older versions and some features might dramatically change over time.
 I'll do my best to take your feedback into account and will reduce breaking changes as much as possible...
+
 But hey, change is a good thing, right? :sweat_smile:
 
 ## ![](https://img.icons8.com/color/24/000000/user-manual.png) User guide
@@ -42,6 +45,9 @@ You'll also be able to interact with everything your executable communicates on:
 - Exit code 
 
 Everything the [standard IO](https://en.wikipedia.org/wiki/Standard_streams) does, FAT does! :heart_eyes:
+
+> Note: The executables started by FAT are attached to it.
+You must keep FAT running to maintain your server up as closing it closes its sub-processes as well.
 
 #### Getting started with the System Dashboard
 
@@ -96,7 +102,7 @@ yarn electron:serve
 
 #### Build
 
-The following command bulds the app in production mode.
+The following command builds the app in production mode.
 
 ```sh
 yarn electron:build
