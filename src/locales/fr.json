@@ -10,8 +10,10 @@
 			"githubLink": "Suivre FAT sur GitHub",
 			"notifications": {
 				"updateDownloaded": {
-					"message": "La nouvelle version {0} de FAT a été téléchargée. Elle sera appliquée au prochain démarrage de l'application.",
-					"title": "Mise à jour prête"
+					"cancelTitle": "Plus tard",
+					"message": "La mise à jour {0} publiée le {1} a été téléchargée. Elle sera appliquée au prochain démarrage de l'application.",
+					"okTitle": "Redémarrer",
+					"title": "Mise à jour {0} prête"
 				},
 				"updateError": {
 					"message": "Une erreur est survenue lors de la mise à jour de FAT avec le massage suivant : {0}",
