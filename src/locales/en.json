@@ -72,7 +72,7 @@
 					"activeDriversOnlyLabel": "Only show ODBC drivers that are used by at least one DSN",
 					"subtitle": "Start by providing keywords to filter the names of ODBC drivers or data sources to process.",
 					"textLabel": "Name of the ODBC drivers or DSNs to search",
-					"title": "Recherche"
+					"title": "Filter"
 				}
 			},
 			"title": "ODBC configuration wizard"
