@@ -28,6 +28,7 @@ This app only runs on **64 bits Windows 10** or **64 bits Windows Server 2016** 
 #### Getting started with the Workflow Manager
 
 The main feature of FAT consists in setting up a completely customizable Workflow where each node represents a command or file to execute:
+
 - Command or file path
 - Arguments
 - Delay
@@ -39,15 +40,16 @@ You have full control over how you want to execute part or all of your Workflow!
 
 One started, you can monitor live metrics of your executables to make sure everything runs as expected.
 You'll also be able to interact with everything your executable communicates on:
+
 - Standard output (`stdout`)
 - Standard error (`stderr`)
 - Standard input (`stdin`)
-- Exit code 
+- Exit code
 
 Everything the [standard IO](https://en.wikipedia.org/wiki/Standard_streams) does, FAT does! :heart_eyes:
 
 > Note: The executables started by FAT are attached to it.
-You must keep FAT running to maintain your server up as closing it closes its sub-processes as well.
+> You must keep FAT running to maintain your server up as closing it closes its sub-processes as well.
 
 #### Getting started with the System Dashboard
 
@@ -83,6 +85,15 @@ As for its frameworks and other tools, it uses:
 - [NodeJS 12](https://nodejs.org/)
 - [Yarn](https://yarnpkg.com/)
 - [Vue CLI 4](https://cli.vuejs.org/)
+
+Visual Studio Code extensions I use:
+
+- [Debugger for Chrome](https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome)
+- [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
+- [npm](https://marketplace.visualstudio.com/items?itemName=eg2.vscode-npm-script)
+- [npm Intellisense](https://marketplace.visualstudio.com/items?itemName=christian-kohler.npm-intellisense)
+- [Prettier - Code formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
+- [Vetur](https://marketplace.visualstudio.com/items?itemName=octref.vetur)
 
 #### Install dependencies
 
