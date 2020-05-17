@@ -21,6 +21,7 @@
           <b-card
             v-for="(executable, id) in executables"
             v-bind:key="id"
+            text-variant="dark"
             no-body
             class="my-2"
           >
