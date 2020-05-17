@@ -10,8 +10,10 @@
 			"githubLink": "Follow FAT on GitHub",
 			"notifications": {
 				"updateDownloaded": {
-					"message": "The new version {0} of FAT has been downloaded. It will be applied the next time the application is started.",
-					"title": "Update ready"
+					"cancelTitle": "Later",
+					"message": "The update {0} released on {1} has been downloaded. It will be applied the next time the application is started.",
+					"okTitle": "Restart",
+					"title": "Update {0} ready"
 				},
 				"updateError": {
 					"message": "An error occurred while updating FAT with the following massage: {0}",
