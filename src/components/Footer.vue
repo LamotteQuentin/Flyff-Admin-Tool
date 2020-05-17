@@ -81,7 +81,9 @@
           />
           {{
             $t(`components.footer.updateStatus.${autoUpdaterStatus}`, [
-              newVersion,
+              autoUpdaterNewVersionInfo
+                ? autoUpdaterNewVersionInfo.version
+                : undefined,
             ])
           }}
         </b-button>
@@ -105,7 +107,7 @@ export default {
         transferred: undefined,
         total: undefined,
       },
-      newVersion: undefined,
+      autoUpdaterNewVersionInfo: undefined,
     };
   },
   computed: {
@@ -152,20 +154,39 @@ export default {
       this.autoUpdaterStatus = ipc.UPDATE_PROGRESS;
       this.autoUpdaterProgress = progress;
     });
-    ipcRenderer.on(ipc.UPDATE_DOWNLOADED, (event, version) => {
+    ipcRenderer.on(ipc.UPDATE_DOWNLOADED, async (event, info) => {
       this.autoUpdaterStatus = ipc.UPDATE_DOWNLOADED;
-      this.newVersion = version;
+      this.autoUpdaterNewVersionInfo = info;
 
-      this.$bvModal.msgBoxOk(
-        this.$t('components.footer.notifications.updateDownloaded.message', [
-          version,
-        ]),
-        {
-          title: this.$t(
-            'components.footer.notifications.updateDownloaded.title'
-          ),
-        }
-      );
+      const message = [
+        this.$createElement(
+          'p',
+          this.$t('components.footer.notifications.updateDownloaded.message', [
+            info.version,
+            new Date(info.releaseDate).toLocaleString(this.$i18n.locale),
+          ])
+        ),
+        this.$createElement('p', {
+          domProps: {
+            innerHTML: info.releaseNotes,
+          },
+        }),
+      ];
+
+      const response = await this.$bvModal.msgBoxConfirm(message, {
+        title: this.$t(
+          'components.footer.notifications.updateDownloaded.title',
+          [info.version]
+        ),
+        okTitle: this.$t(
+          'components.footer.notifications.updateDownloaded.okTitle'
+        ),
+        cancelTitle: this.$t(
+          'components.footer.notifications.updateDownloaded.cancelTitle'
+        ),
+      });
+
+      if (response) ipcRenderer.send(ipc.QUIT_AND_INSTALL);
     });
   },
 };

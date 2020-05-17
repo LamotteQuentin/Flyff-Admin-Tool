@@ -18,6 +18,9 @@ function setupAutoUpdater() {
   ipcMain.on(ipc.CHECK_FOR_UPDATES, () => {
     autoUpdater.checkForUpdates();
   });
+  ipcMain.on(ipc.QUIT_AND_INSTALL, () => {
+    autoUpdater.quitAndInstall();
+  });
 
   autoUpdater.on('error', (error) => {
     win.webContents.send(ipc.UPDATE_ERROR, error);
@@ -34,8 +37,8 @@ function setupAutoUpdater() {
   autoUpdater.on('update-progress', (progress) => {
     win.webContents.send(ipc.UPDATE_PROGRESS, progress);
   });
-  autoUpdater.on('update-downloaded', (event, releaseNotes, releaseName) => {
-    win.webContents.send(ipc.UPDATE_DOWNLOADED, releaseName);
+  autoUpdater.on('update-downloaded', (info) => {
+    win.webContents.send(ipc.UPDATE_DOWNLOADED, info);
   });
 
   autoUpdater.checkForUpdates();
