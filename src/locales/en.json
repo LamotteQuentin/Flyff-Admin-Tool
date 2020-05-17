@@ -60,17 +60,19 @@
 					"empty": "No DSN meeting your search criteria was found on your system.",
 					"subtitle": "Check that your DSN (Data Source Name) are correctly configured, according to the needs of your Flyff server. You can test them individually to validate that they work. The test consists of opening a connection to the connection string associated with the DSN. Note however that the tests will be performed with the same user as the one used to launch FAT. DSNs using Integrated Windows Authentication will display an error during the test if they are configured to use another user.",
 					"testButton": "Test Connection",
-					"title": "3. Validate your DSNs"
+					"title": "Configured DSNs"
 				},
 				"drivers": {
 					"downloadButton": "Microsoft ODBC drivers download page",
 					"empty": "No ODBC driver meeting your search criteria was found on your system.",
 					"subtitle": "Verify that the ODBC drivers that your Flyff server needs are installed on your system. Otherwise, you can install them using versions included in Microsoft SQL Server installers or independently, by downloading them directly from Micrososft.",
-					"title": "2. Validate the ODBC drivers"
+					"title": "Installed ODBC drivers"
 				},
 				"filter": {
+					"activeDriversOnlyLabel": "Only show ODBC drivers that are used by at least one DSN",
 					"subtitle": "Start by providing keywords to filter the names of ODBC drivers or data sources to process.",
-					"title": "1. Search"
+					"textLabel": "Name of the ODBC drivers or DSNs to search",
+					"title": "Filter"
 				}
 			},
 			"title": "ODBC configuration wizard"
@@ -110,6 +112,7 @@
 					"metricsIntervalLabel": "Metrics interval (ms)",
 					"metricsPointsLabel": "Number of measurements to display",
 					"metricsSpan": "The metrics will display a time span of: {0}",
+					"noExecutable": "You have not yet configured an executable in your Workflow. Please add them first by clicking on the \"@: views.workflow.sections.settings.editWorkflowButton\" button above. Once your Workflow configured, you can start and stop your executables, as well as monitor them during their execution.",
 					"noMetric": "No metric is available for this executable.",
 					"ramUsage": "RAM: {0} ({1} avg.)",
 					"restartButton": "Restart",

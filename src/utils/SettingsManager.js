@@ -3,6 +3,7 @@ import path from 'path';
 
 const KEYS = {
   EXECUTABLES: 'executables',
+  LOCALE: 'locale',
   METRICS_SETTINGS: 'metricsSettings',
 };
 
@@ -17,6 +18,12 @@ export default {
   },
   setExecutables(settings) {
     return Settings.set(KEYS.EXECUTABLES, settings);
+  },
+  getLocale() {
+    return Settings.get(KEYS.LOCALE);
+  },
+  setLocale(settings) {
+    return Settings.set(KEYS.LOCALE, settings);
   },
   getMetricsSettings() {
     return Settings.get(KEYS.METRICS_SETTINGS);
