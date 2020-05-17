@@ -5,7 +5,9 @@
       id="workflow"
       width="33%"
       bg-variant="dark"
-      no-header
+      text-variant="light"
+      :title="$t('views.workflow.title')"
+      no-header-close
       backdrop
       shadow
     >
