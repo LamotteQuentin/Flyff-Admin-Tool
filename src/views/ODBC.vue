@@ -6,21 +6,123 @@
       <b-row class="my-2">
         <b-col>
           <h3>{{ $t('views.odbc.sections.filter.title') }}</h3>
-          <p class="lead">{{ $t('views.odbc.sections.filter.subtitle') }}</p>
+          <b-alert variant="info" show>
+            <b-icon icon="info" />
+            {{ $t('views.odbc.sections.filter.subtitle') }}
+          </b-alert>
 
           <hr />
 
-          <b-form-input
-            v-model="filter"
-            placeholder="Filter out driver or datasource names"
-          />
+          <b-form>
+            <b-form-group
+              :label="$t('views.odbc.sections.filter.textLabel')"
+              label-for="filter-text"
+            >
+              <b-form-input v-model="filter.text" id="filter-text" />
+            </b-form-group>
+
+            <b-form-group
+              :label="$t('views.odbc.sections.filter.activeDriversOnlyLabel')"
+              label-for="filter-active-drivers-only"
+            >
+              <b-form-select
+                v-model="filter.activeDriversOnly"
+                id="filter-active-drivers-only"
+              >
+                <b-form-select-option :value="true">
+                  {{ $t('common.yes') }}
+                </b-form-select-option>
+                <b-form-select-option :value="false">
+                  {{ $t('common.no') }}
+                </b-form-select-option>
+              </b-form-select>
+            </b-form-group>
+          </b-form>
         </b-col>
       </b-row>
 
       <b-row class="my-2">
         <b-col>
+          <h3>{{ $t('views.odbc.sections.dataSourceNames.title') }}</h3>
+          <b-alert variant="info" show>
+            <b-icon icon="info" />
+            {{ $t('views.odbc.sections.dataSourceNames.subtitle') }}
+          </b-alert>
+          <b-button
+            @click="
+              openExternal('https://www.connectionstrings.com/sql-server/')
+            "
+            variant="primary"
+            block
+          >
+            <b-icon icon="book" />
+            {{ $t('views.odbc.sections.dataSourceNames.documentationButton') }}
+          </b-button>
+
+          <hr />
+
+          <b-card
+            v-for="(dataSource, id) in filteredDatasources"
+            v-bind:key="id"
+            class="my-2"
+            no-body
+          >
+            <b-card-header>
+              <b-card-title>
+                {{ dataSource.Name }}
+              </b-card-title>
+              <b-card-sub-title>
+                {{ dataSource.Platform }}
+              </b-card-sub-title>
+            </b-card-header>
+            <b-card-body class="d-flex align-items-center">
+              <b-avatar
+                src="/images/icons/icons8-plugin.svg"
+                variant="transparent"
+                size="sm"
+                class="mr-2"
+                square
+              />
+              <span class="flex-grow-1">
+                {{ dataSource.DriverName }}
+              </span>
+            </b-card-body>
+            <b-card-body>
+              <code>
+                {{ getConnectionString(dataSource) }}
+              </code>
+            </b-card-body>
+            <b-card-footer>
+              <b-button-group size="sm" class="w-100">
+                <b-button
+                  @click="testConnection(dataSource)"
+                  variant="outline-primary"
+                >
+                  <b-icon icon="plug" />
+                  {{ $t('views.odbc.sections.dataSourceNames.testButton') }}
+                </b-button>
+                <b-button
+                  @click="copyConnectionString(dataSource)"
+                  variant="outline-secondary"
+                >
+                  <b-icon icon="link" />
+                  {{ $t('views.odbc.sections.dataSourceNames.copyButton') }}
+                </b-button>
+              </b-button-group>
+            </b-card-footer>
+          </b-card>
+          <b-alert :show="!filteredDatasources.length" variant="warning">
+            <b-icon icon="exclamation-triangle" />
+            {{ $t('views.odbc.sections.dataSourceNames.empty') }}
+          </b-alert>
+        </b-col>
+
+        <b-col>
           <h3>{{ $t('views.odbc.sections.drivers.title') }}</h3>
-          <p class="lead">{{ $t('views.odbc.sections.drivers.subtitle') }}</p>
+          <b-alert variant="info" show>
+            <b-icon icon="info" />
+            {{ $t('views.odbc.sections.drivers.subtitle') }}
+          </b-alert>
           <b-button
             @click="
               openExternal(
@@ -35,89 +137,38 @@
           </b-button>
 
           <hr />
-
-          <b-list-group v-if="filteredDrivers.length">
-            <b-list-group-item
-              v-for="(driver, id) in filteredDrivers"
-              v-bind:key="id"
-              :variant="isDriverUsed(driver) ? '' : 'secondary'"
-              class="flex-column align-items-start"
-            >
-              <div class="d-flex w-100 justify-content-between">
-                <h5 class="mb-1">{{ driver.Name }}</h5>
-                <small>{{ driver.Platform }}</small>
-              </div>
-
-              <small>{{ driver.Attribute.Setup }}</small>
-            </b-list-group-item>
-          </b-list-group>
-          <p v-else>
-            <b-icon icon="exclamation-triangle" variant="danger" />
-            {{ $t('views.odbc.sections.drivers.empty') }}
-          </p>
-        </b-col>
-      </b-row>
-
-      <b-row class="my-2">
-        <b-col>
-          <h3>{{ $t('views.odbc.sections.dataSourceNames.title') }}</h3>
-          <p class="lead">
-            {{ $t('views.odbc.sections.dataSourceNames.subtitle') }}
-          </p>
-          <b-button
-            @click="
-              openExternal('https://www.connectionstrings.com/sql-server/')
-            "
-            variant="primary"
-            block
+          <b-card
+            v-for="(driver, id) in filteredDrivers"
+            v-bind:key="id"
+            class="my-2"
+            :variant="isDriverUsed(driver) ? '' : 'secondary'"
+            no-body
           >
-            <b-icon icon="book" />
-            {{ $t('views.odbc.sections.dataSourceNames.documentationButton') }}
-          </b-button>
-
-          <hr />
-
-          <b-list-group v-if="filteredDatasources.length">
-            <b-list-group-item
-              v-for="(datasource, id) in filteredDatasources"
-              v-bind:key="id"
-              class="flex-column align-items-start"
-            >
-              <div class="d-flex w-100 justify-content-between">
-                <h5 class="mb-1">{{ datasource.Name }}</h5>
-                <small>{{ datasource.Platform }}</small>
-              </div>
-
-              <p class="mb-1">
-                <code>{{ getConnectionString(datasource) }}</code>
-              </p>
-
-              <small>{{ datasource.DriverName }}</small>
-
-              <hr />
-
-              <b-button-group size="sm" class="w-100">
-                <b-button
-                  @click="testConnection(datasource)"
-                  variant="outline-primary"
-                >
-                  <b-icon icon="plug" />
-                  {{ $t('views.odbc.sections.dataSourceNames.testButton') }}
-                </b-button>
-                <b-button
-                  @click="copyConnectionString(datasource)"
-                  variant="outline-secondary"
-                >
-                  <b-icon icon="link" />
-                  {{ $t('views.odbc.sections.dataSourceNames.copyButton') }}
-                </b-button>
-              </b-button-group>
-            </b-list-group-item>
-          </b-list-group>
-          <p v-else>
-            <b-icon icon="exclamation-triangle" variant="danger" />
-            {{ $t('views.odbc.sections.dataSourceNames.empty') }}
-          </p>
+            <b-card-header>
+              <b-card-title>
+                {{ driver.Name }}
+              </b-card-title>
+              <b-card-sub-title>
+                {{ driver.Platform }}
+              </b-card-sub-title>
+            </b-card-header>
+            <b-card-body class="d-flex align-items-center">
+              <b-avatar
+                src="/images/icons/icons8-search-folder.svg"
+                variant="transparent"
+                size="sm"
+                class="mr-2"
+                square
+              />
+              <span class="flex-grow-1">
+                {{ driver.Attribute.Setup }}
+              </span>
+            </b-card-body>
+          </b-card>
+          <b-alert :show="!filteredDrivers.length" variant="warning">
+            <b-icon icon="exclamation-triangle" />
+            {{ $t('views.odbc.sections.drivers.empty') }}
+          </b-alert>
         </b-col>
       </b-row>
     </b-container>
@@ -136,29 +187,41 @@ export default {
   name: 'ODBC',
   data() {
     return {
-      filter: '',
-      datasources: [],
+      filter: {
+        text: '',
+        activeDriversOnly: true,
+      },
+      dataSources: [],
       drivers: [],
     };
   },
   computed: {
     filteredDrivers() {
-      return this.drivers.filter(
-        (driver) =>
-          driver.Name &&
-          driver.Name.toLowerCase().includes(this.filter.toLowerCase())
-      );
+      return this.drivers
+        .filter((driver) => {
+          return (
+            driver.Name &&
+            driver.Name.toLowerCase().includes(this.filter.text.toLowerCase())
+          );
+        })
+        .filter((driver) => {
+          return this.filter.activeDriversOnly
+            ? this.dataSources.filter(
+                (dataSource) => dataSource.DriverName === driver.Name
+              ).length
+            : true;
+        });
     },
     filteredDatasources() {
-      return this.datasources.filter(
-        (datasource) =>
-          (datasource.Name &&
-            datasource.Name.toLowerCase().includes(
-              this.filter.toLowerCase()
+      return this.dataSources.filter(
+        (dataSource) =>
+          (dataSource.Name &&
+            dataSource.Name.toLowerCase().includes(
+              this.filter.text.toLowerCase()
             )) ||
-          (datasource.DriverName &&
-            datasource.DriverName.toLowerCase().includes(
-              this.filter.toLowerCase()
+          (dataSource.DriverName &&
+            dataSource.DriverName.toLowerCase().includes(
+              this.filter.text.toLowerCase()
             ))
       );
     },
@@ -171,33 +234,33 @@ export default {
         this.drivers = JSON.parse(await ps.invoke());
 
         ps.addCommand('Get-OdbcDsn | ConvertTo-Json');
-        this.datasources = JSON.parse(await ps.invoke());
+        this.dataSources = JSON.parse(await ps.invoke());
       } catch (error) {
         console.error(error);
       }
     },
-    getConnectionString(datasource) {
-      let connectionString = `Driver={${datasource.DriverName}}`;
+    getConnectionString(dataSource) {
+      let connectionString = `Driver={${dataSource.DriverName}}`;
 
-      for (const attribute in datasource.Attribute) {
-        connectionString += `;${attribute}=${datasource.Attribute[attribute]}`;
+      for (const attribute in dataSource.Attribute) {
+        connectionString += `;${attribute}=${dataSource.Attribute[attribute]}`;
       }
 
       return connectionString;
     },
-    copyConnectionString(datasource) {
-      this.$copyText(this.getConnectionString(datasource));
+    copyConnectionString(dataSource) {
+      this.$copyText(this.getConnectionString(dataSource));
     },
     isDriverUsed(driver) {
-      return this.datasources.find(
-        (datasource) => datasource.DriverName === driver.Name
+      return this.dataSources.find(
+        (dataSource) => dataSource.DriverName === driver.Name
       );
     },
-    async testConnection(datasource) {
+    async testConnection(dataSource) {
       ps.addCommand('$connection = New-Object System.Data.Odbc.OdbcConnection');
       ps.addCommand(
         `$connection.ConnectionString = "${this.getConnectionString(
-          datasource
+          dataSource
         )}"`
       );
 
@@ -207,7 +270,7 @@ export default {
 
         this.$bvModal.msgBoxOk(
           this.$t('views.odbc.notifications.testSucceeded.message', [
-            datasource.Name,
+            dataSource.Name,
           ]),
           {
             title: this.$t('views.odbc.notifications.testSucceeded.title'),
@@ -219,7 +282,7 @@ export default {
 
         this.$bvModal.msgBoxOk(
           this.$t('views.odbc.notifications.testFailed.message', [
-            datasource.Name,
+            dataSource.Name,
           ]),
           {
             title: this.$t('views.odbc.notifications.testFailed.title'),
