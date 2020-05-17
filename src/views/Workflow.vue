@@ -3,9 +3,11 @@
     <b-sidebar
       @change="saveSettings"
       id="workflow"
-      width="25%"
+      width="33%"
       bg-variant="dark"
-      no-header
+      text-variant="light"
+      :title="$t('views.workflow.title')"
+      no-header-close
       backdrop
       shadow
     >
@@ -19,6 +21,7 @@
           <b-card
             v-for="(executable, id) in executables"
             v-bind:key="id"
+            text-variant="dark"
             no-body
             class="my-2"
           >
@@ -118,7 +121,12 @@
           </b-card>
         </draggable>
 
-        <b-button @click="add" :disabled="isAnExecutableRunning" block="">
+        <b-button
+          @click="add"
+          :disabled="isAnExecutableRunning"
+          variant="primary"
+          block
+        >
           <b-icon icon="file-plus" />
           {{ $t('views.workflow.sections.workflowSidebar.addButton') }}
         </b-button>
@@ -158,11 +166,19 @@
             <b-col>
               <b-form-group :disabled="isStarting">
                 <b-button-group class="w-100 mb-3">
-                  <b-button @click="startAll" variant="success">
+                  <b-button
+                    @click="startAll"
+                    :disabled="executables.length === 0"
+                    variant="success"
+                  >
                     <b-icon icon="play-fill" />
                     {{ $t('views.workflow.sections.settings.startAllButton') }}
                   </b-button>
-                  <b-button @click="stopAll" variant="danger">
+                  <b-button
+                    @click="stopAll"
+                    :disabled="executables.length === 0"
+                    variant="danger"
+                  >
                     <b-icon icon="stop-fill" />
                     {{ $t('views.workflow.sections.settings.stopAllButton') }}
                   </b-button>
@@ -177,7 +193,7 @@
 
           <hr />
 
-          <b-card no-body>
+          <b-card v-if="executables.length > 0" no-body>
             <b-tabs fill pills card small>
               <b-tab v-for="(executable, id) in executables" v-bind:key="id">
                 <template v-slot:title>
@@ -355,6 +371,10 @@
               </b-tab>
             </b-tabs>
           </b-card>
+          <b-alert :show="executables.length === 0" variant="info">
+            <b-icon icon="info" />
+            {{ $t('views.workflow.sections.processes.noExecutable') }}
+          </b-alert>
         </b-col>
       </b-row>
     </b-container>

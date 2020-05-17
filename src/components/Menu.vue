@@ -21,6 +21,26 @@
       </b-navbar-nav>
 
       <b-navbar-nav class="ml-auto">
+        <b-nav-item-dropdown right>
+          <template v-slot:button-content>
+            <b-img src="/images/icons/icons8-language.svg" height="24" />
+          </template>
+          <b-dropdown-item
+            v-for="locale in availableLocales"
+            :key="locale"
+            @click="setLocale(locale)"
+            :active="locale === activeLocale"
+          >
+            <b-avatar
+              :src="`/images/flags/${locale}.svg`"
+              variant="transparent"
+              size="sm"
+              class="mr-2"
+              square
+            />
+            {{ locale }}
+          </b-dropdown-item>
+        </b-nav-item-dropdown>
         <b-nav-item>
           <b-icon @click="minimizeWindow()" icon="dash" variant="warning" />
         </b-nav-item>
@@ -41,6 +61,7 @@
 
 <script>
 import { remote } from 'electron';
+import SettingsManager from '@/utils/SettingsManager';
 
 export default {
   data() {
@@ -53,6 +74,12 @@ export default {
       return this.isWindowMaximized
         ? 'arrows-angle-contract'
         : 'arrows-angle-expand';
+    },
+    availableLocales() {
+      return this.$i18n.availableLocales;
+    },
+    activeLocale() {
+      return this.$i18n.locale;
     },
   },
   methods: {
@@ -69,6 +96,10 @@ export default {
     closeWindow: function () {
       remote.getCurrentWindow().close();
     },
+    setLocale(locale) {
+      SettingsManager.setLocale(locale);
+      this.$i18n.locale = locale;
+    },
   },
 };
 </script>
@@ -77,7 +108,7 @@ export default {
 nav.navbar {
   -webkit-app-region: drag;
 }
-nav.navbar a {
+nav.navbar li {
   -webkit-app-region: no-drag;
 }
 </style>

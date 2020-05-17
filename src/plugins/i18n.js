@@ -1,5 +1,7 @@
 import Vue from 'vue';
 import VueI18n from 'vue-i18n';
+import osLocale from 'os-locale';
+import SettingsManager from '@/utils/SettingsManager';
 
 Vue.use(VueI18n);
 
@@ -21,7 +23,7 @@ function loadLocaleMessages() {
 }
 
 export default new VueI18n({
-  locale: process.env.VUE_APP_I18N_LOCALE || 'fr',
-  fallbackLocale: process.env.VUE_APP_I18N_FALLBACK_LOCALE || 'fr',
+  locale: SettingsManager.getLocale() || osLocale.sync().split('-')[0] || 'fr',
+  fallbackLocale: 'fr',
   messages: loadLocaleMessages(),
 });
