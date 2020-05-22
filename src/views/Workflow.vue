@@ -496,7 +496,9 @@ export default {
         0,
         this.executables.indexOf(executable) + 1
       )) {
-        await new Promise((resolve) => setTimeout(resolve, child.delay));
+        if (!child.process) {
+          await new Promise((resolve) => setTimeout(resolve, child.delay));
+        }
         this.start(child);
       }
       this.isStarting = false;
