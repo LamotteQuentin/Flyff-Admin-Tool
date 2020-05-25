@@ -8,12 +8,19 @@ The source code and the app itself are intended to be used accordingly to the at
 
 ## ![](https://img.icons8.com/color/24/000000/error.png) Disclaimer
 
-**FAT is under development!**
+**FAT is under active development!**
 
 During this phase, I might have to publish updates that would break compatibility with older versions and some features might dramatically change over time.
 I'll do my best to take your feedback into account and will reduce breaking changes as much as possible...
 
 But hey, change is a good thing, right? :sweat_smile:
+
+## ![](https://img.icons8.com/color/24/000000/discord-new-logo.png) Join the team on Discord
+
+Ever heard of Astral-Studio?
+It just so happens that I'm part of the team and want to include FAT in its ecosystem! :sunglasses:
+
+Feel free to [join us on Discord](https://discord.gg/FQrS8Qd)!
 
 ## ![](https://img.icons8.com/color/24/000000/user-manual.png) User guide
 
@@ -85,6 +92,7 @@ As for its frameworks and other tools, it uses:
 - [NodeJS 12](https://nodejs.org/)
 - [Yarn](https://yarnpkg.com/)
 - [Vue CLI 4](https://cli.vuejs.org/)
+- [BabelEdit](https://www.codeandweb.com/babeledit)
 
 Visual Studio Code extensions I use:
 
