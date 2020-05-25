@@ -157,6 +157,7 @@
               <b-button
                 v-b-toggle.workflow
                 :disabled="isAnExecutableRunning"
+                variant="primary"
                 block
               >
                 <b-icon icon="arrow-left-right" />
@@ -276,6 +277,7 @@
                         <b-button
                           @click="send(executable)"
                           :disabled="Boolean(!executable.process)"
+                          variant="primary"
                           block
                         >
                           <b-icon icon="reply" />

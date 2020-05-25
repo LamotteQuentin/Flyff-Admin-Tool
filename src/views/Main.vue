@@ -10,17 +10,18 @@
 
         <p>{{ $t('views.main.description') }}</p>
 
-        <b-button :to="{ name: 'Workflow' }" variant="primary" block>
-          <b-icon icon="lightning" />
-          {{ $t('views.workflow.title') }}
-        </b-button>
-        <b-button :to="{ name: 'System' }" variant="primary" block>
-          <b-icon icon="window" />
-          {{ $t('views.system.title') }}
-        </b-button>
-        <b-button block :to="{ name: 'ODBC' }" variant="primary">
+        <b-button :to="{ name: 'ODBC' }" variant="primary" block>
           <b-icon icon="layers" />
           {{ $t('views.odbc.title') }}
+        </b-button>
+        <b-button :to="{ name: 'System' }" variant="primary" block>
+          <b-icon icon="gear" />
+          {{ $t('views.system.title') }}
+        </b-button>
+        <hr />
+        <b-button :to="{ name: 'Workflow' }" variant="primary" block>
+          <b-icon icon="collection" />
+          {{ $t('views.workflow.title') }}
         </b-button>
       </b-jumbotron>
     </b-container>
