@@ -108,7 +108,8 @@ export default {
 nav.navbar {
   -webkit-app-region: drag;
 }
-nav.navbar li {
+nav.navbar li,
+nav.navbar a {
   -webkit-app-region: no-drag;
 }
 </style>
