@@ -26,6 +26,11 @@ const routes = [
     component: () => import(/* webpackChunkName: "odbc" */ '@/views/ODBC'),
   },
   {
+    path: '/sql',
+    name: 'SQL',
+    component: () => import(/* webpackChunkName: "sql" */ '@/views/SQL'),
+  },
+  {
     path: '*',
     redirect: '/',
   },

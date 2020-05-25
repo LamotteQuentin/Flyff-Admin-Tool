@@ -31,8 +31,12 @@
 			}
 		},
 		"menu": {
+			"dropdowns": {
+				"database": "Base de données"
+			},
 			"links": {
 				"odbc": "ODBC",
+				"sql": "SQL",
 				"system": "Système",
 				"workflow": "Workflow"
 			}
@@ -77,7 +81,26 @@
 					"title": "Recherche"
 				}
 			},
-			"title": "Assistant de configuration ODBC"
+			"title": "Assistant ODBC"
+		},
+		"sql": {
+			"sections": {
+				"connection": {
+					"connectButton": "Connexion",
+					"connectionError": "Une erreur est survenue lors de la connexion au DSN : {0}",
+					"connectionSuccess": "La connexion au DSN ODBC est établie. Vous pouvez exécuter vos requêtes sur ce dernier.",
+					"title": "Connexion au DSN ODBC"
+				},
+				"query": {
+					"executeButton": "Exécuter",
+					"languageLabel": "Langage de la requête",
+					"prettyStatementLabel": "Instruction mise en forme",
+					"requestError": "Une erreur est survenue lors de la requête : {0}",
+					"statementLabel": "Instruction à exécuter",
+					"title": "Requête"
+				}
+			},
+			"title": "Assistant SQL"
 		},
 		"system": {
 			"sections": {
