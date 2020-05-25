@@ -23,6 +23,10 @@
           <b-icon icon="collection" />
           {{ $t('views.workflow.title') }}
         </b-button>
+        <b-button :to="{ name: 'SQL' }" variant="primary" block>
+          <b-icon icon="server" />
+          {{ $t('views.sql.title') }}
+        </b-button>
       </b-jumbotron>
     </b-container>
   </div>

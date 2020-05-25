@@ -32,6 +32,13 @@
             <b-icon icon="layers" />
             {{ $t('components.menu.links.odbc') }}
           </b-dropdown-item>
+          <b-dropdown-item
+            :to="{ name: 'SQL' }"
+            :active="activeRoute === 'SQL'"
+          >
+            <b-icon icon="server" />
+            {{ $t('components.menu.links.sql') }}
+          </b-dropdown-item>
         </b-nav-item-dropdown>
       </b-navbar-nav>
 
