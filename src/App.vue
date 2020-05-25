@@ -22,7 +22,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import '@/assets/theme';
+@import './assets/theme.scss';
 
 @import '~bootstrap';
 @import '~bootstrap-vue';

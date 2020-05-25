@@ -1,23 +1,45 @@
 <template>
   <b-navbar toggleable="lg" type="dark" variant="dark" class="shadow">
-    <b-navbar-brand :to="{ name: 'Main' }" class="d-flex align-items-center">
+    <b-navbar-brand
+      :to="{ name: 'Main' }"
+      :active="activeRoute === 'Main'"
+      class="d-flex align-items-center"
+    >
       <b-img src="/icon.png" class="mr-2" height="32" />
       FAT
     </b-navbar-brand>
 
-    <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
+    <b-navbar-toggle target="nav-collapse" />
 
     <b-collapse id="nav-collapse" is-nav>
       <b-navbar-nav>
-        <b-nav-item :to="{ name: 'Workflow' }">
+        <b-nav-item
+          :to="{ name: 'Workflow' }"
+          :active="activeRoute === 'Workflow'"
+        >
+          <b-icon icon="collection" />
           {{ $t('components.menu.links.workflow') }}
         </b-nav-item>
-        <b-nav-item :to="{ name: 'System' }">
+        <b-nav-item :to="{ name: 'System' }" :active="activeRoute === 'System'">
+          <b-icon icon="gear" />
           {{ $t('components.menu.links.system') }}
         </b-nav-item>
-        <b-nav-item :to="{ name: 'ODBC' }">
-          {{ $t('components.menu.links.odbc') }}
-        </b-nav-item>
+        <b-nav-item-dropdown :text="$t('components.menu.dropdowns.database')">
+          <b-dropdown-item
+            :to="{ name: 'ODBC' }"
+            :active="activeRoute === 'ODBC'"
+          >
+            <b-icon icon="layers" />
+            {{ $t('components.menu.links.odbc') }}
+          </b-dropdown-item>
+          <b-dropdown-item
+            :to="{ name: 'SQL' }"
+            :active="activeRoute === 'SQL'"
+          >
+            <b-icon icon="server" />
+            {{ $t('components.menu.links.sql') }}
+          </b-dropdown-item>
+        </b-nav-item-dropdown>
       </b-navbar-nav>
 
       <b-navbar-nav class="ml-auto">
@@ -81,6 +103,9 @@ export default {
     activeLocale() {
       return this.$i18n.locale;
     },
+    activeRoute() {
+      return this.$route.name;
+    },
   },
   methods: {
     minimizeWindow: function () {
@@ -108,7 +133,8 @@ export default {
 nav.navbar {
   -webkit-app-region: drag;
 }
-nav.navbar li {
+nav.navbar li,
+nav.navbar a {
   -webkit-app-region: no-drag;
 }
 </style>
