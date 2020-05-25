@@ -7,7 +7,10 @@
         <b-form @submit.prevent="connect">
           <b-form-group label="ODBC connection string">
             <b-input-group>
-              <b-form-input v-model="connectionString" />
+              <b-form-input
+                v-model="connectionString"
+                placeholder="Driver={SQL Server Native Client 11.0};Database=ACCOUNT_DBF;Server=.\\SQLExpress;Trusted_Connection=Yes"
+              />
               <b-input-group-append>
                 <b-button type="submit" variant="primary" block>
                   <b-icon icon="link" />
@@ -45,7 +48,12 @@
                 <b-form-group
                   :label="$t('views.sql.sections.query.statementLabel')"
                 >
-                  <b-form-textarea v-model="request" rows="3" max-rows="8" />
+                  <b-form-textarea
+                    v-model="request"
+                    rows="3"
+                    max-rows="8"
+                    placeholder="SELECT * FROM dbo.ACCOUNT_TBL"
+                  />
                 </b-form-group>
               </b-col>
 
@@ -83,8 +91,7 @@ import odbc from 'odbc';
 export default {
   data() {
     return {
-      connectionString:
-        'Driver={SQL Server Native Client 11.0};Database=ACCOUNT_DBF;Server=.\\SQLExpress;Trusted_Connection=Yes',
+      connectionString: '',
       connection: null,
       connectionError: null,
       language: 'sql',
@@ -97,7 +104,7 @@ export default {
         { value: 'sql', text: 'SQL' },
         { value: 'xquery', text: 'XQuery' },
       ],
-      request: 'SELECT * FROM dbo.ACCOUNT_TBL',
+      request: '',
       requestError: null,
       result: null,
     };
