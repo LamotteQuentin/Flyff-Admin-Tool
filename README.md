@@ -1,10 +1,12 @@
 # Flyff Admin Tool
 
-## ![](https://img.icons8.com/color/24/000000/creative-commons--v1.png) License
+![](https://img.shields.io/github/license/Quentin-Lamotte/Flyff-Admin-Tool?logo=creative-commons&logoColor=white&style=for-the-badge)
 
-The source code and the app itself are intended to be used accordingly to the attached [license file](./LICENSE.md).
+![](https://img.shields.io/github/v/release/Quentin-Lamotte/Flyff-Admin-Tool?color=green&logo=github&sort=semver&style=for-the-badge)
+![](https://img.shields.io/github/release-date/Quentin-Lamotte/Flyff-Admin-Tool?color=lightgrey&style=for-the-badge)
+![](https://img.shields.io/github/last-commit/Quentin-Lamotte/Flyff-Admin-Tool?color=lightgrey&style=for-the-badge)
 
-![](https://mirrors.creativecommons.org/presskit/buttons/88x31/svg/by-nc-sa.svg)
+[![](https://img.shields.io/discord/548501353639575562?color=7289DA&label=Discord&logo=discord&logoColor=white&style=for-the-badge)](https://discord.gg/FQrS8Qd)
 
 ## ![](https://img.icons8.com/color/24/000000/error.png) Disclaimer
 
@@ -15,13 +17,6 @@ I'll do my best to take your feedback into account and will reduce breaking chan
 
 But hey, change is a good thing, right? :sweat_smile:
 
-## ![](https://img.icons8.com/color/24/000000/discord-new-logo.png) Join the team on Discord
-
-Ever heard of Astral-Studio?
-It just so happens that I'm part of the team and want to include FAT in its ecosystem! :sunglasses:
-
-Feel free to [join us on Discord](https://discord.gg/FQrS8Qd)!
-
 ## ![](https://img.icons8.com/color/24/000000/user-manual.png) User guide
 
 ### Requirements
@@ -29,6 +24,12 @@ Feel free to [join us on Discord](https://discord.gg/FQrS8Qd)!
 This app only runs on **64 bits Windows 10** or **64 bits Windows Server 2016** and above systems.
 
 > Note: While FAT could run on older version of Windows, I won't test them nor provide support for any issue encountered on these configurations.
+
+### Installation
+
+Go to the **Releases** section of this repository and download the latest one! :heavy_check_mark:
+
+https://github.com/Quentin-Lamotte/Flyff-Admin-Tool/releases/latest
 
 ### Features
 
@@ -71,6 +72,9 @@ The ODBC Wizzard shows you the actual ODBC configuration of your system.
 You'll be able to see the installed ODBC drivers as well as your DSNs and even test them! :thumbsup:
 
 ## ![](https://img.icons8.com/color/24/000000/source-code.png) Developer guide
+
+![](https://img.shields.io/github/package-json/dependency-version/Quentin-Lamotte/Flyff-Admin-Tool/bootstrap?logo=bootstrap&logoColor=white&style=for-the-badge)
+![](https://img.shields.io/github/package-json/dependency-version/Quentin-Lamotte/Flyff-Admin-Tool/dev/electron?logo=electron&logoColor=white&style=for-the-badge)
 
 ### Requirements
 
