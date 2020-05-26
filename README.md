@@ -2,7 +2,7 @@
 
 ![](https://img.shields.io/github/license/Quentin-Lamotte/Flyff-Admin-Tool?logo=creative-commons&logoColor=white&style=for-the-badge)
 
-![](https://img.shields.io/github/v/release/Quentin-Lamotte/Flyff-Admin-Tool?color=green&logo=github&sort=semver&style=for-the-badge)
+[![](https://img.shields.io/github/v/release/Quentin-Lamotte/Flyff-Admin-Tool?color=green&logo=github&sort=semver&style=for-the-badge)](https://github.com/Quentin-Lamotte/Flyff-Admin-Tool/releases/latest)
 ![](https://img.shields.io/github/release-date/Quentin-Lamotte/Flyff-Admin-Tool?color=lightgrey&style=for-the-badge)
 ![](https://img.shields.io/github/last-commit/Quentin-Lamotte/Flyff-Admin-Tool?color=lightgrey&style=for-the-badge)
 
