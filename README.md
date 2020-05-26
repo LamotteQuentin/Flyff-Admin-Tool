@@ -25,12 +25,6 @@ This app only runs on **64 bits Windows 10** or **64 bits Windows Server 2016** 
 
 > Note: While FAT could run on older version of Windows, I won't test them nor provide support for any issue encountered on these configurations.
 
-### Installation
-
-Go to the **Releases** section of this repository and download the latest one! :heavy_check_mark:
-
-https://github.com/Quentin-Lamotte/Flyff-Admin-Tool/releases/latest
-
 ### Features
 
 #### Getting started with the Workflow Manager
