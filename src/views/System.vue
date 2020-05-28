@@ -1,7 +1,10 @@
 <template>
   <div>
     <b-container fluid>
-      <h1>{{ $t('views.system.title') }}</h1>
+      <h1>
+        <b-icon icon="gear" />
+        {{ $t('views.system.title') }}
+      </h1>
 
       <b-row class="my-2">
         <b-col v-if="cpu && cpuCurrentspeed">

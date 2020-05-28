@@ -134,7 +134,10 @@
     </b-sidebar>
 
     <b-container fluid>
-      <h1>{{ $t('views.workflow.title') }}</h1>
+      <h1>
+        <b-icon icon="collection" />
+        {{ $t('views.workflow.title') }}
+      </h1>
 
       <b-alert :show="isStarting" variant="info">
         <b-icon icon="lock" />

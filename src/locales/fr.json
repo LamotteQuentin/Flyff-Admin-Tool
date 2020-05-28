@@ -86,10 +86,28 @@
 		"sql": {
 			"sections": {
 				"connection": {
+					"authenticationLabel": "Authentification",
 					"connectButton": "Connexion",
 					"connectionError": "Une erreur est survenue lors de la connexion au DSN : {0}",
-					"connectionSuccess": "La connexion au DSN ODBC est établie. Vous pouvez exécuter vos requêtes sur ce dernier.",
-					"title": "Connexion au DSN ODBC"
+					"connectionStringLabel": "Chaîne de connexion ODBC",
+					"connectivityLabel": "Connectivité",
+					"databaseDescription": "Le nom de la base de données tel que configuré dans les DSN ODBC.",
+					"databaseLabel": "Base de données",
+					"driverDescription": "Les bases de données Flyff utilisent généralement \"SQL Server Native Client 10.0\" ou plus récent.",
+					"driverLabel": "Pilote ODBC",
+					"passwordLabel": "Mot de passe",
+					"serverDescription": "Nom de l'hôte et de l'instance SQL.",
+					"serverLabel": "Serveur SQL",
+					"title": "Connexion au DSN ODBC",
+					"trustedConnectionDescription": "Se connecter avec l'utilisateur actuel (celui qui a lancé FAT).",
+					"trustedConnectionLabel": "Authentification Windows",
+					"usernameLabel": "Nom d'utilisateur"
+				},
+				"procedure": {
+					"error": "Une erreur est survenue lors de la récupération des procédures stockées : {0}",
+					"listButton": "Lister les procédures",
+					"tip": "Vous pouvez double-cliquer sur une ligne pour préremplir une requête sur la procédure stockée en question. Si une procédure stockée expose plusieurs paramètres, toutes ses lignes prérempliront la même requête avec tous ses paramètres.",
+					"title": "Procédures stockées"
 				},
 				"query": {
 					"executeButton": "Exécuter",
@@ -98,6 +116,19 @@
 					"requestError": "Une erreur est survenue lors de la requête : {0}",
 					"statementLabel": "Instruction à exécuter",
 					"title": "Requête"
+				},
+				"tables": {
+					"error": "Une erreur est survenue lors de la récupération des tables : {0}",
+					"listButton": "Lister les tables",
+					"schemaDescription": "Les bases de données MS SQL pour Flyff utilisent en général \"dbo\" pour leurs tables.",
+					"schemaLabel": "Schéma SQL",
+					"tip": "Vous pouvez double-cliquer sur une ligne pour préremplir une requête sur la table en question.",
+					"title": "Tables"
+				},
+				"workspace": {
+					"connected": "La connexion au DSN ODBC est établie. Vous pouvez exécuter vos requêtes sur ce dernier.",
+					"notConnected": "La connexion au DSN ODBC est inactive. Veuillez vous établir une connexion afin d'effectuer vos requêtes.",
+					"title": "Espace de travail SQL"
 				}
 			},
 			"title": "Assistant SQL"

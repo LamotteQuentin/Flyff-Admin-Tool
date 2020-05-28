@@ -1,7 +1,10 @@
 <template>
   <div>
     <b-container fluid>
-      <h1>{{ $t('views.odbc.title') }}</h1>
+      <h1>
+        <b-icon icon="layers" />
+        {{ $t('views.odbc.title') }}
+      </h1>
 
       <b-row class="my-2">
         <b-col>
