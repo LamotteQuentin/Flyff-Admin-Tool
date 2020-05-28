@@ -86,10 +86,28 @@
 		"sql": {
 			"sections": {
 				"connection": {
+					"authenticationLabel": "Authentication",
 					"connectButton": "Connect",
 					"connectionError": "An error occurred while connecting to the DSN: {0}",
-					"connectionSuccess": "Connection to the ODBC DSN is established. You can execute your queries on it.",
-					"title": "ODBC DSN connection"
+					"connectionStringLabel": "ODBC connection string",
+					"connectivityLabel": "Connectivity",
+					"databaseDescription": "The name of the database as configured in the ODBC DSNs.",
+					"databaseLabel": "Database",
+					"driverDescription": "Flyff databases generally use \"SQL Server Native Client 10.0\" or higher.",
+					"driverLabel": "ODBC driver",
+					"passwordLabel": "Password",
+					"serverDescription": "Host  and SQL instance names.",
+					"serverLabel": "SQL server",
+					"title": "ODBC DSN connection",
+					"trustedConnectionDescription": "Connect with the current user (the one who launched FAT).",
+					"trustedConnectionLabel": "Windows authentication",
+					"usernameLabel": "Username"
+				},
+				"procedure": {
+					"error": "An error occurred while retrieving stored procedures: {0}",
+					"listButton": "List procedures",
+					"tip": "You can double-click on a line to prefill a query on the stored procedure in question. If a stored procedure exposes multiple parameters, all of its lines will prefill the same request with all of its parameters.",
+					"title": "Stored procedures"
 				},
 				"query": {
 					"executeButton": "Execute",
@@ -98,6 +116,19 @@
 					"requestError": "An error occurred during the request: {0}",
 					"statementLabel": "Statement to execute",
 					"title": "Query"
+				},
+				"tables": {
+					"error": "An error occurred while retrieving the tables: {0}",
+					"listButton": "List tables",
+					"schemaDescription": "MS SQL databases for Flyff generally use \"dbo\" for their tables.",
+					"schemaLabel": "SQL schema",
+					"tip": "You can double-click on a line to prefill a query on the table in question.",
+					"title": "Tables"
+				},
+				"workspace": {
+					"connected": "Connection to the ODBC DSN is established. You can execute your queries on it.",
+					"notConnected": "Connection to the ODBC DSN is inactive. Please establish a connection in order to make your requests.",
+					"title": "SQL workspace"
 				}
 			},
 			"title": "SQL assistant"
