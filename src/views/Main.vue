@@ -27,6 +27,11 @@
           <b-icon icon="server" />
           {{ $t('views.sql.title') }}
         </b-button>
+        <hr />
+        <b-button :to="{ name: 'SpeedTest' }" variant="primary" block>
+          <b-icon icon="bar-chart" />
+          {{ $t('views.speedTest.title') }}
+        </b-button>
       </b-jumbotron>
     </b-container>
   </div>

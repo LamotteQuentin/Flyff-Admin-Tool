@@ -10,6 +10,7 @@ import './plugins/mermaid';
 import './plugins/dragscroll';
 import './plugins/draggable';
 import './plugins/prism';
+import './plugins/apex-charts';
 
 Vue.config.productionTip = false;
 
