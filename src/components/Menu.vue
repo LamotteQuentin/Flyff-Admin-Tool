@@ -40,6 +40,13 @@
             {{ $t('components.menu.links.sql') }}
           </b-dropdown-item>
         </b-nav-item-dropdown>
+        <b-nav-item
+          :to="{ name: 'SpeedTest' }"
+          :active="activeRoute === 'SpeedTest'"
+        >
+          <b-icon icon="bar-chart" />
+          {{ $t('components.menu.links.speedTest') }}
+        </b-nav-item>
       </b-navbar-nav>
 
       <b-navbar-nav class="ml-auto">

@@ -36,6 +36,7 @@
 			},
 			"links": {
 				"odbc": "ODBC",
+				"speedTest": "Speed Test",
 				"sql": "SQL",
 				"system": "System",
 				"workflow": "Workflow"
@@ -82,6 +83,43 @@
 				}
 			},
 			"title": "ODBC assistant"
+		},
+		"speedTest": {
+			"sections": {
+				"bandwidth": {
+					"date": "Test date",
+					"download": "Download",
+					"isp": "Service provider",
+					"jitter": "Jitter",
+					"ping": "Ping",
+					"title": "Bandwidth",
+					"upload": "Upload"
+				},
+				"interface": {
+					"lan": "LAN IP",
+					"mac": "MAC address",
+					"title": "Interface",
+					"vpn": "VPN",
+					"wan": "WAN IP"
+				},
+				"server": {
+					"country": "Country",
+					"host": "Host",
+					"ip": "IP",
+					"location": "Location",
+					"name": "Server",
+					"title": "Server"
+				},
+				"terms": {
+					"acceptGdprLabel": "I accept the GDPR privacy clause",
+					"acceptLicenseLabel": "I accept the terms of use",
+					"description": "The speed test is carried out with the CLI and Ookla services. It should give the same results as on the website or on official applications. Ookla is not affiliated with FAT because the application uses Ookla Open Source resources, without any particular partnership. You will still have to accept Ookla's terms of use and confidentiality clause to launch the test.",
+					"subTitle": "Test carried out with the Ookla CLI",
+					"title": "Speed Test with Ookla"
+				}
+			},
+			"startButton": "Start",
+			"title": "Speed Test"
 		},
 		"sql": {
 			"sections": {

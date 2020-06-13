@@ -31,6 +31,12 @@ const routes = [
     component: () => import(/* webpackChunkName: "sql" */ '@/views/SQL'),
   },
   {
+    path: '/speedtest',
+    name: 'SpeedTest',
+    component: () =>
+      import(/* webpackChunkName: "speedtest" */ '@/views/SpeedTest'),
+  },
+  {
     path: '*',
     redirect: '/',
   },

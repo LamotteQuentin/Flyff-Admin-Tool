@@ -40,9 +40,10 @@ module.exports = {
       enableInSFC: false,
     },
     electronBuilder: {
+      externals: ['speedtest-net'],
       builderOptions: {
         productName: 'Flyff Admin Tool',
-        publish: ['github'],
+        publish: ['github']
       },
     },
   },
